@@ -71,6 +71,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should not allow multiple decimal dots")
+    void testMultipleDecimalDots() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(7);
+        calc.pressDotKey();
+        calc.pressDigitKey(8);
+
+        String expected = "1.78";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
     //TODO hier weitere Tests erstellen
 }
 
