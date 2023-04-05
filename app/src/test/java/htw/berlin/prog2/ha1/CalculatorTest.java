@@ -71,6 +71,72 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should not allow multiple decimal dots")
+    void testMultipleDecimalDots() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(7);
+        calc.pressDotKey();
+        calc.pressDigitKey(8);
+
+        String expected = "1.78";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
     //TODO hier weitere Tests erstellen
+
+
+    @Test
+    @DisplayName("Should display result after subtract two positive multi-digit numbers")
+    void testPositiveSubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should display result after pressing 9 than Equals")
+    void testNumberEquals(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+
+        String expected = "9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should display the percent for 2")
+    void testResultWithoutEquals(){
+        Calculator calc = new Calculator();
+            calc.pressDigitKey(2);
+            calc.pressUnaryOperationKey("%");
+            calc.pressEqualsKey();
+
+            String expected = "0.02";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+    }
+
 }
 
