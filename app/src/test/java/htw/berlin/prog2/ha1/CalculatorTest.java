@@ -90,5 +90,21 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //Daniel Bail
+    @Test
+    @DisplayName("1 + 1 = 2")
+    void einsPlusEins(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+        assertEquals(expected,actual);
+    }
 }
 
