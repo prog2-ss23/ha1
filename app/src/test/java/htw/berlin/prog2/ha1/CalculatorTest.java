@@ -119,5 +119,17 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display error when using 0 with function 1/x")
+        //Gelöst gemeinsam mit Mete Han Kazancioglu 584169
+    void test3() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
