@@ -90,5 +90,39 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    /**
+     * TEST THAT PASSES
+     */
+    @Test
+    @DisplayName("should display zero after pressing clear key once")
+    void testClearKeyOnce(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Two tests that fail
+     */
+    @Test
+    @DisplayName("foo")
+    void testFoo(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
