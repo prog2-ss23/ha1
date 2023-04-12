@@ -93,7 +93,9 @@ class CalculatorTest {
 
     //jede Teilaufgabe mindestens 1 Commit!
     //TODO hier weitere Tests erstellen
+
     @Test
+    //Aufgabe 1
     void testSubtraction(){
         //given
         Calculator calc = new Calculator();
@@ -111,5 +113,23 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    //Aufgabe 2
+    //[+/-] Button
+    void testPressNegativeKey(){
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressNegativeKey();
+        calc.pressDigitKey(10);
+
+        //then
+        String expected = "-10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
