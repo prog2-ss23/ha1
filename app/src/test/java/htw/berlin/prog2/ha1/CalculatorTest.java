@@ -89,8 +89,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should calculate dot befor dash")
-    void testDotBeforDash() {
+    @DisplayName("should calculate dot before dash")
+    void testDotBeforeDash() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(4);
