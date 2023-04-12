@@ -122,7 +122,8 @@ class CalculatorTest {
 
         //when
         calc.pressNegativeKey();
-        calc.pressDigitKey(10);
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
 
         //then
         String expected = "-10";
