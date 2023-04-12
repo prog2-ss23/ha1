@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Retro calculator")
 class CalculatorTest {
@@ -111,5 +112,15 @@ class CalculatorTest {
     }
 
 
+    @Test
+    void shouldMulti() {
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+
+        //then
+
+    }
 }
 
