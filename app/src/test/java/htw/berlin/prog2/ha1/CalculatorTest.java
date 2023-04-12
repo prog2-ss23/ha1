@@ -106,7 +106,23 @@ class CalculatorTest {
         assertEquals(expected,actual);
 
     }
+    @Test
+    @DisplayName("should display result after adding one negative number and one positiv number ")
+    void testNegativeAddition() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(9);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "-6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 
     {
 
