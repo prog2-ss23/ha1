@@ -125,14 +125,14 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("should display error when dividing by zero") // Roter Test 2 - nicht repariert
+    @DisplayName("should multiply multiple times when pressing multiply multiple times") // Roter Test 2  repariert
     void testMultiMulti() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("x");
+        calc.pressBinaryOperationKey("x2");
         calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("x");
+        calc.pressBinaryOperationKey("x2");
         calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
