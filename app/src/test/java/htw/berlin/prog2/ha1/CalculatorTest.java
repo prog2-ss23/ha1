@@ -89,6 +89,26 @@ class CalculatorTest {
     }
 
 
+
+
+
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display result of subtraction by two numbers ")
+    void testSubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
