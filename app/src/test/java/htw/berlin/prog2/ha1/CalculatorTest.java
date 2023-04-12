@@ -26,6 +26,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
     void testPositiveAddition() {
@@ -108,5 +109,21 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //Author: Mete Han Kazancioglu 584169 && Ghazi Nakkash 587550
+    @Test
+    @DisplayName("should change the number to positive (plus) sign or to negative (minus) sign")
+    void testPlusMinusSign() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("+/-");
+
+
+        String expected = "-22.0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
