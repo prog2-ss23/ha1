@@ -122,5 +122,23 @@ class CalculatorTest {
         //then
 
     }
+
+    @Test
+    void shouldBla() {
+        //gegebensei
+        Calculator calc = new Calculator();
+
+        //wenn
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(6);
+
+
+        //dann
+        String expected = "1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
