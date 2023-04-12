@@ -88,7 +88,13 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("erste grün test")
+    void testPercentage(){
+
+
+    }
 }
 
