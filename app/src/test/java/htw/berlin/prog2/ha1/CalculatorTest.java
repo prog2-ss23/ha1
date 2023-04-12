@@ -90,15 +90,12 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should clear after a number")
-    void testMultiplyNumbers() {
+    void testClearNumber() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
         calc.pressDigitKey(0);
         calc.pressClearKey();
-        //calc.pressBinaryOperationKey("");
-        //calc.pressDigitKey(1);
-        //calc.pressDigitKey(0);
 
         String expected = "0";
         String actual = calc.readScreen();
