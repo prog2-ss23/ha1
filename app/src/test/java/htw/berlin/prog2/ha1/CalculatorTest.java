@@ -91,8 +91,8 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("should display result after multiply two positive multi-digit numbers")
-    void testPositivMultiplication(){
+    @DisplayName("should display result after multiply two positive numbers")
+    void testPositiveMultiplication(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(3);
@@ -104,7 +104,29 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-
     }
+
+
+
+    @Test
+    @DisplayName("should display result after adding more then two numbers")
+    void testAddingMoreThenTwoNumbers(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
 }
 
