@@ -89,7 +89,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should multiply two numbers")
+    @DisplayName("should clear after a number")
     void testMultiplyNumbers() {
         Calculator calc = new Calculator();
 
