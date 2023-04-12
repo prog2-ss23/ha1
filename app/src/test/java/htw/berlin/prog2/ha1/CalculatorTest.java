@@ -106,6 +106,22 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should screen negative numbers")
+    void testNegativeNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        String expected = "-3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
     //TODO hier weitere Tests erstellen
 }
 
