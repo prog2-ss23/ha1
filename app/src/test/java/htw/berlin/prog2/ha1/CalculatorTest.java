@@ -125,5 +125,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    //Author: Mete Han Kazancioglu 584169 && Ghazi Nakkash 587550
+    @Test
+    @DisplayName("should error if pressing 1/0")
+    void testDividing0() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
