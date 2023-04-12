@@ -91,7 +91,7 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("should display result after adding two positive multi-digit numbers")
+    @DisplayName("should display result after multiplying two positive digit numbers")
     void testPositiveMultiplie() {
         Calculator calc = new Calculator();
 
