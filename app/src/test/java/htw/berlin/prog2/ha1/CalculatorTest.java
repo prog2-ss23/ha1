@@ -74,21 +74,41 @@ class CalculatorTest {
     @Test
     @DisplayName("should not allow multiple decimal dots")
     void testMultipleDecimalDots() {
+        //given: wir haben calculator calc
         Calculator calc = new Calculator();
 
+        //when: funktionalität, wenn ich das drücke
         calc.pressDigitKey(1);
         calc.pressDotKey();
         calc.pressDigitKey(7);
         calc.pressDotKey();
         calc.pressDigitKey(8);
 
+        //then: dann erwarte ich das...
         String expected = "1.78";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
 
-
+    //jede Teilaufgabe mindestens 1 Commit!
     //TODO hier weitere Tests erstellen
+    @Test
+    void shouldMultiply(){
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        //then
+        String expected = "8";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
