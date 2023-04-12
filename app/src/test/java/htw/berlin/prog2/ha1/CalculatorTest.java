@@ -114,7 +114,7 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
-        calc.pressUnaryOperationKey("-/+");
+        calc.pressUnaryOperationKey("+/-");
         String expected = "-2.0";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
