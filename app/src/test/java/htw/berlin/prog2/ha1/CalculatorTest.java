@@ -90,6 +90,8 @@ class CalculatorTest {
 
 
 
+    //TODO hier weitere Tests erstellen
+
     @Test
     @DisplayName("should display result after multiplying two positive digit numbers")
     void testPositiveMultiplie() {
@@ -105,7 +107,17 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display the negative value of a number")
+    //Gelöst gemeinsam mit Mete Han Kazancioglu 584169
+    void plusMinusFunction() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("-/+");
+        String expected = "-2.0";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
