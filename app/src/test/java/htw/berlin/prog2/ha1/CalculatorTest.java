@@ -89,14 +89,13 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should not allow multiple decimal dots")
+    @DisplayName("should multiply 3 digits and get the correct result")
     void positiveMultiplication() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(7);
-        calc.pressEqualsKey();
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(8);
         calc.pressEqualsKey();
@@ -106,6 +105,8 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+
 
 
 
