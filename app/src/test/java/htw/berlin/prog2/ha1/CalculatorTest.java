@@ -107,9 +107,8 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
     @Test
-    @DisplayName("should display error after clicking 1/x and zero") //Roter Test 1 - nicht repariert
+    @DisplayName("should display error after clicking 1/x and zero") //Roter Test 1 repariert
     void testPercent() {
         Calculator calc = new Calculator();
 
@@ -123,7 +122,6 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
 }
 
 
