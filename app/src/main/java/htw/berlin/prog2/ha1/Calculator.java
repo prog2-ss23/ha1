@@ -78,6 +78,8 @@ public class Calculator {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
+
+
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
