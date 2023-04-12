@@ -90,6 +90,71 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-    //Test
+
+    @Test
+    void shouldDevideDecimalNumber(){
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(4);
+        calc.pressDotKey();
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        //then
+        String erwartet = "2.445";
+        String ist = calc.readScreen();
+
+        assertEquals(erwartet, ist);
+    }
+
+    @Test
+    void shouldAddBigNumbers(){
+        // given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+
+        //then
+        String erwartet = "74677";
+        String ist = calc.readScreen();
+
+        assertEquals(erwartet, ist);
+    }
+
+    @Test
+    void shouldAddNegativeNumbers(){
+        // FEHLER GEFUNDEN
+        // given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("+");
+        calc.pressNegativeKey();
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        //then
+        String erwartet = "2";
+        String ist = calc.readScreen();
+
+        assertEquals(erwartet, ist);
+    }
+
 }
 
