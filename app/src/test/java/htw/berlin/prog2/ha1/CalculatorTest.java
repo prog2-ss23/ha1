@@ -94,18 +94,19 @@ class CalculatorTest {
     //jede Teilaufgabe mindestens 1 Commit!
     //TODO hier weitere Tests erstellen
     @Test
-    void shouldMultiply(){
+    void testSubtraction(){
         //given
         Calculator calc = new Calculator();
 
         //when
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(4);
         calc.pressEqualsKey();
 
         //then
-        String expected = "8";
+        String expected = "6";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
