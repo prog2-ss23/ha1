@@ -90,11 +90,12 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    //used copilot to create testNegativeAddition() test
     @Test
     @DisplayName("should display result after adding two negative multi-digit numbers")
     void testNegativeAddition() {
         Calculator calc = new Calculator();
-
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
         calc.pressNegativeKey();
@@ -109,6 +110,23 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display result after adding two negative multi-digit numbers using BinaryOperationKey")
+    void testNegativeAdditionBinaryOperationKey() {
+        Calculator calc = new Calculator();
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("=");
 
+        String expected = "-80";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
