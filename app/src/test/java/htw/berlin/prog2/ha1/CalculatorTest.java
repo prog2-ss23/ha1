@@ -89,6 +89,22 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should switch the operation symbol on screen to '-' or '' upon pressing '+/n'")
+    void changeOperationSymbol() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressNegativeKey();
+        calc.pressNegativeKey();
+
+        String expected = "1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    
 }
 
