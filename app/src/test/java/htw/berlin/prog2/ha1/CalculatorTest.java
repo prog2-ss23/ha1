@@ -110,21 +110,18 @@ class CalculatorTest {
     }
     //Aufgabe 2
     @Test
-    //[+/-] Button (NegativeKey)
-    void testPressNegativeKey(){
+    void testInversionWith0(){
         //given
         Calculator calc = new Calculator();
         //when
-        calc.pressNegativeKey();
-        calc.pressDigitKey(1);
         calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
         //then
-        String expected = "-10";
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
-
     @Test
     void testPressClearKeyC(){
         //given
