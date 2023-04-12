@@ -107,7 +107,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should multiply 2 positive digits")
+    @DisplayName("should multiply 2 positive digits with * entry")
     void positiveMultiplicationWithStar() {
         Calculator calc = new Calculator();
 
