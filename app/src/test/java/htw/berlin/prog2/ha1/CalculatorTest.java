@@ -136,10 +136,11 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(9);
-        calc.pressNegativeKey();
+
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(1);
+        calc.pressNegativeKey();
         calc.pressDigitKey(5);
         calc.pressEqualsKey();
 
@@ -159,7 +160,9 @@ class CalculatorTest {
         calc.pressNegativeKey();
         calc.pressEqualsKey();
 
-        String ex
+        String expected = "17";
+        String actual = calc.readScreen();
+         assertEquals(expected,actual);
     }
 
 }
