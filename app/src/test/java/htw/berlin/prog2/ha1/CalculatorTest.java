@@ -90,5 +90,21 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //neuer grügit commitner Test
+    @Test
+    @DisplayName("should display the result after divide 4 by 2")
+    void testDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
