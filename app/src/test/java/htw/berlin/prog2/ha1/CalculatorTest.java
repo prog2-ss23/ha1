@@ -89,6 +89,60 @@ class CalculatorTest {
     }
 
 
+
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display result after multiplying two positive digit numbers")
+    void testPositiveMultiplie() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display error when using 0 with function 1/x")
+        //gemeinsam mit Mete Han Kazancioglu 584169
+    void diplayError() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+
+
+
+
+    @Test
+    @DisplayName("should display right result, even when using mutliple calculating keys")
+        //gemeinsam mit Rita Chiblaq 588480
+    void pressMultipleKeys() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+        String expected = "100";
+
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
 
