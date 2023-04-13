@@ -107,5 +107,18 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Should fail because of exception (input digit greater than 9)")
+    void testDigitGreaterThanNine() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(12);
+
+        String expected = "12";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
