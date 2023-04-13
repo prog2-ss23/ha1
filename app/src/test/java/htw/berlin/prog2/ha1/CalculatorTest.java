@@ -108,21 +108,9 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should display the negative value of a number")
-    //Gelöst gemeinsam mit Mete Han Kazancioglu 584169
-    void plusMinusFunction() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressUnaryOperationKey("+/-");
-        String expected = "-2.0";
-        String actual = calc.readScreen();
-        assertEquals(expected, actual);
-    }
-    @Test
     @DisplayName("should display error when using 0 with function 1/x")
-        //Gelöst gemeinsam mit Mete Han Kazancioglu 584169
-    void test3() {
+        //gemeinsam mit Mete Han Kazancioglu 584169
+    void diplayError() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(0);
@@ -130,6 +118,31 @@ class CalculatorTest {
         String expected = "Error";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
+    }
+
+
+
+
+
+    @Test
+    @DisplayName("should display right result, even when using mutliple calculating keys")
+        //gemeinsam mit Rita Chiblaq 588480
+    void pressMultipleKeys() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+        String expected = "100";
+
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
     }
 }
 
