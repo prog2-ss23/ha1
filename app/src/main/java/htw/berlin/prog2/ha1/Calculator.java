@@ -70,6 +70,8 @@ public class Calculator {
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
+     * Falls die Wurzel gezogen wird und das Ergebnis eine ganze Zahl ist, erscheint diese
+     * ohne Nachkommastellen und Komma.
      */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
@@ -83,7 +85,10 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+        if(screen.endsWith(".0")) {                     //DB
+        long roundedResult = Math.round(result);        //DB
+        screen = Long.toString(roundedResult);          //DB
+        }
     }
 
     /**

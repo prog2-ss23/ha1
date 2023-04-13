@@ -106,5 +106,27 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected,actual);
     }
+
+    //Teilaufgabe 2
+    @Test
+    @DisplayName("should remove dot and zero if root is a whole number ")
+    void roundWholeNumberAfterExtractingRoot(){
+
+        Calculator calc = new Calculator();
+        calc.pressNegativeKey();
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("√");
+
+
+        String expected = "30";
+
+        String actual = calc.readScreen();
+        assertEquals(expected,actual);
+
+
+    }
 }
 
