@@ -85,9 +85,11 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-        if(screen.endsWith(".0")) {                     //DB
+        if(screen.equals("Infinity")) screen = "Error"; //DB    T 2 + 3 (2)
+        if(screen.endsWith(".0")) {                     //DB    T 2 + 3 (1)
         long roundedResult = Math.round(result);        //DB
         screen = Long.toString(roundedResult);          //DB
+
         }
     }
 

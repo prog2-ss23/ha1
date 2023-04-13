@@ -120,13 +120,22 @@ class CalculatorTest {
         calc.pressDigitKey(0);
         calc.pressUnaryOperationKey("√");
 
-
         String expected = "30";
 
         String actual = calc.readScreen();
         assertEquals(expected,actual);
+    }
+    @Test
+    @DisplayName("Error message after inversion through zero")
+    void avoidInversionThroughZero(){
 
+        Calculator calc = new Calculator();
 
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected,actual);
     }
 }
 
