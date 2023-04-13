@@ -90,5 +90,52 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //Daniel Bail
+    @Test
+    @DisplayName("1 + 1 = 2")
+    void einsPlusEins(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+    //Teilaufgabe 2
+    @Test
+    @DisplayName("should remove dot and zero if root is a whole number ")
+    void roundWholeNumberAfterExtractingRoot(){
+
+        Calculator calc = new Calculator();
+        calc.pressNegativeKey();
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "30";
+
+        String actual = calc.readScreen();
+        assertEquals(expected,actual);
+    }
+    @Test
+    @DisplayName("Error message after inversion through zero")
+    void avoidInversionThroughZero(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected,actual);
+    }
 }
 
