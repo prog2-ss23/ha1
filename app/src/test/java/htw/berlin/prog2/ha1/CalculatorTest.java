@@ -109,20 +109,41 @@ class CalculatorTest {
     }
 
     /**
-     * Two tests that fail
+     * TWO TESTS THAT FAIL
      */
     @Test
-    @DisplayName("foo")
-    void testFoo(){
+    @DisplayName("should save latest value after pressing clear key")
+    void testLatestValue(){
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
         calc.pressClearKey();
+        calc.pressDigitKey(4);
 
-        String expected = "0";
+        String expected = "5";
         String actual = calc.readScreen();
+
 
         assertEquals(expected, actual);
     }
+
+
+    @Test
+    @DisplayName("should replace -0 with new number while still being negative  ")
+    void testFoo(){
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(3);
+
+        String expected = "-3";
+        String actual = calc.readScreen();
+
+
+        assertEquals(expected, actual);
+    }
+
 }
 
