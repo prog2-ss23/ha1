@@ -109,13 +109,17 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Should fail because of exception (input digit greater than 9)")
-    void testDigitGreaterThanNine() {
+    @DisplayName("Find Bug where result is -0")
+    void testNegativeZero() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(12);
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
 
-        String expected = "12";
+        String expected = "0";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
