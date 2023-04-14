@@ -106,4 +106,19 @@ class CalculatorTest {
     }
 
     // TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display result 9 (not 9.0) after getting the square root of 81")
+    void testSimple() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(1);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
