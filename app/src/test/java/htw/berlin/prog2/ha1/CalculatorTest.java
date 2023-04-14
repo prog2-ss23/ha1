@@ -155,5 +155,24 @@ class CalculatorTest {
 
         assertEquals(erwartet, ist);
     }
+
+    @Test
+    @DisplayName("should return the result correctly even with a negative key")
+    void shouldReturnResultWithNegativeKey(){
+
+        // given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressNegativeKey();
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        //then
+        String erwartet = "-7";
+        String ist = calc.readScreen();
+
+        assertEquals(erwartet, ist);
+    }
 }
 
