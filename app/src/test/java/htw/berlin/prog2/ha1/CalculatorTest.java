@@ -109,5 +109,23 @@ class CalculatorTest {
 
         assertEquals(erwartet, ergebniss);
     }
+
+
+    @Test
+    @DisplayName("should return a pressed number when no operation key was pressed")
+    void returnGivenNumber(){
+        //gegeben
+        Calculator calc = new Calculator();
+
+        //wenn
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        //dann
+        String erwartet = "5";
+        String ergebniss = calc.readScreen();
+
+        assertEquals(erwartet, ergebniss);
+    }
 }
 
