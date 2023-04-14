@@ -90,5 +90,24 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should divide two decimal numbers")
+    void testDivide(){
+        //gegeben
+        Calculator calc = new Calculator();
+
+        //wenn
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        //dann
+        String erwartet = "4";
+        String ergebniss = calc.readScreen();
+
+        assertEquals(erwartet, ergebniss);
+    }
 }
 
