@@ -109,7 +109,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display result 9 (not 9.0) after getting the square root of 81")
-    void testSimple() {
+    void testRoute() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(8);
@@ -117,6 +117,22 @@ class CalculatorTest {
         calc.pressUnaryOperationKey("√");
 
         String expected = "9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result 9 (not 9.0) after getting the square root of 81")
+    void testInversion() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "1";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);

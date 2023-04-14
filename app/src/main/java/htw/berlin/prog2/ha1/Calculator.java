@@ -108,6 +108,8 @@ public class Calculator {
             screen = "Error";
         if (screen.contains(".") && screen.length() > 11)
             screen = screen.substring(0, 10);
+        if (screen.endsWith(".0"))
+            screen = screen.substring(0, screen.length() - 2);
 
     }
 
@@ -165,7 +167,7 @@ public class Calculator {
         if (screen.equals("Infinity"))
             screen = "Error";
         if (screen.endsWith(".0"))
-            screen = screen.substring(0, screen.length() - 2);
+            screen = screen.substring(0, screen.length() - 2); // -----> Bug with decimal point
         if (screen.contains(".") && screen.length() > 11)
             screen = screen.substring(0, 10);
     }
