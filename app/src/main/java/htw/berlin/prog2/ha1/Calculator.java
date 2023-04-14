@@ -62,8 +62,22 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        if(latestOperation==""){
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+        }else{
+            var result = switch(latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+                default -> Double.parseDouble(screen); //when no operation key was pressed, return number on screen
+            };
+            latestValue = result;
+            latestOperation = operation;
+            screen="0";
+        }
+
     }
 
     /**
