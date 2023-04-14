@@ -123,18 +123,19 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result 9 (not 9.0) after getting the square root of 81")
-    void testInversion() {
+    @DisplayName("should display result round up decimal numbers after 7 digits")
+    void testRoundUp() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
-        calc.pressDigitKey(0);
-        calc.pressUnaryOperationKey("%");
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(7);
+        calc.pressUnaryOperationKey("√");
 
-        String expected = "1";
+        String expected = "29.6141858";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
 }
