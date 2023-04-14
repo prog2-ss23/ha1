@@ -122,5 +122,22 @@ class CalculatorTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("should subtract two times")
+    void testTwoTimesMinus(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "-5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+    }
+
 }
 
