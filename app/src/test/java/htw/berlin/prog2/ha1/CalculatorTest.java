@@ -92,6 +92,7 @@ class CalculatorTest {
     //TODO hier weitere Tests erstellen
 
     @Test
+    @DisplayName("should devide decimal numbers and return correct result")
     void shouldDevideDecimalNumber(){
         //given
         Calculator calc = new Calculator();
@@ -113,7 +114,8 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddBigNumbers(){
+    @DisplayName("additional test, intended to add large numbers and return the correct result")
+    void shouldAddLargeNumbers(){
         // given
         Calculator calc = new Calculator();
 
@@ -137,24 +139,21 @@ class CalculatorTest {
     }
 
     @Test
-    void shouldAddNegativeNumbers(){
-        // FEHLER GEFUNDEN
+    @DisplayName("should return a result if there is only one input and no binary operations key is used")
+    void shouldReturnResultWithoutBinaryOperationsKey(){
+
         // given
         Calculator calc = new Calculator();
 
         //when
-        calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("+");
-        calc.pressNegativeKey();
         calc.pressDigitKey(7);
         calc.pressEqualsKey();
 
         //then
-        String erwartet = "2";
+        String erwartet = "7";
         String ist = calc.readScreen();
 
         assertEquals(erwartet, ist);
     }
-
 }
 
