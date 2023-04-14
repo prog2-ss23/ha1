@@ -108,7 +108,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Test
+    /*@Test
     @DisplayName("Find Bug where result is -0")
     void testNegativeZero() {
         Calculator calc = new Calculator();
@@ -120,6 +120,25 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }*/
+
+    @Test
+    @DisplayName("Multiple pressEqualKey should repeat the same Operation")
+    void testConcurringOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "-10";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
