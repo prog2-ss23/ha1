@@ -132,14 +132,14 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    /*@Test
+    @Test
     @DisplayName("Multiple pressEqualKey should repeat the same Operation")
-    void testConcurringOperation() {
+    void testRecurringOperation() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
         calc.pressDigitKey(0);
-        calc.pressBinaryOperationKey("+");
+        calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(1);
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
@@ -149,6 +149,6 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-    }*/
+    }
 }
 
