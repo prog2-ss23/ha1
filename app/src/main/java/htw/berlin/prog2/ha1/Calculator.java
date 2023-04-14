@@ -123,7 +123,7 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            default -> Double.parseDouble(screen); //when no operation key was pressed, return number on screen
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
