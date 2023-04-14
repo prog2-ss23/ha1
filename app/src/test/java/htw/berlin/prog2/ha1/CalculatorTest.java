@@ -88,6 +88,8 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //TODO hier weitere Tests erstellen
+
     @Test
     @DisplayName("should clear after a number")
     void testClearNumber() {
@@ -103,7 +105,23 @@ class CalculatorTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("should divide two times")
+    void testTwoEquals(){
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "0.2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+    }
+
+
 }
 
