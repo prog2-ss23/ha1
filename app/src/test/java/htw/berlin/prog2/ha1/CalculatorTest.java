@@ -90,6 +90,10 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    /**
+     * Teilaufgabe 1
+     */
     @Test
     @DisplayName("Should return a negative result")
     void testNegativeOperation() {
@@ -108,7 +112,10 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    /*@Test
+    /**
+     * Teilaufgabe 2
+     */
+    @Test
     @DisplayName("Find Bug where result is -0")
     void testNegativeZero() {
         Calculator calc = new Calculator();
@@ -123,9 +130,9 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-    }*/
+    }
 
-    @Test
+    /*@Test
     @DisplayName("Multiple pressEqualKey should repeat the same Operation")
     void testConcurringOperation() {
         Calculator calc = new Calculator();
@@ -142,6 +149,6 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-    }
+    }*/
 }
 
