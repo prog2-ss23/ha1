@@ -125,8 +125,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after adding one negative number and one positiv number ")
-    void testDevideThroughZero() {
+    @DisplayName("should be showing an error but it shows -Infinity")
+    void testDevideThroughNegativeZero() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(9);
@@ -134,6 +134,23 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
+    @Test
+    @DisplayName("should be showing an error but it shows -Infinity")
+    void testDevideThroughPositiveZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
 
         String expected = "Error";
         String actual = calc.readScreen();
