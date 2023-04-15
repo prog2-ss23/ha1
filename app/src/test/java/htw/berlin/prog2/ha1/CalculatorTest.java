@@ -89,7 +89,7 @@ class CalculatorTest {
     }
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers with one negative multi-digit number")
-    void testkettenregel() {
+    void testKettenregel() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(9);
@@ -118,6 +118,24 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "-6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("should display result after adding one negative number and one positiv number ")
+    void testDevideThroughZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
