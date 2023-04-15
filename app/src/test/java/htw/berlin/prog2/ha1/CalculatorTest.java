@@ -93,7 +93,7 @@ class CalculatorTest {
 
         @Test
         @DisplayName("sollte das Ergebnis einer Subtraktion von zweistelligen Zahlen anzeigen")
-        void testPositiveAddition() {
+        void testPositiveSubtraction() {
             Calculator calc = new Calculator();
 
             calc.pressDigitKey(2);
