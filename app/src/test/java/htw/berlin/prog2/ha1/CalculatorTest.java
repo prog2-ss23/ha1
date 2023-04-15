@@ -9,6 +9,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CalculatorTest {
 
     @Test
+    @DisplayName("should reset screen to 0")
+    void testPressClearKey() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressClearKey();
+
+        String expected = "0";
+
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should add a dot to the screen after pressing the dot key")
+    void testPressDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDotKey();
+
+        String expected = "0.";
+
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
     void testPositiveAddition() {
         Calculator calc = new Calculator();
