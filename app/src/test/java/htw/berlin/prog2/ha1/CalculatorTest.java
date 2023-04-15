@@ -111,7 +111,7 @@ class CalculatorTest {
         assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleichen
     }
 
-    //Teilaufgabe 2
+    //Teilaufgabe 2 (erster Test)
     @Test
     @DisplayName("should display error for inversion of zero")
     void testInversionOfZero() {
