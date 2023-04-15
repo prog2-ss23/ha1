@@ -24,7 +24,7 @@ class CalculatorTest {
         String expected = "3";
 
         String actual = calc.readScreen();
-git add
+
         assertEquals(expected, actual);
     }
 
