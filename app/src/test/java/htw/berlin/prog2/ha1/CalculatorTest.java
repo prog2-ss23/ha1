@@ -9,17 +9,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CalculatorTest {
 
     @Test
-    @DisplayName("should reset screen to 0")
+    @DisplayName("should reset screen to 0 but not current result or operator")
     void testPressClearKey() {
 
         Calculator calc = new Calculator();
 
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
         calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
 
-        String expected = "0";
+        String expected = "3";
 
         String actual = calc.readScreen();
-
+git add
         assertEquals(expected, actual);
     }
 
