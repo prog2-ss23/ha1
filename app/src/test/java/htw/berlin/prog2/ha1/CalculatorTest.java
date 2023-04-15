@@ -90,5 +90,19 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should not display the numbers added before pressing the clear key")
+    void testClearKeyScreen() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressClearKey();
+        calc.pressDigitKey(3);
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
