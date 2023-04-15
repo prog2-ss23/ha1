@@ -108,5 +108,84 @@ class CalculatorTest {
 
             assertEquals(expected, actual);
         }
+
+        @Test
+        @DisplayName("sollte Error anzeigen wenn man ohne vorherige Eingabe auf die Kehrwert-Taste drückt")
+        void testDivisionByZeroByClickingOnTheReciprocalKey() {
+            Calculator calc = new Calculator();
+
+            calc.pressBinaryOperationKey("1/x");
+
+
+            String expected = "Error";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        @DisplayName("sollte Error anzeigen wenn eine zu große Zahl angezeigt haben möchte")
+        void testReadTooHighNumber() {
+            Calculator calc = new Calculator();
+
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressUnaryOperationKey("*");
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressDigitKey(9);
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+            calc.pressEqualsKey();
+
+            String expected = "Error";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+        }
 }
 
