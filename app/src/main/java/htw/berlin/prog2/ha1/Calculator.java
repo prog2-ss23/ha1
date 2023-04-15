@@ -100,7 +100,7 @@ public class Calculator {
     /**
      * Empfängt den Befehl der gedrückten Vorzeichenumkehrstaste ("+/-").
      * Zeigt der Bildschirm einen positiven Wert an, so wird ein "-" links angehängt, der Bildschirm
-     * aktualisiert und die Inhalt fortan als negativ interpretiert.
+     * aktualisiert und der Inhalt fortan als negativ interpretiert.
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */

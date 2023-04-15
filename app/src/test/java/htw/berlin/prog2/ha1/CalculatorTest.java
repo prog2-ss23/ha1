@@ -90,5 +90,26 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after dividing two positive decimal numbers")
+    void testDividingDecimalNumbers(){
+        Calculator calc = new Calculator(); //Instanz der Calculator-Klasse
+
+        calc.pressDigitKey(5);             //Ziffer 5
+        calc.pressDotKey();                //Dezimaltrennzeichentaste
+        calc.pressDigitKey(0);             //Ziffer 0
+        calc.pressBinaryOperationKey("/"); //dividieren
+        calc.pressDigitKey(2);             //Ziffer 2
+        calc.pressDotKey();                //Dezimaltrennzeichentaste
+        calc.pressDigitKey(5);             //Ziffer 5
+        calc.pressEqualsKey();             //Gleichheitstaste
+
+        String expected = "2";             //Erwartungswert 2 in Variable "expected" speichern
+        String actual = calc.readScreen(); //Wert des Taschenrechners auslesen und in Variable "actual" speichern
+
+        assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleichen
+    }
+
 }
 
