@@ -33,7 +33,10 @@ public class Calculator {
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
+
+
         screen = screen + digit;
+
     }
 
     /**

@@ -142,28 +142,35 @@ class CalculatorTest {
 
     }
 
-
     @Test
-    @DisplayName("should be showing an error but it shows -Infinity")
-    void testDevideThroughPositiveZero() {
+    @DisplayName("Show only 9 digits on display max")
+    void testDigitLimit() {
         Calculator calc = new Calculator();
 
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(8);
         calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
 
-        String expected = "Error";
+
+        String expected = "123456789";
         String actual = calc.readScreen();
 
-        assertEquals(expected, actual);
+        assertEquals(expected,actual);
 
     }
 
-    {
+
+
 
 
 
     //TODO hier weitere Tests erstellen
-}
 }
 
