@@ -92,7 +92,7 @@ class CalculatorTest {
     //TODO hier weitere Tests erstellen
 
     @Test
-    @DisplayName("Clear Key should delete")
+    @DisplayName("Clear Key should delete input")
     void testPressingClearKey() {
         Calculator calc = new Calculator();
 
@@ -106,11 +106,28 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("")
-    void test (){
+    @DisplayName("Pressing Clear Key should only delete latest input and not the saved value")
+    void testPressingClearKeyadvanced(){
+        Calculator calc = new Calculator ();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(9);
+
+        calc.pressClearKey();
+
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
 
     }
-
 
 }
 
