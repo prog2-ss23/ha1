@@ -107,7 +107,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("Pressing Clear Key should only delete latest input and not the saved value")
-    void testPressingClearKeyadvanced(){
+    void testPressingClearKeyKeepOperator(){
         Calculator calc = new Calculator ();
 
         calc.pressDigitKey(2);

@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    public boolean ClearKeyInputsChecker = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -29,6 +31,7 @@ public class Calculator {
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
+        ClearKeyInputsChecker = false;
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
@@ -46,8 +49,13 @@ public class Calculator {
      */
     public void pressClearKey() {
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (ClearKeyInputsChecker) {
+            latestOperation = "";
+            latestValue = 0.0;
+            ClearKeyInputsChecker = false;
+            return;
+        }
+        ClearKeyInputsChecker = true;
     }
 
     /**
@@ -83,7 +91,6 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
 
     /**
@@ -94,6 +101,7 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
+        ClearKeyInputsChecker = false;
         if(!screen.contains(".")) screen = screen + ".";
     }
 
