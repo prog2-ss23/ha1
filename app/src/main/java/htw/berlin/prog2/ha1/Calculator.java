@@ -53,8 +53,10 @@ public class Calculator {
         if (secondClearPress) {
             latestOperation = "";
             latestValue = 0.0;
+            secondClearPress = false;
+        } else {
+            secondClearPress = true;
         }
-        boolean secondClearPress = true;
     }
 
     /**
