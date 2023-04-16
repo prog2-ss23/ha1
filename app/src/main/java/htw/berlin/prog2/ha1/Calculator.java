@@ -34,6 +34,10 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
 
+        // if we have more than 9 digits then we only count the first 9 digits.
+        if (screen.length() > 8){
+            return;
+        }
 
         screen = screen + digit;
 
