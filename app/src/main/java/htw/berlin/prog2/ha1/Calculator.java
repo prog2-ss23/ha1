@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private boolean secondClearPress = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -31,6 +33,8 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
+        secondClearPress = false;
+
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = ""; // wenn auf dem Bildschirm eine Null steht, oder der Bildschirminhalt gleich dem letzten Zwischenergebnis ist, dann lösche den Bildschirminhalt.
 
         screen = screen + digit;
@@ -46,8 +50,11 @@ public class Calculator {
      */
     public void pressClearKey() {
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0; // Hier ist einer der Fehler
+        if (secondClearPress) {
+            latestOperation = "";
+            latestValue = 0.0;
+        }
+        boolean secondClearPress = true;
     }
 
     /**
@@ -94,6 +101,7 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
+        secondClearPress = false;
         if(!screen.contains(".")) screen = screen + ".";
     }
 
@@ -105,6 +113,7 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
+        secondClearPress = false;
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
     }
 

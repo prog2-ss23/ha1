@@ -104,7 +104,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should keep latestValue when pressing clear once")
+    @DisplayName("should keep latestValue and operator when pressing clear once")
     void testClearOnce() {
         Calculator calc = new Calculator();
 
