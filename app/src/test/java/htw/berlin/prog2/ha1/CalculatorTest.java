@@ -129,5 +129,29 @@ class CalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("Pressing the binary operation key after an operation has already been performed should show the result without having to press equals")
+    void testAutomaticEquals(){
+        Calculator calc = new Calculator ();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("+");
+
+        String expected = "6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("Pressing equals without an operator should change nothing")
+    void testEqualsWithoutOperator(){
+
+        Calculator calc = new Calculator();
+        calc.pressEqualsKey();
+    }
 }
 
