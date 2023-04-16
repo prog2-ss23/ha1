@@ -88,7 +88,19 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should invert the sign of a positive number")
+    void testInvertSignOfPositive() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+
+        String expected = "-42";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
