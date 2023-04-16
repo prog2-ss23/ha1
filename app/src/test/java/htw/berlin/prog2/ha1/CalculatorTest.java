@@ -120,5 +120,19 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("pressing equals without an operator should do nothing")
+    void testEqualsWithoutOperator() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        String expected = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
