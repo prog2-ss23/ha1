@@ -90,5 +90,23 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display result after subtraction from a negative number")
+    void testNegativeSubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "-7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
