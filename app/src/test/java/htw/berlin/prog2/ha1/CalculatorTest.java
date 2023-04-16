@@ -111,6 +111,24 @@ class CalculatorTest {
         assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleichen
     }
 
+    //Zusätzlicher grüner Test zum Ausprobieren
+    @Test
+    @DisplayName("should display result after subtracting a positive number from a negative number")
+    void testNegativeKey() {
+        Calculator calc = new Calculator(); //Instanz der Calculator-Klasse
+
+        calc.pressDigitKey(3);             //Ziffer 3
+        calc.pressNegativeKey();           //Vorzeichenumkehrstaste
+        calc.pressBinaryOperationKey("-"); //Subtraktion
+        calc.pressDigitKey(2);             //Ziffer 2
+        calc.pressEqualsKey();             //Gleichheitstaste
+
+        String expected = "-5";            //-5 als Erwartungswert
+        String actual = calc.readScreen(); //Wert des Taschenrechners auslesen und in Variable "actual" speichern
+
+        assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleichen
+    }
+
     //Teilaufgabe 2 (erster Test)
     @Test
     @DisplayName("should display error for inversion of zero")
@@ -126,5 +144,24 @@ class CalculatorTest {
         assertEquals(expected, actual);     //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleichen
     }
 
-}
+    //Teilaufgabe 2 (zweiter Test)
+    @Test
+    @DisplayName("should display result after adding two positive decimal numbers")
+    void testAddingDecimalNumbers() {
+        Calculator calc = new Calculator(); //Instanz der Calculator-Klasse
 
+        calc.pressDigitKey(2);             //Ziffer 2
+        calc.pressDotKey();                //Dezimaltrennzeichentaste
+        calc.pressDigitKey(0);             //Ziffer 0
+        calc.pressBinaryOperationKey("+"); //Addition
+        calc.pressDigitKey(2);             //Ziffer 2
+        calc.pressDotKey();                //Dezimaltrennzeichentaste
+        calc.pressDigitKey(5);             //Ziffer 5
+        calc.pressEqualsKey();             //Gleichheitstaste
+
+        String expected = "4.5";           //4.5 als Erwartungswert
+        String actual = calc.readScreen(); //Wert des Taschenrechners auslesen und in Variable "actual" speichern
+
+        assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleich
+    }
+}
