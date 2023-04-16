@@ -102,5 +102,23 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should keep latestValue when pressing clear once")
+    void testClearOnce() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(8);
+        calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
