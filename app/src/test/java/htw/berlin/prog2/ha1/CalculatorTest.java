@@ -90,5 +90,27 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("Clear Key should delete")
+    void testPressingClearKey() {
+        Calculator calc = new Calculator();
+
+        calc.setScreen("4");
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("")
+    void test (){
+
+    }
+
+
 }
 
