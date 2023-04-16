@@ -122,67 +122,35 @@ class CalculatorTest {
 
             assertEquals(expected, actual);
         }
-
         @Test
-        @DisplayName("sollte Error anzeigen wenn eine zu große Zahl angezeigt haben möchte")
-        void testReadTooHighNumber() {
+        @DisplayName("sollte die Wurzel einer Positiven Kommazahl anzeigen")
+        void wurzelZiehen() {
             Calculator calc = new Calculator();
 
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressUnaryOperationKey("*");
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressDigitKey(9);
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
-            calc.pressEqualsKey();
+            calc.pressDigitKey(6);
+            calc.pressDotKey();
+            calc.pressDigitKey(3);
+            calc.pressUnaryOperationKey("√");
+
+            String expected = "2.50998008";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+        }
+        @Test
+        @DisplayName("Löscht das was auf dem Bildschirm ist, jedoch ohne zuvor zwischengespeicherte Werte zu löschen")
+        void druckeC() {
+            Calculator calc = new Calculator();
+
+            calc.pressDigitKey(6);
+            calc.pressBinaryOperationKey("x");
+            calc.pressDigitKey(3);
+            calc.pressClearKey();
+            calc.pressClearKey();
+            calc.pressDigitKey(6);
             calc.pressEqualsKey();
 
-            String expected = "Error";
+            String expected = "6";
             String actual = calc.readScreen();
 
             assertEquals(expected, actual);
