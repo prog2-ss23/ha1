@@ -80,7 +80,6 @@ public class Calculator {
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
-            case "+/-" -> -1* Double.parseDouble(screen);
 
         };
         screen = Double.toString(result);
