@@ -123,4 +123,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should multiply decimal numbers and only show 2 digits after the comma")
+    void testMultiplyDecimalNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "10.24";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
