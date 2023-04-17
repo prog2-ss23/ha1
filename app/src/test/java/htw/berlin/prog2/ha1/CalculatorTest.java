@@ -106,8 +106,6 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-
-
     @Test
     @DisplayName("should display result after adding more then two numbers")
     void testAddingMoreThenTwoNumbers(){
@@ -118,9 +116,28 @@ class CalculatorTest {
         calc.pressDigitKey(3);
         calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
         calc.pressEqualsKey();
 
-        String expected = "9";
+        String expected = "12";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display Error after Reciprocal of 0")
+    void testReciprocalOfZero(){
+        Calculator calc = new Calculator();
+
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+
+
+        //funktioniert nicht
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
