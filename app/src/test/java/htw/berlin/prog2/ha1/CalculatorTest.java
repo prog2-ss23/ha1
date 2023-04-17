@@ -110,21 +110,19 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
-        @Test
-        @DisplayName("should display result after multipliying one negative multi-digit number with a positive " +
-                     "multi-digit number")
-        void testNegativeMultiplication(){
+    @Test
+    @DisplayName("should clear the second entry of a digit and then keep the third entry")
+    void testClearKey(){
         Calculator calc = new Calculator();
 
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(6);
-        calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(6);
-        calc.pressEqualsKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressClearKey();
 
-        String expected = "-6624";
+        String expected = "4";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
