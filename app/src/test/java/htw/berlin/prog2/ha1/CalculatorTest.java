@@ -108,6 +108,26 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+
+    }
+        @Test
+        @DisplayName("should display result after multipliying one negative multi-digit number with a positive " +
+                     "multi-digit number")
+        void testNegativeMultiplication(){
+        Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(6);
+        calc.pressEqualsKey();
+
+        String expected = "-6624";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
     }
 }
 
