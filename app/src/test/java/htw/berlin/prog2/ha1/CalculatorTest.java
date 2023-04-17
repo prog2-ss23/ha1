@@ -90,5 +90,22 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display the result after multiply a double digit number and a decimal number")
+    void testMultiplyWithDecimal() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "143.1";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
