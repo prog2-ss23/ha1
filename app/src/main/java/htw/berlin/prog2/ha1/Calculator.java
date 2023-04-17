@@ -37,6 +37,8 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+
+        zähler = 0;
     }
 
     /**
@@ -133,7 +135,7 @@ public class Calculator {
 
         //Teilaufgabe 3: Bugfix for testRecurringOperation
         zähler++;
-        if (subSafe == "") subSafe = screen;
+        if (subSafe == "" && latestOperation == "-") subSafe = screen;
         if (zähler > 1 && latestOperation == "-") result = Double.parseDouble(screen) - Double.parseDouble(subSafe);
 
         screen = Double.toString(result);

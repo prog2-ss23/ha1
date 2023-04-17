@@ -137,15 +137,13 @@ class CalculatorTest {
     void testRecurringOperation() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
+        calc.pressDigitKey(6);
         calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
+        calc.pressDigitKey(2);
         calc.pressEqualsKey();
         calc.pressEqualsKey();
 
-        String expected = "-10";
+        String expected = "2";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
