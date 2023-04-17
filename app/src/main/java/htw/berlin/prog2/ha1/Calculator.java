@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import java.util.Objects;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -65,7 +67,7 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        if (latestOperation == "") {
+        if (Objects.equals(latestOperation, "")) {
             latestValue = Double.parseDouble(screen);
             latestOperation = operation;
         }
