@@ -39,6 +39,8 @@ public class Calculator {
         screen = screen + digit;
 
         zähler = 0;
+
+        subSafe = "";
     }
 
     /**
