@@ -125,5 +125,19 @@ class CalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("should display a perfect square number after taking the square root of its own product")
+    void testPerfectRoots() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
