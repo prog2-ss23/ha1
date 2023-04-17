@@ -1,5 +1,6 @@
 package htw.berlin.prog2.ha1;
 
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -90,5 +91,63 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-}
 
+    // First green test
+    @Test
+    @DisplayName("should remove all content and display zero")
+    void testScreenClear() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    // First red test
+    @Test
+    @DisplayName("should only remove value on screen while keeping the binary operation when pressing Clear Key once")
+    void clearKeyTest() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    // Second red test
+    @Test
+    @DisplayName("should display result when pressing the same binary operator again after entering two values and binary operator")
+    void doubleBinaryClickTest() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("+");
+        calc.pressEqualsKey();
+
+        String expected = "36";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+}
