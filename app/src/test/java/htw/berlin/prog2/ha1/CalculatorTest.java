@@ -90,5 +90,57 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-}
 
+    @Test
+    @DisplayName("should display result after getting the multiply of 10")
+    void testMultiply() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "100";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display that the percent of zero is 0")
+    void testPercentOfZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should multiply decimal numbers and only show 2 digits after the comma")
+    void testMultiplyDecimalNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "10.24";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+}
