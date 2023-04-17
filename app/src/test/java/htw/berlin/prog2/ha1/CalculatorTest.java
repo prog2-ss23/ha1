@@ -131,7 +131,7 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("should display result after dividing one negetive multi-digit numbers")
+    @DisplayName("should display - result after dividing one negetive multi-digit numbers & take the ")
     void testPositivedev() {
         Calculator calc = new Calculator();
 
@@ -165,5 +165,52 @@ class CalculatorTest {
          assertEquals(expected,actual);
     }
 
+
+    @Test
+    @DisplayName("using M+ and MR funktion memory adding(+) and memory recall")
+    void AddingtoMemoryandrecallingit(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+        calc.addtoMemoryPos();
+        calc.pressClearKey();
+        calc.Memoryrecall();
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+
+        String expected = "-3";
+      String actual = calc.readScreen();
+      assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("using M- and MR funktion memory adding(as -) and memory recall")
+    void ADDINGtomemoryandrecallitasNEG(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+        calc.addtoMemoryNeg();
+        calc.pressClearKey();
+        calc.Memoryrecall();
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+
+        String expected = "-2";
+        String actual = calc.readScreen();
+        assertEquals(expected,actual);
+
 }
+    }
+
 

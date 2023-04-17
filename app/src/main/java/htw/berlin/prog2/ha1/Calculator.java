@@ -12,7 +12,12 @@ public class Calculator {
 
     private double latestValue;
 
+
     private String latestOperation = "";
+
+    private double Memory = 0;
+
+
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -61,6 +66,7 @@ public class Calculator {
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
+
         latestOperation = operation;
     }
 
@@ -85,6 +91,7 @@ public class Calculator {
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
+
 
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
@@ -126,8 +133,29 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+
+    }
+
+    public void addtoMemoryPos(){
+        Memory =Double.parseDouble(screen);
+
+    }
+
+    public void Memoryrecall(){
+        screen= Double.toString(Memory);
+    }
+
+
+    public void clearMemory(){
+        Memory=0.0;
+    }
+
+    public void addtoMemoryNeg() {
+        Memory =-Double.parseDouble(screen);
     }
 }
