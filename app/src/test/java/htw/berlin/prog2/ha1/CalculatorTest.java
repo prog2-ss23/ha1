@@ -110,5 +110,20 @@ class CalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("should display an Error after trying to divide by Zero")
+    void testDivisionByZeroUnary() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
 }
 
