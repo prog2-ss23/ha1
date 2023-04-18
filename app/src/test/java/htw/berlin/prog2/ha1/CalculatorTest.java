@@ -122,6 +122,20 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Should put single digit to value 0 with clear key")
+    void clearTest() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressClearKey();
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 
 
