@@ -116,6 +116,7 @@ class CalculatorTest {
         calc.pressEqualsKey();
         calc.pressEqualsKey();
 
+
         String expected = "0.2";
         String actual = calc.readScreen();
 
@@ -137,6 +138,23 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("should get negetive number")
+    void testNegativeAndMinus(){
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+
+        String expected = "-3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
     }
 
 }
