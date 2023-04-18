@@ -105,8 +105,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display Error after pressing 1 divid x")
-    void testGespeicherterWertAddition() {
+    @DisplayName("should display Error after pressing 0 and 1 divid x")
+    void testNullBeforUnaryOperationKey() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(0);
@@ -123,9 +123,8 @@ class CalculatorTest {
     @DisplayName("should expect to be zero after multiplying, pressing key and pressing negative key")
     void testBinaryKeyBeforeNegativeKey() {
         Calculator calc = new Calculator();
-
+        calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(2);
         calc.pressNegativeKey();
         calc.pressEqualsKey();
 
