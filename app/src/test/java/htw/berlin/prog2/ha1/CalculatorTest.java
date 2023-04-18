@@ -120,7 +120,7 @@ class CalculatorTest {
         calc.pressDigitKey(4);
         calc.pressClearKey();
         calc.pressDigitKey(2);
-        calc.pressClearKey();
+        calc.pressEqualsKey();
 
         String expected = "4";
         String actual = calc.readScreen();

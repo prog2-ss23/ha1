@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import java.awt.desktop.SystemSleepEvent;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -43,11 +45,16 @@ public class Calculator {
      * Wird daraufhin noch einmal die Taste gedrückt, dann werden auch zwischengespeicherte
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
+     * BUGFIX: Added a double clear functionality that resets the calculator when the clear
+     * button has been pressed twice.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (screen.equals("0")){
+            latestOperation = "";
+            latestValue = 0.0;
+        }else{
+            screen = "0";
+        }
     }
 
     /**
