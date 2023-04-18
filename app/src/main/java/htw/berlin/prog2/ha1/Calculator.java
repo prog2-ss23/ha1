@@ -14,6 +14,12 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    public Integer count = 0;
+
+    public Integer digitMethodCounter = 0;
+
+    public Boolean negative = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -27,6 +33,8 @@ public class Calculator {
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
+     * zusätzlich wird jetzt überprüft, ob der Boolean negative true ist, wenn ja wird
+     * die Methode pressNegativeKey augerufen, damit die Zahl auch negativ ist
      */
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
@@ -34,6 +42,11 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+
+        if (negative){
+            pressNegativeKey();
+        }
+
     }
 
     /**
@@ -103,9 +116,17 @@ public class Calculator {
      * aktualisiert und die Inhalt fortan als negativ interpretiert.
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
+     *
+     * setzt den Boolean negative auf true, wenn ein Minus davor steht
+     * andernfalls wird es auf false gesetzt
      */
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        if(screen.startsWith("-")){
+            negative = true;
+        } else {
+            negative = false;
+        }
     }
 
     /**
@@ -116,18 +137,58 @@ public class Calculator {
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
+     *
+     * besitzt einen neuen Counter, der hochzählt, wie oft man das Gleichzeichen drückt
+     * wenn man zweimal oder öfter das Gleichzeichen drückt werden bei Minus und Geteilt die Operanten getauscht,
+     * damit das Ergebnis kleiner wird bzw negativ und nicht wieder größer.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.equals("Infinity")) screen = "Error";
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        count++;
+        if (count<2) {
+            var result = switch (latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+
+            screen = Double.toString(result);
+            if (screen.equals("Infinity")) screen = "Error";
+            if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+            if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        } else {
+            Double result;
+            if(latestOperation.equals("/")) {
+                result = Double.parseDouble(screen) / latestValue;
+                screen = Double.toString(result);
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+            if(latestOperation.equals("-")) {
+                result = Double.parseDouble(screen) - latestValue;
+                screen = Double.toString(result);
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+            if(latestOperation.equals("+")) {
+                result = latestValue + Double.parseDouble(screen);
+                screen = Double.toString(result);
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+            if(latestOperation.equals("x")) {
+                result = latestValue * Double.parseDouble(screen);
+                screen = Double.toString(result);
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+        }
     }
+
 }
