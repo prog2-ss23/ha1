@@ -88,6 +88,55 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should not allow multiple decimal dots")
+    void positiveMultiplication() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "56";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should put single digit to value 0 with clear key")
+    void clearTest() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressClearKey();
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should display 8")
+    void clearKeyTest2() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+        calc.pressClearKey();
+        calc.pressEqualsKey();
+
+        String expected = "8";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
     //TODO hier weitere Tests erstellen
 }
