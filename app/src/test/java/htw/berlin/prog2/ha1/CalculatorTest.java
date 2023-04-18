@@ -121,5 +121,23 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display result after subtracting two positive multi-digit numbers")
+    void testDigiMminus () {
+        Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("+/-");
+        calc.pressDigitKey(3);
+
+        String expected = "-3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 }
+
+
 
