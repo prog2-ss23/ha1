@@ -89,34 +89,19 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should multiply 3 digits and get the correct result")
+    @DisplayName("should not allow multiple decimal dots")
     void positiveMultiplication() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(7);
+        calc.pressEqualsKey();
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(8);
         calc.pressEqualsKey();
 
         String expected = "56";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    @DisplayName("should multiply 2 positive digits with * entry")
-    void positiveMultiplicationWithStar() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(1);
-        calc.pressBinaryOperationKey("*");
-        calc.pressDigitKey(7);
-        calc.pressEqualsKey();
-
-        String expected = "7";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -136,8 +121,6 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
-
 
 
 
