@@ -15,7 +15,7 @@ class CalculatorTest {
 
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
-        calc.pressBinaryOperationKey("x");
+        calc.pressBinaryOperationKey("x"); //vorher stand hier "*"
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
@@ -127,21 +127,21 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
+
     @Test
-    @DisplayName("should display the result of different calculations")
-    void testDiffCalc() {
+    @DisplayName("If a number is entered and the equality key is pressed, the entered value should be displayed.")
+    void testEqualNumber() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(4);
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(4);
-        calc.pressEqualsKey();
-        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
         calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
 
-        String expected = "8";
+        String expected = "40.2";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
