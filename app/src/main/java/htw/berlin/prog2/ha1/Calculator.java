@@ -134,7 +134,12 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            //Bugfix zum zweiten roten Test aus Teilaufgabe 2
+            //Zeigt nun den eingegebenen Wert auf dem Screen an
+            default -> Double.parseDouble(screen);
+            //default -> throw new IllegalArgumentException();
+                //Hat eine IllegalArgumentException geworfen, wenn eine Ziffer eingegeben wurde
+                //und anschließend das Gleichheitszeichen ausgewählt wurde
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
