@@ -90,5 +90,74 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-}
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after dividing two positive decimal numbers")
+    void testDividingDecimalNumbers(){
+        Calculator calc = new Calculator(); //Instanz der Calculator-Klasse
 
+        calc.pressDigitKey(5);             //Ziffer 5
+        calc.pressDotKey();                //Dezimaltrennzeichentaste
+        calc.pressDigitKey(0);             //Ziffer 0
+        calc.pressBinaryOperationKey("/"); //dividieren
+        calc.pressDigitKey(2);             //Ziffer 2
+        calc.pressDotKey();                //Dezimaltrennzeichentaste
+        calc.pressDigitKey(5);             //Ziffer 5
+        calc.pressEqualsKey();             //Gleichheitstaste
+
+        String expected = "2";             //Erwartungswert 2 in Variable "expected" speichern
+        String actual = calc.readScreen(); //Wert des Taschenrechners auslesen und in Variable "actual" speichern
+
+        assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleichen
+    }
+
+    //Zusätzlicher grüner Test zum Ausprobieren
+    @Test
+    @DisplayName("should display result after subtracting a positive number from a negative number")
+    void testNegativeKey() {
+        Calculator calc = new Calculator(); //Instanz der Calculator-Klasse
+
+        calc.pressDigitKey(3);             //Ziffer 3
+        calc.pressNegativeKey();           //Vorzeichenumkehrstaste
+        calc.pressBinaryOperationKey("-"); //Subtraktion
+        calc.pressDigitKey(2);             //Ziffer 2
+        calc.pressEqualsKey();             //Gleichheitstaste
+
+        String expected = "-5";            //-5 als Erwartungswert
+        String actual = calc.readScreen(); //Wert des Taschenrechners auslesen und in Variable "actual" speichern
+
+        assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleichen
+    }
+
+    //Teilaufgabe 2 (erster Test)
+    @Test
+    @DisplayName("should display error for inversion of zero")
+    void testInversionOfZero() {
+        Calculator calc = new Calculator(); //Instanz der Calculator-Klasse
+
+        calc.pressDigitKey(0);              //Ziffer 0
+        calc.pressUnaryOperationKey("1/x"); //Versuche Inversion von 0 durchzuführen
+
+        String expected = "Error";          //Error als Erwartungswert
+        String actual = calc.readScreen();  //Wert des Taschenrechners auslesen und in Variable "actual" speichern
+
+        assertEquals(expected, actual);     //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleichen
+    }
+
+    //Teilaufgabe 2 (zweiter Test)
+    @Test
+    @DisplayName("should display entered number on screen")
+    void testEqualSingleNumberOnScreen() {
+        Calculator calc = new Calculator(); //Instanz der Calculator-Klasse
+
+        calc.pressDigitKey(2);             //Ziffer 2
+        calc.pressDigitKey(5);             //Ziffer 5
+        calc.pressDigitKey(9);             //Ziffer 9
+        calc.pressEqualsKey();             //Gleichheitstaste
+
+        String expected = "259";           //259 als Erwartungswert
+        String actual = calc.readScreen(); //Wert des Taschenrechners auslesen und in Variable "actual" speichern
+
+        assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleich
+    }
+}

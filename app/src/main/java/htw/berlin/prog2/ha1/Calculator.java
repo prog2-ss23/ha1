@@ -23,7 +23,7 @@ public class Calculator {
 
     /**
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
-     * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
+     * drücken kann, muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
@@ -38,10 +38,10 @@ public class Calculator {
 
     /**
      * Empfängt den Befehl der C- bzw. CE-Taste (Clear bzw. Clear Entry).
-     * Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm
-     * so dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
+     * Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm,
+     * sodass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
      * Wird daraufhin noch einmal die Taste gedrückt, dann werden auch zwischengespeicherte
-     * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
+     * Werte sowie der aktuelle Operationsmodus zurückgesetzt, sodass der Rechner wieder
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
@@ -52,12 +52,12 @@ public class Calculator {
 
     /**
      * Empfängt den Wert einer gedrückten binären Operationstaste, also eine der vier Operationen
-     * Addition, Substraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
+     * Addition, Subtraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
      * Beim ersten Drücken der Taste wird der Bildschirminhalt nicht verändert, sondern nur der
      * Rechner in den passenden Operationsmodus versetzt.
-     * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt des aktuelle Zwischenergebnis
+     * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt das aktuelle Zwischenergebnis
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
-     * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
+     * @param operation "+" für Addition, "-" für Subtraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
@@ -69,21 +69,32 @@ public class Calculator {
      * Quadratwurzel, Prozent, Inversion, welche nur einen Operanden benötigen.
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
+     * Für den Fall, dass eine Inversion von 0 versucht wird, gibt die Methode "Error" auf dem Taschenrechner aus.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
+        //Bugfix für den ersten Test aus Teilaufgabe 2
+        double value = Double.parseDouble(screen);
+        //Wenn die Operation "1/x" aufgerufen wird und der Variablenwert 0 ist...
+        if (operation.equals("1/x") && value == 0) {
+            screen = "Error"; //Error anzeigen
+            return; //Methode vorzeitig beenden
+        }
+
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
+
             default -> throw new IllegalArgumentException();
         };
+
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
 
     /**
@@ -100,7 +111,7 @@ public class Calculator {
     /**
      * Empfängt den Befehl der gedrückten Vorzeichenumkehrstaste ("+/-").
      * Zeigt der Bildschirm einen positiven Wert an, so wird ein "-" links angehängt, der Bildschirm
-     * aktualisiert und die Inhalt fortan als negativ interpretiert.
+     * aktualisiert und der Inhalt fortan als negativ interpretiert.
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
@@ -123,7 +134,12 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            //Bugfix zum zweiten roten Test aus Teilaufgabe 2
+            //Zeigt nun den eingegebenen Wert auf dem Screen an
+            default -> Double.parseDouble(screen);
+            //default -> throw new IllegalArgumentException();
+                //Hat eine IllegalArgumentException geworfen, wenn eine Ziffer eingegeben wurde
+                //und anschließend das Gleichheitszeichen ausgewählt wurde
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
