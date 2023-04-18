@@ -69,6 +69,7 @@ public class Calculator {
      * Quadratwurzel, Prozent, Inversion, welche nur einen Operanden benötigen.
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
+     * Beim Division durch 0 wird Error angezeigt. //vorher nicht vorhanden
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
@@ -79,10 +80,13 @@ public class Calculator {
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
+
         };
         screen = Double.toString(result);
+
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        if(screen.equals("Infinity")) screen = "Error"; //vorher nicht vorhanden
 
     }
 
@@ -123,7 +127,9 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            // vorher: beendet das Programm mit einer Ausnahme-->
+            // default -> throw new IllegalArgumentException();
+            default -> Double.parseDouble(screen); //nachher: zeigt den Operanden an
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
