@@ -16,6 +16,8 @@ public class Calculator {
 
     public Integer count = 0;
 
+    public Integer digitMethodCounter = 0;
+
     public Boolean negative = false;
 
     /**
@@ -31,6 +33,8 @@ public class Calculator {
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
+     * zusätzlich wird jetzt überprüft, ob der Boolean negative true ist, wenn ja wird
+     * die Methode pressNegativeKey augerufen, damit die Zahl auch negativ ist
      */
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
@@ -38,6 +42,11 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+
+        if (negative){
+            pressNegativeKey();
+        }
+
     }
 
     /**
@@ -107,11 +116,17 @@ public class Calculator {
      * aktualisiert und die Inhalt fortan als negativ interpretiert.
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
+     *
+     * setzt den Boolean negative auf true, wenn ein Minus davor steht
+     * andernfalls wird es auf false gesetzt
      */
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
-        negative = true;
-
+        if(screen.startsWith("-")){
+            negative = true;
+        } else {
+            negative = false;
+        }
     }
 
     /**

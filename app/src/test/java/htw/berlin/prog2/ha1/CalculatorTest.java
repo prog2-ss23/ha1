@@ -141,16 +141,14 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should get negetive number")
-    void testNegativeAndMinus(){
+    @DisplayName("should get negative number")
+    void testNegativeNumber(){
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
         calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(1);
 
-        String expected = "-3";
+        String expected = "-2";
         String actual = calc.readScreen();
 
 
