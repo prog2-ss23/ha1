@@ -111,6 +111,7 @@ public class Calculator {
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
         negative = true;
+
     }
 
     /**
