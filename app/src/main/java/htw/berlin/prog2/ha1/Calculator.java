@@ -82,6 +82,7 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
+        if(screen.equals("Infinity")) screen = "Error"; //Bugfix test ->  testPressingDivideByXWithZero
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
@@ -106,6 +107,7 @@ public class Calculator {
      */
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        if(screen.equals("-0")) screen = "0"; //bugfix test -> testMultiplyingZeroWithNegativeKey
     }
 
     /**

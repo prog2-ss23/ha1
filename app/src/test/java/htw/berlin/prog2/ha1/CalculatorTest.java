@@ -106,12 +106,12 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should expect to be zero after multiplying, pressing key and pressing negative key")
-    void testBinaryKeyBeforeNegativeKey() {
+    @DisplayName("should expect to be zero after pressing zero, multiplying, pressing negative key and pressing equals key in this order")
+    void testMultiplyingZeroWithNegativeKey() {
         Calculator calc = new Calculator();
 
+        calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(2);
         calc.pressNegativeKey();
         calc.pressEqualsKey();
 
@@ -122,10 +122,11 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display Error after pressing operation 1/x")
-    void testPressingDivideByX() {
+    @DisplayName("should display Error after pressing the number 0 and operation 1/x afterwards (division by zero)")
+    void testPressingDivideByXWithZero() {
         Calculator calc = new Calculator();
 
+        calc.pressDigitKey(0);
         calc.pressUnaryOperationKey("1/x");
 
         String expected = "Error";
@@ -133,7 +134,5 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
-    //TODO hier weitere Tests erstellen
 }
 
