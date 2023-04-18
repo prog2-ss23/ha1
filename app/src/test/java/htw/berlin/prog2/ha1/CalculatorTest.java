@@ -146,20 +146,16 @@ class CalculatorTest {
 
     //Teilaufgabe 2 (zweiter Test)
     @Test
-    @DisplayName("should display result after adding two positive decimal numbers")
-    void testAddingDecimalNumbers() {
+    @DisplayName("should display entered number on screen")
+    void testEqualSingleNumberOnScreen() {
         Calculator calc = new Calculator(); //Instanz der Calculator-Klasse
 
         calc.pressDigitKey(2);             //Ziffer 2
-        calc.pressDotKey();                //Dezimaltrennzeichentaste
-        calc.pressDigitKey(0);             //Ziffer 0
-        calc.pressBinaryOperationKey("+"); //Addition
-        calc.pressDigitKey(2);             //Ziffer 2
-        calc.pressDotKey();                //Dezimaltrennzeichentaste
         calc.pressDigitKey(5);             //Ziffer 5
+        calc.pressDigitKey(9);             //Ziffer 9
         calc.pressEqualsKey();             //Gleichheitstaste
 
-        String expected = "4.5";           //4.5 als Erwartungswert
+        String expected = "259";           //259 als Erwartungswert
         String actual = calc.readScreen(); //Wert des Taschenrechners auslesen und in Variable "actual" speichern
 
         assertEquals(expected, actual);    //Erwartetes Ergebnis mit tatsächlichem Ergebnis vergleich
