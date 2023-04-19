@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private int counter = 0;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -44,16 +46,16 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
-    public void pressClearKey(String eingabe) {
-        switch (eingabe) {
-            case "C" -> screen = "0";
-            case "CE" -> {
+    public void pressClearKey() {
+        this.counter++;
+        if(this.counter == 1) screen = "0";
+        else if(this.counter == 2)
+                {
                 screen = "0";
                 latestOperation = "";
                 latestValue = 0.0;
-            }
-            default -> throw new IllegalArgumentException();
-        }
+                this.counter = 0;
+                }
     }
 
     /**
