@@ -115,14 +115,16 @@ class CalculatorTest {
     @DisplayName("Der Taschenrechner darf keine Wurzel aus einer negativen Zahl ziehen")
     void testSquareRootOfNegativeNumber() {
         Calculator calc = new Calculator();
-        calc.pressUnaryOperationKey("-");
+
         calc.pressDigitKey(2);
+        calc.pressNegativeKey();
         calc.pressUnaryOperationKey("√");
         String expected = "Error";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
-}
+
+
 
 
     //zweite Teilaufgabe: roter Test 1.1
