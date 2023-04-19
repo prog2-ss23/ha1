@@ -242,7 +242,30 @@ class CalculatorTest {
     }
 
 
+    @Test
+    @DisplayName("should display result after subtrcting two positive multi-digit numbers")
+    void testPositivesubs22222() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+        calc.pressClearKey();
+        calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+
+        String expected = "6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
 

@@ -49,8 +49,11 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
+    // hier auch gibt error
     public void pressClearKey() {
-        screen = "0";
+        if(!screen.equals("0")){
+            screen ="0";
+        }else
         latestOperation = "";
         latestValue = 0.0;
     }
