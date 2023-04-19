@@ -143,14 +143,30 @@ class CalculatorTest {
     void displayZero () {
         Calculator calc = new Calculator();
 
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(0);
         calc.pressDotKey();
         calc.pressDigitKey(7);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(1);
         calc.pressEqualsKey();
 
-        String expected = "1.7";
+        String expected = "3.7";
+        String actual = calc.readScreen();
+        assertEquals (expected, actual);
+    }
+
+    @Test
+    @DisplayName("Zero Test")
+    void displayZero1 () {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "5.5";
         String actual = calc.readScreen();
         assertEquals (expected, actual);
     }
