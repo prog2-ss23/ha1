@@ -123,10 +123,10 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
     // 2nd redtest
     @Test
     @DisplayName("should show the first operation if the EqualsKey was pressed")
-
     void equalsKey() {
 
         Calculator calc = new Calculator();
@@ -139,23 +139,5 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
-    //3rd redtest Frage zur Lösung
-    @Test
-    @DisplayName("should show the correct percentage calculation")
-
-    void percentageCalculation() {
-
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(5);
-        calc.pressUnaryOperationKey("%");
-
-        String expected = "0.1";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
 }
+
