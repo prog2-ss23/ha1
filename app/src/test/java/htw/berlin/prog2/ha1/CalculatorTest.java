@@ -87,6 +87,31 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should not allow multiple decimal dots")
+    public void testPressDotKey() {
+        Calculator calculator = new Calculator();
+
+        // Test adding decimal point to screen
+        calculator.pressDigitKey(1);
+        calculator.pressDigitKey(2);
+        calculator.pressDotKey();
+        String result = calculator.readScreen();
+        assertEquals("12.", result);
+    }
+
+    @Test
+    @DisplayName("Test if the pressClearKey Function actually works")
+    public void testPressClearKey() {
+        Calculator calculator = new Calculator();
+        calculator.pressDigitKey(5);
+        calculator.pressBinaryOperationKey("+");
+        calculator.pressDigitKey(3);
+        calculator.pressClearKey();
+        assertEquals("0", calculator.readScreen());
+    }
+
+
 
 
     //TODO hier weitere Tests erstellen
