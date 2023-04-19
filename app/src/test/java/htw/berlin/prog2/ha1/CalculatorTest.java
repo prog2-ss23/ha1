@@ -89,6 +89,41 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //Positiver Test 1
+
+    @Test
+    @DisplayName("should display result after entering decimal numbers")
+    void testDecimalNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+
+        String expected = "2.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Positiver Test 2
+
+    @Test
+    @DisplayName("should display result after sign inversion")
+    void testSignInversionPositive() {
+        Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        calc.pressNegativeKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
+
 
