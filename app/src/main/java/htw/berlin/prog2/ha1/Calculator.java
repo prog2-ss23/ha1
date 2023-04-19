@@ -33,7 +33,14 @@ public class Calculator {
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
+
+        // if we have more than 9 digits then we only count the first 9 digits.
+        if (screen.length() > 8){
+            return;
+        }
+
         screen = screen + digit;
+
     }
 
     /**
@@ -127,6 +134,7 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
+        if(screen.equals("-Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
