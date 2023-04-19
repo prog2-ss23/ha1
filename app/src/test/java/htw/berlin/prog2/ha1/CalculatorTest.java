@@ -89,6 +89,58 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //erste Teilaufgabe: grüner Test
+    @Test
+    @DisplayName("Der Taschenrechner kann negative Ergebnisse anzeigen")
+    void testNegativeAddition() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(8);
+
+
+        calc.pressEqualsKey();
+
+        String expected = "-4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    //zweite Teilaufgabe: roter Test 1.0
+
+    @Test
+    @DisplayName("Der Taschenrechner darf keine Wurzel aus einer negativen Zahl ziehen")
+    void testSquareRootOfNegativeNumber() {
+        Calculator calc = new Calculator();
+        calc.pressUnaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("√");
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
+
+    //zweite Teilaufgabe: roter Test 1.1
+    @Test
+    @DisplayName("Der Taschenrechner kann Berechnungen mit Klammern durchführen")
+    void testParentheses() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("*");
+        calc.pressDigitKey(5);
+
+        calc.pressEqualsKey();
+
+        String expected = "26";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+}

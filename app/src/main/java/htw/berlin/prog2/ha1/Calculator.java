@@ -28,10 +28,11 @@ public class Calculator {
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
-    public void pressDigitKey(int digit) {
-        if(digit > 9 || digit < 0) throw new IllegalArgumentException();
-
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+    public void pressDigitKey(int digit) { //Diese Methode wird aufgerufen, wenn eine Zifferntaste (0 bis 9) gedrückt wird
+        if (digit > 9 || digit < 0)
+            throw new IllegalArgumentException(); // digit: um welche Zahl es sich handelt, die gedrückt wurde
+    //falls es sich nicht um eine Zahl zwischen 0 und 9 handelt wird (IllegalArgumentException) ausgelöst
+        if (screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
     }
@@ -74,7 +75,7 @@ public class Calculator {
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        var result = switch(operation) {
+        var result = switch(operation)   {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
