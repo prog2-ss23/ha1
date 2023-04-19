@@ -111,7 +111,8 @@ class CalculatorTest {
         assertEquals("0", calculator.readScreen());
     }
     @Test
-    void testPressUnaryOperationKeyWithNegativeValue() {
+    @DisplayName("Test if Square Root after a Number returns an Error Message")
+    void testSquareRootAfterNumber() {
         Calculator calculator = new Calculator();
         calculator.pressDigitKey(9);
         calculator.pressUnaryOperationKey("√");
