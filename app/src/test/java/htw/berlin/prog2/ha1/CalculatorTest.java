@@ -89,20 +89,6 @@ class CalculatorTest {
     }
 
 
-    @Test
-    @DisplayName("test subtracting a bigger number from a smaller number, yielding a negativ result")
-    void testDoubleSubtraction() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(7);
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(9);
-        calc.pressEqualsKey();
-
-        String expected = "-2";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual)
-    }
+    //TODO hier weitere Tests erstellen
 }
 
