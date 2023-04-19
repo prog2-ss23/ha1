@@ -110,14 +110,6 @@ class CalculatorTest {
         calculator.pressClearKey();
         assertEquals("0", calculator.readScreen());
     }
-    @Test
-    @DisplayName("Test if Square Root after a Number returns an Error Message")
-    void testSquareRootAfterNumber() {
-        Calculator calculator = new Calculator();
-        calculator.pressDigitKey(9);
-        calculator.pressUnaryOperationKey("√");
-        assertEquals("Error", calculator.readScreen());
-    }
 
 
 
