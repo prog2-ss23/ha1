@@ -104,10 +104,8 @@ class CalculatorTest {
         calc.pressDigitKey(0);
         calc.pressNegativeKey();
         calc.pressEqualsKey();
-
         String expected = "-40";
         String actual = calc.readScreen();
-
         assertEquals(expected, actual);
     }
     @Test
@@ -119,14 +117,26 @@ class CalculatorTest {
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("+");
         calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(7);
+        calc.pressDigitKey(2);
         calc.pressDigitKey(0);
-        calc.pressBinaryOperationKey("=");
+        calc.pressEqualsKey();
 
-        String expected = "-80";
+        String expected = "-30";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should clear the screen when C is pressed and show 0")
+    void testClearScreen() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(2);
+        calc.pressClearKey();
+        String expected = "0";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
 }
 
