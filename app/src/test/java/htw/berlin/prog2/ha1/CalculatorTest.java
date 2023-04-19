@@ -90,5 +90,59 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should not display the numbers added before pressing the clear key")
+    void testClearKeyScreen() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressClearKey();
+        calc.pressDigitKey(3);
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should not display a trailing .0 for unary operations")
+    void testUnaryTrailingDotZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+        
+        
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should only display a maximum of 9 digits on the calculator screen")
+    void testMaxDisplayableDigits() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        
+        String expected = "123456789";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
