@@ -105,7 +105,19 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display 0 if any digit instead of an nummber digit is pressed")
+    void testDigitkey(){
+        Calculator calc = new Calculator();
+        calc.pressUnaryOperationKey("+");
+        calc.pressEqualsKey();
 
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 
 }
 
