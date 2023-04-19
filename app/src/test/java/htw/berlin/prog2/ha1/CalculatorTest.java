@@ -90,5 +90,51 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("if clearbutton got press, only 0 should be displayed")
+    void testClearButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("if binarybutton pressed again the last operation should be executed")
+    void testBinaryButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+
+        String expected = "3.0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test unary button")
+    void testUnaryButton() {
+        Calculator calc = new Calculator();
+
+            calc.pressDigitKey(1);
+            calc.pressUnaryOperationKey("+/-");
+
+            String expected = "-1.0";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+    }
 }
 
