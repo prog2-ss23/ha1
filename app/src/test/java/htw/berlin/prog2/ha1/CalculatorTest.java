@@ -128,6 +128,21 @@ class CalculatorTest {
     }
 
     @Test
+    @DisplayName("squareRoot should not throw exception when equals key is pressed to show result")
+    void testSquareRootUsingNegativeNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+        calc.pressEqualsKey();
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("should clear the screen when C is pressed and show 0")
     void testClearScreen() {
         Calculator calc = new Calculator();

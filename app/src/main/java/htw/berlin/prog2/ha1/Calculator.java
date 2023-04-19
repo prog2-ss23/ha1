@@ -60,7 +60,7 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        double screen_d = parseDouble(screen);
+        double screen_d = Double.parseDouble(screen);
 
         if (latestOperation == "-" ){
             screen_d = screen_d * -1;
