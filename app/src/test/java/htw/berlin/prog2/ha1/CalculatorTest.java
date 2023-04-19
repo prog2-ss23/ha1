@@ -110,6 +110,22 @@ class CalculatorTest {
         calculator.pressClearKey();
         assertEquals("0", calculator.readScreen());
     }
+    @Test
+    @DisplayName("should display result after dividing two negative numbers")
+    void testNegativeDivision() {
+        Calculator calc = new Calculator();
+        calc.pressNegativeKey();
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 
 
