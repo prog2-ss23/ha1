@@ -109,6 +109,28 @@ class CalculatorTest {
     }
 
 
+    // Rote Tests
+    @Test
+    @DisplayName("Clear Funktion untersuchen")
+    void testClearButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressClearKey();
+        calc.pressDigitKey(4);
+
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+
+
+
 
 
 
