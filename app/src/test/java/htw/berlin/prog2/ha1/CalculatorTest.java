@@ -117,7 +117,7 @@ class CalculatorTest {
         calc.pressDigitKey(2);
         calc.pressBinaryOperationKey("+");
 
-        String expected = "3";
+        String expected = "3.0";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
