@@ -144,7 +144,6 @@ class CalculatorTest {
 
     }
 
-
     @Test
     @DisplayName("The second red Test,which has been bug fixed.")
     void testClear(){
@@ -167,7 +166,6 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
 
 
 }
