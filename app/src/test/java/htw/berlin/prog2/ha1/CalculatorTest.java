@@ -111,19 +111,36 @@ class CalculatorTest {
         assertEquals("0", calculator.readScreen());
     }
     @Test
-    @DisplayName("ACHTUNG: Endlich Test gefunden doppelter ++ Operand wird falsch aufgenommen")
-    void testPlus() {
+    @DisplayName("should show Error if 1/X is pressed without an Number")
+    void test_1DividedXWithoutNumber() {
         Calculator calculator = new Calculator();
-        calculator.pressDigitKey(1);
-        calculator.pressBinaryOperationKey("+");
-        calculator.pressBinaryOperationKey("+");
-        calculator.pressDigitKey(1);
-        calculator.pressClearKey();
-        String expected = "2";
-        String actual = calculator.readScreen();
-        assertEquals(expected, actual);
+        calculator.pressUnaryOperationKey("1/x");
 
+        String expected = "Error";
+        String actual = calculator.readScreen();
+
+        assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should the complete sum of all operations")
+    void doubleBinaryOperand() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressEqualsKey();
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 
 
