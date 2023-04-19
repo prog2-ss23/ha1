@@ -111,20 +111,18 @@ class CalculatorTest {
         assertEquals("0", calculator.readScreen());
     }
     @Test
-    @DisplayName("should display result after dividing two negative numbers")
-    void testNegativeDivision() {
-        Calculator calc = new Calculator();
-        calc.pressNegativeKey();
-        calc.pressDigitKey(4);
-        calc.pressBinaryOperationKey("/");
-        calc.pressNegativeKey();
-        calc.pressDigitKey(2);
-        calc.pressEqualsKey();
-
+    @DisplayName("ACHTUNG: Endlich Test gefunden doppelter ++ Operand wird falsch aufgenommen")
+    void testPlus() {
+        Calculator calculator = new Calculator();
+        calculator.pressDigitKey(1);
+        calculator.pressBinaryOperationKey("+");
+        calculator.pressBinaryOperationKey("+");
+        calculator.pressDigitKey(1);
+        calculator.pressClearKey();
         String expected = "2";
-        String actual = calc.readScreen();
-
+        String actual = calculator.readScreen();
         assertEquals(expected, actual);
+
     }
 
 
