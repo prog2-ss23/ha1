@@ -81,6 +81,7 @@ public class Calculator {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         var result = 0.0;
+        //Ergebnis berechnen
         switch(operation) {
             case "√": result = Math.sqrt(Double.parseDouble(screen)); break;
             case "%": result = Double.parseDouble(screen) / 100; break;
@@ -88,11 +89,10 @@ public class Calculator {
                 break;
             default: throw new IllegalArgumentException();
         }
-        if(!screen.equals("Error")){
-        screen = Double.toString(result);}
+        //Ergebnis anzeigen
+        if(!screen.equals("Error")) screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
 
     /**
