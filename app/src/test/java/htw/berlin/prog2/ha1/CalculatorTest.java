@@ -175,7 +175,7 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(9);
         calc.pressEqualsKey();
-        calc.addtoMemoryPos();
+        calc.pressUnaryOperationKey("M+");
         calc.pressClearKey();
         calc.Memoryrecall();
         calc.pressBinaryOperationKey("-");
@@ -198,7 +198,7 @@ class CalculatorTest {
         calc.pressDigitKey(1);
         calc.pressDigitKey(1);
         calc.pressEqualsKey();
-        calc.addtoMemoryNeg();
+        calc.pressUnaryOperationKey("M-");
         calc.pressClearKey();
         calc.Memoryrecall();
         calc.pressBinaryOperationKey("-");
@@ -211,6 +211,10 @@ class CalculatorTest {
         assertEquals(expected,actual);
 
 }
-    }
+
+
+
+
+}
 
 

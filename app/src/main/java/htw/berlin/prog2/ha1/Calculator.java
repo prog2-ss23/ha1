@@ -81,6 +81,9 @@ public class Calculator {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         var result = switch(operation) {
+            case "M+"-> Memory =Double.parseDouble(screen);
+            case "M-"-> Memory = -Double.parseDouble(screen);
+            case "MC"-> Memory =0.0;
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
@@ -132,30 +135,28 @@ public class Calculator {
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
+
+
         screen = Double.toString(result);
+
 
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
 
-    }
 
-    public void addtoMemoryPos(){
-        Memory =Double.parseDouble(screen);
 
     }
+
+
 
     public void Memoryrecall(){
         screen= Double.toString(Memory);
     }
 
 
-    public void clearMemory(){
-        Memory=0.0;
-    }
 
-    public void addtoMemoryNeg() {
-        Memory =-Double.parseDouble(screen);
-    }
+
 }
