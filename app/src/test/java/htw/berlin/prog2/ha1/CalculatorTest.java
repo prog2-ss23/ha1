@@ -113,7 +113,6 @@ class CalculatorTest {
         calc.pressDigitKey(2);
         calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(4);
-        calc.pressEqualsKey();
         calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(9);
 
