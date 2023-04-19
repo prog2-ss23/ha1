@@ -13,14 +13,13 @@ class CalculatorTest {
     void testPositiveAddition() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
-        calc.pressDigitKey(0);
+        calc.pressDigitKey(4);
         calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "40";
+        String expected = "24";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -129,7 +128,7 @@ class CalculatorTest {
     void testMinusUnaryOperation() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
         calc.pressNegativeKey();
         calc.pressUnaryOperationKey("1/x");
 
@@ -137,6 +136,23 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Zero Test")
+    void displayZero () {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "1.7";
+        String actual = calc.readScreen();
+        assertEquals (expected, actual);
     }
 
 
