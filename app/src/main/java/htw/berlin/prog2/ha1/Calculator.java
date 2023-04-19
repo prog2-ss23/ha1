@@ -87,6 +87,7 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
+        if(screen.equals("Infinity")) screen  = "Error"; //Lösung
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
