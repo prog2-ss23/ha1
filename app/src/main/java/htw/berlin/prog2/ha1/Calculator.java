@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    public boolean ClearKeyInputsChecker = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -29,6 +31,7 @@ public class Calculator {
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
+        ClearKeyInputsChecker = false;
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
@@ -46,8 +49,13 @@ public class Calculator {
      */
     public void pressClearKey() {
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (ClearKeyInputsChecker) {
+            latestOperation = "";
+            latestValue = 0.0;
+            ClearKeyInputsChecker = false;
+            return;
+        }
+        ClearKeyInputsChecker = true;
     }
 
     /**
@@ -60,6 +68,7 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        pressEqualsKey();
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
     }
@@ -83,7 +92,6 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
 
     /**
@@ -94,6 +102,7 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
+        ClearKeyInputsChecker = false;
         if(!screen.contains(".")) screen = screen + ".";
     }
 
@@ -123,11 +132,15 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            default -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+    }
+
+    public void setScreen (String newScreen){
+        this.screen = newScreen;
     }
 }
