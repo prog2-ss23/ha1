@@ -90,6 +90,7 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //1st Greentest
     @Test
     @DisplayName("should show some simple multiplication")
     void multiplication() {
@@ -106,5 +107,55 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
-}
 
+    // 1st redtest
+    @Test
+    @DisplayName("should show that division through 0 is not possible")
+    void divisonThroughZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    // 2nd redtest
+    @Test
+    @DisplayName("should show the first operation if the EqualsKey was pressed")
+
+    void equalsKey() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //3rd redtest Frage zur Lösung
+    @Test
+    @DisplayName("should show the correct percentage calculation")
+
+    void percentageCalculation() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "0.1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+}
