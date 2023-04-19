@@ -91,10 +91,67 @@ class CalculatorTest {
     //TODO hier weitere Tests erstellen
 
     @Test
-    @DisplayName("erste grün test")
-    void testPercentage(){
+    @DisplayName("grün test")
+    void test1(){
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.01";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
 
     }
+
+    @Test
+    @DisplayName("should display result after adding two negativ multi-digit numbers")
+    void testNegativmulti() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "-400";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("first rote test,which has been bug fixed")
+    void testPlus() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+
+        String expected = "16";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
+
+
+
+
+
+
+
+
 }
 
