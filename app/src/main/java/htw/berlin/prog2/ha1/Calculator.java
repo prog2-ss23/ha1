@@ -12,7 +12,12 @@ public class Calculator {
 
     private double latestValue;
 
+
     private String latestOperation = "";
+
+    private double Memory = 0;
+
+
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -44,8 +49,11 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
+    // hier auch gibt error
     public void pressClearKey() {
-        screen = "0";
+        if(!screen.equals("0")){
+            screen ="0";
+        }else
         latestOperation = "";
         latestValue = 0.0;
     }
@@ -61,6 +69,7 @@ public class Calculator {
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
+
         latestOperation = operation;
     }
 
@@ -75,6 +84,9 @@ public class Calculator {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         var result = switch(operation) {
+            case "M+"-> Memory =Double.parseDouble(screen);
+            case "M-"-> Memory = -Double.parseDouble(screen);
+            case "MC"-> Memory =0.0;
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
@@ -85,6 +97,7 @@ public class Calculator {
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
+
 
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
@@ -125,9 +138,28 @@ public class Calculator {
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
+
+
         screen = Double.toString(result);
+
+
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+
+
+
     }
+
+
+
+    public void Memoryrecall(){
+        screen= Double.toString(Memory);
+    }
+
+
+
+
 }
