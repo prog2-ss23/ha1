@@ -87,7 +87,19 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should not allow multiple decimal dots")
+    void testPercentInDecimal() {
+        Calculator calc = new Calculator();
 
+       calc.pressDigitKey(2);
+       calc.pressUnaryOperationKey("%");
+        
+        String expected = "0.02";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
     //TODO hier weitere Tests erstellen
 }
