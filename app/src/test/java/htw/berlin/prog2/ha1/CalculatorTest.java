@@ -122,5 +122,19 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("test unary button")
+    void testUnaryButton() {
+        Calculator calc = new Calculator();
+
+            calc.pressDigitKey(1);
+            calc.pressUnaryOperationKey("+/-");
+
+            String expected = "-1.0";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+    }
 }
 
