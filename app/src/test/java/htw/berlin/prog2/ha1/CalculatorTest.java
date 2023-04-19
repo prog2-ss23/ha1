@@ -88,19 +88,39 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should not allow multiple decimal dots")
+    @DisplayName("should convert the percent to a decimal number")
     void testPercentInDecimal() {
         Calculator calc = new Calculator();
 
        calc.pressDigitKey(2);
        calc.pressUnaryOperationKey("%");
-        
+
         String expected = "0.02";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should give Error when is the division zero by zero number" )
+    void testZeroDividedZero(){
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String actual= "Error";
+        String expected= calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
+
+
+
+
 }
 
