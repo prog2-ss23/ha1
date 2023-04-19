@@ -10,6 +10,7 @@ public class Calculator {
 
     private String screen = "0";
 
+
     private double latestValue;
 
     private String latestOperation = "";
@@ -131,3 +132,4 @@ public class Calculator {
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
 }
+
