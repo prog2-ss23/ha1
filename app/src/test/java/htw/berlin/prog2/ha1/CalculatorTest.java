@@ -110,6 +110,14 @@ class CalculatorTest {
         calculator.pressClearKey();
         assertEquals("0", calculator.readScreen());
     }
+    @Test
+    void testPressUnaryOperationKeyWithNegativeValue() {
+        Calculator calculator = new Calculator();
+        calculator.pressDigitKey(9);
+        calculator.pressUnaryOperationKey("√");
+        assertEquals("Error", calculator.readScreen());
+    }
+
 
 
 
