@@ -107,7 +107,7 @@ public class Calculator {
         if (screen.equals("NaN"))
             screen = "Error";
         if (screen.contains(".") && screen.length() > 11)
-            screen = screen.substring(0, 10);
+            screen = roundUp(screen);
         if (screen.endsWith(".0"))
             screen = screen.substring(0, screen.length() - 2);
 
@@ -169,6 +169,20 @@ public class Calculator {
         if (screen.endsWith(".0"))
             screen = screen.substring(0, screen.length() - 2);
         if (screen.contains(".") && screen.length() > 11)
-            screen = screen.substring(0, 10);
+            screen = roundUp(screen);
+    }
+
+    /**
+     * Rounds the given value
+     * 
+     * @param s screen value to round
+     * @return rounded value
+     */
+    public String roundUp(String s) {
+        double rounded = Double.parseDouble(s);
+        rounded = Math.round(rounded * 10000000) / 10000000.0;
+        String result = String.valueOf(rounded);
+
+        return result;
     }
 }
