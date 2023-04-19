@@ -101,7 +101,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should display Error when is the division zero by zero number" )
+    @DisplayName("should display Error when the division zero by zero" )
     void testZeroDividedZero(){
         Calculator calc = new Calculator();
 
