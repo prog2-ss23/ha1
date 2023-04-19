@@ -123,7 +123,7 @@ class CalculatorTest {
 
         calc.pressEqualsKey();
 
-        String expected = "4";
+        String expected = "9";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
