@@ -101,7 +101,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should give Error when is the division zero by zero number" )
+    @DisplayName("should display Error when is the division zero by zero number" )
     void testZeroDividedZero(){
         Calculator calc = new Calculator();
 
@@ -115,6 +115,19 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
 
+    }
+    @Test
+    @DisplayName("should round the last number if it greater than 5 ")
+    void testSquareRootOfPositiveNumber(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("√");
+
+        String actual= "2.23606798";
+        String expected= calc.readScreen();
+
+        assertEquals(expected, actual);
     }
 
 
