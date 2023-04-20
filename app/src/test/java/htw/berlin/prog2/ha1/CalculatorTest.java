@@ -121,16 +121,16 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("display 0 as a result when a number multiplied by zero")
+    @DisplayName("display result when 1 is divided by 6")
     void testNew() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(0);
-        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(6);
         calc.pressEqualsKey();
 
-        String expected = "0";
+        String expected = "0.16666667";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual); /*expected 0, actual 6*/
