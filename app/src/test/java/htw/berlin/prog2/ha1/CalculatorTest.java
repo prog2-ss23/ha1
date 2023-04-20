@@ -145,6 +145,22 @@ class CalculatorTest {
     }
 
 
+    @Test
+    @DisplayName("Teste Equals button")
+    void testEqualsButton() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "75";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+
 
 
 
