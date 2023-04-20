@@ -125,7 +125,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display the result after getting the square root of 10")
+    @DisplayName("should display the result after getting the square root of 10 but instead 4.0 show 4")
     void testSquareRoot10(){
         Calculator calc = new Calculator();
 
@@ -137,8 +137,5 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
-
-
-
 }
 

@@ -35,6 +35,7 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+
     }
 
     /**
@@ -58,11 +59,15 @@ public class Calculator {
      * Rechner in den passenden Operationsmodus versetzt.
      * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt das aktuelle Zwischenergebnis
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
+     * Sollte vor der Operation schon eine Operation in der Rechnung gemacht worden sein, dann wird ein Zwischenergebnis
+     * errechnet, damit keine Operation überschrieben wird.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        if(latestOperation != "") pressEqualsKey();
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
     }
 
     /**
@@ -84,6 +89,7 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
 
     }
 
