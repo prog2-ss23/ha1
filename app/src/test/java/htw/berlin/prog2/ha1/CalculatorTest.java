@@ -106,5 +106,20 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    //Teilaufgabe 2, Test um Vorzeichen zu wechseln
+    @Test
+    @DisplayName("sollte das Vorzeichen der eingegebenen Zahl ändern")
+    void testVorzeichen() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("+/-");
+
+        String expected = "-79.0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
