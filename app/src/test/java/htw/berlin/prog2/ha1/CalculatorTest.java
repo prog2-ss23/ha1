@@ -120,5 +120,22 @@ class CalculatorTest {
         assertEquals(expected, actual); /*expected as in online calculator: integer 2, returned: float 2.0*/
     }
 
+    @Test
+    @DisplayName("display 0 as a result when a number multiplied by zero")
+    void testNew() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(6);
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual); /*expected 0, actual 6*/
+    }
+
+
+
 }
 
