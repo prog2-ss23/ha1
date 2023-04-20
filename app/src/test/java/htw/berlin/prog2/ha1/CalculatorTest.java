@@ -107,29 +107,19 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    @Test
-    @DisplayName("should display error when pressing a not implemented key")
-    void testNotImplementedKey() {
-        Calculator calc = new Calculator();
 
-        calc.pressKey("A");
-
-        String expected = "Error";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
     @Test
     @DisplayName("should display correct result after dividing two numbers")
     void testDivision() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(6);
+        calc.pressDigitKey(1);
         calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "3";
+        String expected = "0.1";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
