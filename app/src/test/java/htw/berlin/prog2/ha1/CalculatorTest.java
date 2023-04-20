@@ -380,6 +380,46 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display result after addition of big numbers")
+    void testBigNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressBinaryOperationKey("+");
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressEqualsKey();
+
+
+        String expected = "2000000000";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
 
