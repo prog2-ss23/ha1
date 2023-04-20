@@ -90,5 +90,71 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //Teilaufgabe 1, Test zum Subtrahieren
+    @Test
+    @DisplayName("sollte das Ergebnis einer Subtraktion anzeigen")
+    void testSubtract() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "33";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2, Test um Vorzeichen zu wechseln
+    @Test
+    @DisplayName("sollte das Vorzeichen der eingegebenen Zahl ändern")
+    void testVorzeichen() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("+/-");
+
+        String expected = "-79.0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2, Test für ClearKey einmal
+    @Test
+    @DisplayName("sollte die letzte Eingabe löschen")
+    void test2() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(9);
+        calc.pressClearKey();
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "56";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2, Test für ClearKey zweimal
+    @Test
+    @DisplayName("sollte alle Eingaben zurücksetzen")
+    void test3() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(9);
+        calc.pressClearKey();
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
