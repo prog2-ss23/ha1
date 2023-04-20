@@ -1,5 +1,8 @@
 package htw.berlin.prog2.ha1;
 
+
+import java.io.Console;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -74,6 +77,7 @@ public class Calculator {
     public void pressUnaryOperationKey(String operation){
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
@@ -88,18 +92,29 @@ public class Calculator {
     /**
      * Methode implementiert einen Button, mit dem man das mathematische Vorzeichen
      * ändern kann, indem es den Ausgangswert nimmt, und das doppelte dieses Wertes
-     * subtrahiert. Auf dem Screen erscheint die negative Zahl des Ausgangswertes.
+     * subtrahiert oder addiert. Auf dem Screen erscheint die negative Zahl des Ausgangswertes oder wiederum die positive Zahl.
      * @param operation
      */
-    public void pressPlusMinusKey(String operation){
+
+    public void pressPlusMinusKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        int result = switch(operation){
-            case "+/-" -> (int) (Double.parseDouble(screen) - latestValue * 2);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Integer.toString(result);
-    };
+
+        double result;
+        if (screen.contains("-")){
+            result = switch (operation) {
+                case "+/-" -> Math.abs(Double.parseDouble(screen));
+                default -> throw new IllegalArgumentException();
+            };
+
+        }else {
+            result = switch (operation) {
+                case "+/-" -> (Double.parseDouble(screen) - latestValue * 2);
+                default -> throw new IllegalArgumentException();
+            };
+        }
+        screen = Double.toString(result);
+    }
 
 
     /**
@@ -151,3 +166,4 @@ public class Calculator {
 
     }
 }
+

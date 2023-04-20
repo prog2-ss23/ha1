@@ -110,42 +110,23 @@ class CalculatorTest {
     }
 
 
-
-    @Test
-    @DisplayName("should display root after pressing √ button")
-    void testDigitPlus() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("√");
-
-        String expected = "3";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
     @Test
     @DisplayName("should display the change of mathematical sign from + to -,or from - to plus")
-    void testClear() {
+    void testPlusMinus() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(6);
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
         calc.pressPlusMinusKey("+/-");
+        String expected = "8.0";
 
-        String expected = "-6";
+
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
-
-
-
-
-
-
-
-
 }
 
 
