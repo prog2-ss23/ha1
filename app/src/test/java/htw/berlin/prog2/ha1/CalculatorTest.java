@@ -110,6 +110,27 @@ class CalculatorTest {
     }
 
     //roter Test
+    @Test
+    @DisplayName("should display result after multiplying two positive one-digit numbers and adding one-digit number to them")
+    void testPointBeforeLine() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+
+        calc.pressEqualsKey();
+
+        String expected = "17";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
 
 }
 
