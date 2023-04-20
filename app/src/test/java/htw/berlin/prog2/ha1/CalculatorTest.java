@@ -90,5 +90,39 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("Zeigt das Ergebnis, nachdem eine positive Eingabe mit einer negativen Eingabe subtrahiert wird")
+    void testSubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Testet ob am Anfang eine Zahl kleiner als null stehen kann ")
+    void testOp(){
+        Calculator calc = new Calculator();
+         calc.pressBinaryOperationKey("-");
+         calc.pressDigitKey(2);
+         calc.pressEqualsKey();
+
+          String expected = "-2";
+          String actual = calc.readScreen();
+
+    assertEquals(expected, actual);
 }
 
+
+
+}
