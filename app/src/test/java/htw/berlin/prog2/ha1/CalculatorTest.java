@@ -103,6 +103,22 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("display an integer as a result after using unary operator twice")
+    void testDoubleUnaryOperator() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual); /*expected as in online calculator: integer, returned: float*/
+    }
     //TODO hier weitere Tests erstellen
 }
 
