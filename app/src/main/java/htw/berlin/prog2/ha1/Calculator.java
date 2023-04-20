@@ -71,7 +71,7 @@ public class Calculator {
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
-    public void pressUnaryOperationKey(String operation) {
+    public void pressUnaryOperationKey(String operation){
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         var result = switch(operation) {
@@ -83,8 +83,18 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
+
+    public void pressPlusMinusKey(String operation){
+        latestValue = Double.parseDouble(screen);
+        latestOperation = operation;
+        int result = switch(operation){
+            case "+/-" -> (int) (Double.parseDouble(screen) - latestValue * 2);
+            default -> throw new IllegalArgumentException();
+        };
+        screen = Integer.toString(result);
+    };
+
 
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
@@ -129,5 +139,9 @@ public class Calculator {
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+    }
+
+    public void press1xKey(){
+
     }
 }

@@ -89,6 +89,8 @@ class CalculatorTest {
     }
 
 
+
+
     //TODO hier weitere Tests erstellen
 
     @Test
@@ -107,34 +109,41 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
+
     @Test
-    @DisplayName("should display result after subtracting two positive multi-digit numbers")
-    void testDirectResult() {
+    @DisplayName("should display root after pressing √ button")
+    void testDigitPlus() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("*");
-        calc.pressDigitKey(3);
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("√");
 
-        String expected = "15";
+        String expected = "3";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    @DisplayName("should display result after subtracting two positive multi-digit numbers")
-    void testDigitMinus () {
+    @DisplayName("should display the change of mathematical sign from + to - or from - to plus")
+    void testClear() {
         Calculator calc = new Calculator();
 
-        calc.pressBinaryOperationKey("+/-");
-        calc.pressDigitKey(3);
+        calc.pressDigitKey(6);
+        calc.pressPlusMinusKey("+/-");
 
-        String expected = "-3";
+        String expected = "-6";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
+
+
+
+
+
 
 
 }
