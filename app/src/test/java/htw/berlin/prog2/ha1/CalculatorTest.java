@@ -146,7 +146,7 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("Teste Equals button")
+    @DisplayName("should  display 75 when clicking 3 then x then 5 and x another time")
     void testEqualsButton() {
         Calculator calc = new Calculator();
         calc.pressDigitKey(3);
