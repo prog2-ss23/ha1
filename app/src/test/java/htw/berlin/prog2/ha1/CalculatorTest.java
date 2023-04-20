@@ -111,7 +111,7 @@ class CalculatorTest {
 
     // Rote Tests
     @Test
-    @DisplayName("Clear Funktion untersuchen")
+    @DisplayName("Wenn der Clear Button einmal gedürckt wird soll die eben eingegebene Zahl gelöscht werden und eine neue kann hinzugefüt werden")
     void testClearButton() {
         Calculator calc = new Calculator();
 
@@ -127,6 +127,25 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
+
+
+    @Test
+    @DisplayName("Wenn eine Binary Operation durchgeführt wird, soll eine neue Zahl eingetippt werden und daraufhin direkt das Ergebnis angezeigt werden")
+    void testBinaryOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+
+        String expected = "25";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+
+
 
 
 
