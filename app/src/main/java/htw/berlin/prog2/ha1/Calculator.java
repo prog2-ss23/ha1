@@ -85,6 +85,12 @@ public class Calculator {
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
 
+    /**
+     * Methode implementiert einen Button, mit dem man das mathematische Vorzeichen
+     * ändern kann, indem es den Ausgangswert nimmt, und das doppelte dieses Wertes
+     * subtrahiert. Auf dem Screen erscheint die negative Zahl des Ausgangswertes.
+     * @param operation
+     */
     public void pressPlusMinusKey(String operation){
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;

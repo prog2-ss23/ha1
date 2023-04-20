@@ -126,7 +126,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display the change of mathematical sign from + to - or from - to plus")
+    @DisplayName("should display the change of mathematical sign from + to -,or from - to plus")
     void testClear() {
         Calculator calc = new Calculator();
 
