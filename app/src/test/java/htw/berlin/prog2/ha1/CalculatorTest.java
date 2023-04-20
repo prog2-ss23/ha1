@@ -111,14 +111,14 @@ class CalculatorTest {
 
         calc.pressDigitKey(5);
         calc.pressDigitKey(0);
-        calc.pressUnaryOperationKey("%");
+        calc.pressUnaryOperationKey("%"); /*0.5*/
         calc.pressUnaryOperationKey("1/x");
 
         String expected = "2";
         String actual = calc.readScreen();
 
-        assertEquals(expected, actual); /*expected as in online calculator: integer, returned: float*/
+        assertEquals(expected, actual); /*expected as in online calculator: integer 2, returned: float 2.0*/
     }
-    //TODO hier weitere Tests erstellen
+
 }
 
