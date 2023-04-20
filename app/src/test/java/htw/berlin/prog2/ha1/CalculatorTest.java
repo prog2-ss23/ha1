@@ -90,5 +90,26 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    //grüner Test
+    @Test
+    @DisplayName("should display result after dividing two positive one-digit numbers")
+    void testPositiveDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(4);
+
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //roter Test
+
 }
 
