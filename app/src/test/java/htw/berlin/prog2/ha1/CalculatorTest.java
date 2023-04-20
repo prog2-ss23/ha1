@@ -91,8 +91,8 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("should display result after substracting three negative multi-digit numbers")
-    void testNegativeSubstraction() {
+    @DisplayName("should display 0 after clearing the result of substracting two negative multi-digit numbers")
+    void testClearNegativeSubstraction() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(8);
@@ -102,12 +102,14 @@ class CalculatorTest {
         calc.pressDigitKey(5);
         calc.pressNegativeKey();
         calc.pressEqualsKey();
+        calc.pressClearKey();
 
-        String expected = "37";
+        String expected = "0";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
 
 }
 
