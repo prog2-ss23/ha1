@@ -90,5 +90,52 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display the result after multiply a double digit number and a decimal number")
+    void testMultiplyWithDecimal() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "143.1";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    //FAILED TESTS
+    @Test
+    @DisplayName("should display the result after multiply a negative digit and a positiv digit")
+    void testNegativeDigitMultiply(){
+        Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+
+        String expected= "-45";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display the result after getting the square root of 10 but instead 4.0 show 4")
+    void testSquareRoot10(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(6);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "4";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
