@@ -18,8 +18,15 @@ public class Calculator {
      * @return den aktuellen Bildschirminhalt als String
      */
    //original
-    public String readScreen() {
+   /* public String readScreen() {
         return screen;
+    }*/
+    public String readScreen() {
+        if (screen.endsWith(".0")) {
+            return screen.substring(0, screen.length() - 2); // Entfernen Sie das ".0" am Ende der Zeichenfolge
+        } else {
+            return screen;
+        }
     }
 
 
