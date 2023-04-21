@@ -106,7 +106,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
+    // Prozentanzeige von eingegebenen Zahlen
     @Test
     @DisplayName("test Prozent ")
     void testerror1() {
@@ -122,6 +122,8 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    // überprüfung von Eingebenen Zahlen mit EqualsKey
     @Test
     @DisplayName("test  =")
     void testerror2() {
