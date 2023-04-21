@@ -29,8 +29,7 @@ public class Calculator {
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
-        //Bugfix für den 3. roten Test
-        if(digit > 100000000 || digit < 0) throw new IllegalArgumentException();
+        if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 

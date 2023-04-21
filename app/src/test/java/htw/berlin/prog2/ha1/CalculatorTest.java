@@ -146,7 +146,8 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //3. roter Test (mit Bugfix)
+    //3. roter Test (mit Bugfix) ungültiger Test!!!
+    /*
     @Test
     @DisplayName("should display Error after adding two multiple-digit numbers")
     void test() {
@@ -158,6 +159,22 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "100";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+     */
+
+    //4. roter Test (mit Bugfix)
+    @Test
+    @DisplayName("should not display a double-number as result ")
+    void test() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "3";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
