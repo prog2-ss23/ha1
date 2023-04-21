@@ -110,14 +110,13 @@ class CalculatorTest {
     void testEqualsKeyRepeat() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(5);
         calc.pressEqualsKey();
         calc.pressEqualsKey();
-        calc.pressEqualsKey();
 
-        String expected = "250";
+        String expected = "75";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
