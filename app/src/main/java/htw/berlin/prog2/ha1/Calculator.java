@@ -83,6 +83,9 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        //Bugfix für den 2.roten Test
+        if(screen.contains("Infinity")) screen = "Error";
     }
 
     /**
