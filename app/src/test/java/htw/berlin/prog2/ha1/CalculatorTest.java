@@ -106,16 +106,18 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("only the latest operation key should be relevant")
-    void testOperationKeyUpdate() {
+    @DisplayName("pressing EqualsKey again should repeat the operation")
+    void testEqualsKeyRepeat() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
-        calc.pressBinaryOperationKey("+");
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
 
-        String expected = "0";
+        String expected = "250";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
