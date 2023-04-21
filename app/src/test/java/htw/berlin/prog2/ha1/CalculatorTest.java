@@ -109,7 +109,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //1. roter Test (ohne Bugfix)
+    //1. roter Test (ohne Bugfix) -> keine Lösung gefunden/implementiert
     /*
     @Test
     @DisplayName("should display result after multiplying two positive one-digit numbers and adding one-digit number to them")
@@ -131,7 +131,7 @@ class CalculatorTest {
     }
     */
 
-    //2. roter Test (mit Bugfix)
+    //2. roter Test (mit Bugfix) -> funktioniert
     @Test
     @DisplayName("should display Error after the inverting 1 with 0")
     void testFractionByZero() {
@@ -146,7 +146,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //3. roter Test (mit Bugfix) ungültiger Test!!!
+    //3. roter Test (mit Bugfix) -> ungültiger Test!!!
     /*
     @Test
     @DisplayName("should display Error after adding two multiple-digit numbers")
@@ -165,9 +165,9 @@ class CalculatorTest {
     }
      */
 
-    //4. roter Test (mit Bugfix)
+    //4. roter Test (mit Bugfix) -> funktioniert
     @Test
-    @DisplayName("should not display a double-number as result ")
+    @DisplayName("should not display a double-number as result")
     void test() {
         Calculator calc = new Calculator();
 
@@ -178,7 +178,6 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-
     }
 
 }
