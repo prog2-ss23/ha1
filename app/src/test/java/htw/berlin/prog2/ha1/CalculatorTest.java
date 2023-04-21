@@ -108,7 +108,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("test Prozent und =")
+    @DisplayName("test Prozent ")
     void testerror1() {
         Calculator calc = new Calculator();
 
@@ -122,7 +122,20 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("test  =")
+    void testerror2() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+
+        String expected = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
 
