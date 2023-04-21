@@ -1,6 +1,8 @@
 package htw.berlin.prog2.ha1;
 
 
+import org.w3c.dom.css.Counter;
+
 import java.io.Console;
 
 /**
@@ -16,6 +18,8 @@ public class Calculator {
     private double latestValue;
 
     private String latestOperation = "";
+
+    Integer count = 0;
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -96,25 +100,8 @@ public class Calculator {
      * @param operation
      */
 
-    public void pressPlusMinusKey(String operation) {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
 
-        double result;
-        if (screen.contains("-")){
-            result = switch (operation) {
-                case "+/-" -> Math.abs(Double.parseDouble(screen));
-                default -> throw new IllegalArgumentException();
-            };
 
-        }else {
-            result = switch (operation) {
-                case "+/-" -> (Double.parseDouble(screen) - latestValue * 2);
-                default -> throw new IllegalArgumentException();
-            };
-        }
-        screen = Double.toString(result);
-    }
 
 
     /**
@@ -134,10 +121,31 @@ public class Calculator {
      * aktualisiert und die Inhalt fortan als negativ interpretiert.
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
+     * @param operation
      */
-    public void pressNegativeKey() {
-        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+    public void pressNegativeKey(String operation) {
+        latestValue = Double.parseDouble(screen);
+        latestOperation = operation;
+
+        double result;
+        if (screen.contains("-")){
+            result = switch (operation) {
+                case "+/-" -> Math.abs(Double.parseDouble(screen));
+                default -> throw new IllegalArgumentException();
+            };
+
+        }else {
+            result = switch (operation) {
+                case "+/-" -> (Double.parseDouble(screen) - latestValue * 2);
+                default -> throw new IllegalArgumentException();
+            };
+        }
+        screen = Double.toString(result);
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
     }
+
+
+
 
     /**
      * Empfängt den Befehl der gedrückten "="-Taste.
@@ -147,21 +155,65 @@ public class Calculator {
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
+     *
+     * Methode erstellt mithilfe von Max Budde
      */
-    public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.equals("Infinity")) screen = "Error";
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-    }
 
+    public void pressEqualsKey() {
+
+        count++;
+
+        if (count < 2) {
+
+            var result = switch (latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+
+            screen = Double.toString(result);
+            if (screen.equals("Infinity")) screen = "Error";
+            if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+            if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        } else {
+            Double result;
+            if (latestOperation.equals("/")) {
+                result = Double.parseDouble(screen) / latestValue;
+                screen = Double.toString(result);
+
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+            if (latestOperation.equals("-")) {
+                result = Double.parseDouble(screen) - latestValue;
+                screen = Double.toString(result);
+
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+            if (latestOperation.equals("x")) {
+                result = Double.parseDouble(screen) * latestValue;
+                screen = Double.toString(result);
+
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+            if (latestOperation.equals("-")) {
+                result = Double.parseDouble(screen) - latestValue;
+                screen = Double.toString(result);
+
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+        }
+    }
 
     public void press1xKey(){
 
