@@ -105,6 +105,20 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-}
+    
+       @Test
+        @DisplayName("should display the same number after pressing the equals key")
+        void testNumberEqualsKey () {
+            Calculator calc = new Calculator();
+
+            calc.pressDigitKey(2);
+            calc.pressEqualsKey();
+
+            String expected = "2";
+            String actual = calc.readScreen();
+            assertEquals(expected, actual);
+        }
+    }
+
 
 
