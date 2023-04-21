@@ -93,7 +93,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should devide decimal numbers and return correct result")
-    void shouldDevideDecimalNumber(){
+    void shouldDevideDecimalNumber() {
         //given
         Calculator calc = new Calculator();
 
@@ -115,7 +115,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("additional test, intended to add large numbers and return the correct result")
-    void shouldAddLargeNumbers(){
+    void shouldAddLargeNumbers() {
         // given
         Calculator calc = new Calculator();
 
@@ -140,7 +140,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should return a result if there is only one input and no binary operations key is used")
-    void shouldReturnResultWithoutBinaryOperationsKey(){
+    void shouldReturnResultWithoutBinaryOperationsKey() {
 
         // given
         Calculator calc = new Calculator();
@@ -156,23 +156,20 @@ class CalculatorTest {
         assertEquals(erwartet, ist);
     }
 
+
+    //Calculate with unary operations
     @Test
-    @DisplayName("should return the result correctly even with a negative key")
-    void shouldReturnResultWithNegativeKey(){
+    @DisplayName("should extract the square root and return the correct result")
+    void shouldExtractTheSquareRoot() {
 
         // given
         Calculator calc = new Calculator();
 
         //when
-
-
-        calc.pressDigitKey(7);
-        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(8);
         calc.pressDigitKey(1);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("√");
         calc.pressEqualsKey();
-
 
         //then
         String erwartet = "9";
@@ -180,5 +177,43 @@ class CalculatorTest {
 
         assertEquals(erwartet, ist);
     }
-}
 
+    @Test
+    @DisplayName("should devide two decimal numbers and return remainder")
+    void shouldCalculateWithModulo() {
+
+        // given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("%");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        //then
+        String erwartet = "2";
+        String ist = calc.readScreen();
+
+        assertEquals(erwartet, ist);
+    }
+
+    @Test
+    @DisplayName("should calculate the inversion and return the correct result")
+    void shouldCalculateWithInversion() {
+
+        // given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("1/x");
+        calc.pressEqualsKey();
+
+        //then
+        String erwartet = "0.11111111";
+        String ist = calc.readScreen();
+
+        assertEquals(erwartet, ist);
+    }
+}

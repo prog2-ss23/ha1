@@ -66,21 +66,16 @@ public class Calculator {
 
     /**
      * Empfängt den Wert einer gedrückten unären Operationstaste, also eine der drei Operationen
-     * Quadratwurzel, Prozent, Inversion, welche nur einen Operanden benötigen.
+     * Quadratwurzel, Modulo, Inversion, welche nur einen oder im Fall von Modulo 2 Operanden benötigen.
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
-     * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
+     * Bei Modulo wird die erste Zahl (Dividend) mit der zweiten Zahl (Divisor) dividiert und der Rest wird ausgegeben.
+     * Wird nur keine weitere Zahl nach dem Modulo-Operanden eingegeben, wird 0 ausgegeben.
+     * @param operation "√" für Quadratwurzel, "%" für Modulo, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        var result = switch(operation) {
-            case "√" -> Math.sqrt(Double.parseDouble(screen));
-            case "%" -> Double.parseDouble(screen) / 100;
-            case "1/x" -> 1 / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
@@ -111,7 +106,7 @@ public class Calculator {
     /**
      * Empfängt den Befehl der gedrückten "="-Taste.
      * Wurde zuvor keine Operationstaste gedrückt, wird die vorherige Eingabe zurückgegeben.
-     * Wurde zuvor eine binäre Operationstaste gedrückt und zwei Operanden eingegeben, wird das
+     * Wurde zuvor eine binäre oder unäre Operationstaste gedrückt und ein oder zwei Operand(en) eingegeben, wird das
      * Ergebnis der Operation angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
@@ -123,6 +118,9 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "%" -> latestValue % Double.parseDouble(screen);
+            case "√" -> Math.sqrt(Double.parseDouble(screen));
+            case "1/x" -> 1 / Double.parseDouble(screen);
             default -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
