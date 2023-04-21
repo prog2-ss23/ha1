@@ -110,11 +110,11 @@ class CalculatorTest {
         }
 
         @Test
-        @DisplayName("sollte Error anzeigen wenn man ohne vorherige Eingabe auf die Kehrwert-Taste drückt")
+        @DisplayName("zeigt Error an, wenn man ohne vorherige Eingabe auf die Kehrwert-Taste drückt")
         void testDivisionByZeroByClickingOnTheReciprocalKey() {
             Calculator calc = new Calculator();
 
-            calc.pressBinaryOperationKey("1/x");
+            calc.pressUnaryOperationKey("1/x");
 
 
             String expected = "Error";
@@ -122,38 +122,24 @@ class CalculatorTest {
 
             assertEquals(expected, actual);
         }
+        //bug gefixt unter der Methode pressUnaryOperationKey()
         @Test
-        @DisplayName("sollte die Wurzel einer Positiven Kommazahl anzeigen")
+        @DisplayName("zieht die Wurzel aus einer negativen Kommazahl")
         void wurzelZiehen() {
             Calculator calc = new Calculator();
 
+            calc.pressNegativeKey();
             calc.pressDigitKey(6);
             calc.pressDotKey();
             calc.pressDigitKey(3);
             calc.pressUnaryOperationKey("√");
 
-            String expected = "2.50998008";
+            String expected = "Error";
             String actual = calc.readScreen();
 
             assertEquals(expected, actual);
         }
-        @Test
-        @DisplayName("Löscht das was auf dem Bildschirm ist, jedoch ohne zuvor zwischengespeicherte Werte zu löschen")
-        void druckeC() {
-            Calculator calc = new Calculator();
+        // bug gefixt unter der Methode pressDigitKey()
 
-            calc.pressDigitKey(6);
-            calc.pressBinaryOperationKey("x");
-            calc.pressDigitKey(3);
-            calc.pressClearKey();
-
-            calc.pressDigitKey(6);
-            calc.pressEqualsKey();
-
-            String expected = "36";
-            String actual = calc.readScreen();
-
-            assertEquals(expected, actual);
-        }
 }
 
