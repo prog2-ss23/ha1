@@ -89,6 +89,22 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //Der Online Calculator hat eine Speicherfunktion.
+    //Die Klasse Calculator kann nur mit maximal 10 Ziffern plus einem Dezimaltrennzeichen umgehen, während die Online-Version und das JavaDoc keine solche Einschränkung haben.
+    @Test
+    @DisplayName("should be able to be display the result")
+    void testSubtract() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
