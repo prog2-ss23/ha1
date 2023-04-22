@@ -74,18 +74,21 @@ public class Calculator {
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        var result = switch(operation) {
+        double result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
+
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
-        if(screen.equals("NaN")) screen = "Error";
+        if (result == Math.floor(result)) {
+            screen = Integer.toString((int)result);
+        } else {
+            screen = Double.toString(result);
+        }
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2); //FIX 1
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
-
 
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
