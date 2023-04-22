@@ -88,9 +88,10 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //TODO hier weitere Tests erstellen
     @Test
     @DisplayName("should display result after subtract two positive multi-digit numbers")
-    void testPositivesubtraction() {
+    void testSubtractNegativeNumbers() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(4);
@@ -107,6 +108,23 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display result after percentage calculation")
+    void testPercent () {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
 }
 
