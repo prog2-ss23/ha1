@@ -1,5 +1,6 @@
 package htw.berlin.prog2.ha1;
 
+import java.util.Locale;
 
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
@@ -134,7 +135,7 @@ public class Calculator {
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0, screen.length()-2);
         if(screen.contains(".") && screen.length() > 15) {
-            screen = String.format("%.3f", result);
+            screen = String.format(Locale.US, "%.2f", result); //Fix 2
         }
     }
 }
