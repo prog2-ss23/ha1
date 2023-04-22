@@ -90,7 +90,7 @@ class CalculatorTest {
 
 
     //Der Online Calculator hat eine Speicherfunktion.
-    //Die Klasse Calculator kann nur mit maximal 10 Ziffern plus einem Dezimaltrennzeichen umgehen, während die Online-Version und das JavaDoc keine solche Einschränkung haben.
+    //Die Klasse Calculator kann nur mit maximal 10 Ziffern plus einem Dezimaltrennzeichen umgehen, während die Online-Version keine solche Einschränkung hat.
     @Test
     @DisplayName("should be able to be display the result")
     void testSubtract() {
@@ -106,5 +106,22 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display result of 500 1/x")
+    void testPercentage() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 

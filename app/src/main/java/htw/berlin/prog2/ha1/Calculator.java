@@ -86,6 +86,7 @@ public class Calculator {
 
     }
 
+
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
      * Fügt beim ersten Mal Drücken dem aktuellen Bildschirminhalt das Trennzeichen auf der rechten
@@ -127,7 +128,9 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        if(screen.endsWith(".0")) screen = screen.substring(0, screen.length()-2);
+        if(screen.contains(".") && screen.length() > 15) {
+            screen = String.format("%.3f", result);
+        }
     }
 }
