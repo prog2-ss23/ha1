@@ -122,7 +122,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display result after pressing the operation key the second time ")
-    void testnegativenumbers(){
+    void testscondoperationresult(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(5);
@@ -137,6 +137,9 @@ class CalculatorTest {
 
 
     }
+    
+
+
 }
 
 
