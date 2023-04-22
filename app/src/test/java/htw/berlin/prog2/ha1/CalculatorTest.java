@@ -126,9 +126,10 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(5);
         calc.pressClearKey();
-        calc.pressDigitKey(4);
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
 
-        String expected = "5";
+        String expected = "1";
         String actual = calc.readScreen();
 
 
@@ -137,14 +138,30 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("should replace -0 with new number while still being negative  ")
-    void testFoo(){
+    @DisplayName("should replace -0 with new number while still being negative")
+    void testReplaceNumber(){
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
-        calc.pressDigitKey(3);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
 
-        String expected = "-3";
+        String expected = "-68";
+        String actual = calc.readScreen();
+
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should do nothing if just using equals key")
+    void testJustEqualsKey(){
+        Calculator calc = new Calculator();
+
+        calc.pressEqualsKey();
+
+        String expected = "0";
         String actual = calc.readScreen();
 
 
