@@ -87,8 +87,53 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should convert the percent to a decimal number")
+    void testPercentInDecimal() {
+        Calculator calc = new Calculator();
+
+       calc.pressDigitKey(2);
+       calc.pressUnaryOperationKey("%");
+
+        String expected = "0.02";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display Error when the division zero by zero" )
+    void testZeroDividedZero(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String actual= "Error";
+        String expected= calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+    @Test
+    @DisplayName("should round the last number if it greater than 5 ")
+    void testSquareRootOfPositiveNumber(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("√");
+
+        String actual= "2.23606798";
+        String expected= calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 
-    //TODO hier weitere Tests erstellen
+
+
+
+
 }
 
