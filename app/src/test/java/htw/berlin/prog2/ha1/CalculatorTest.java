@@ -125,39 +125,21 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should not throw an error when pressing Equals on a result from '%' operation")
-    void testEqualsOnPercentage() {
+    @DisplayName("should not throw an error when pressing Equals on a result from a UnaryOperation")
+    void testEqualsAfterUnary() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
-        calc.pressUnaryOperationKey("%");
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x"); //kann ersetzt werden durch '1/x', '√' oder '%' Ergebnis muss angepasst werden
         calc.pressEqualsKey();
 
-        String expected = "0.02";
+        String expected = "0.00125"; 
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
-
-    /*@Test
-    @DisplayName("test ")
-    void testMultiplePercents() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(5);
-        calc.pressUnaryOperationKey("%");
-        calc.pressUnaryOperationKey("%");
-
-        String expected = "0.05";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }*/
-
-
-
-
-    //5-9Wurzel3=2
     
 }
 
