@@ -91,8 +91,9 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("should clear the value on the screen when pressed")
-    void testClearKey() {
+    @DisplayName("should clear the value on the screen, after entering a multi-digit number without latest operation" +
+            "or latest value, when pressing Clear button first time ")
+    void testClearOne() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
@@ -104,5 +105,46 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should clear the value on the screen, but not the latest operation and latest value" +
+            " when pressing clearKey first time")
+    void testClearTwo() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("*");
+        calc.pressDigitKey(2);
+        calc.pressClearKey();
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "33";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display the result which applies the last operation and latest value to itself" +
+            "after pressing the equalsKey two times  ")
+    void test() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
 }
 
