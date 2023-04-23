@@ -128,7 +128,7 @@ class CalculatorTest {
     @Test
     @DisplayName("should display the result which applies the last operation and latest value to itself" +
             "after pressing the equalsKey two times  ")
-    void test() {
+    void testTwoTimeEquals() {
 
         Calculator calc = new Calculator();
 
