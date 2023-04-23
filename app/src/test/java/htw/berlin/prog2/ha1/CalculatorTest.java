@@ -90,7 +90,7 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-    //neuer grügit commitner Test
+    //neuer grüner  Test
     @Test
     @DisplayName("should display the result after divide 4 by 2")
     void testDivision() {
@@ -130,10 +130,14 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(2);
         calc.pressBinaryOperationKey("x");
+
         String expected = "4";
+
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
+
 }
 
