@@ -13,7 +13,6 @@ public class Calculator {
     private double latestValue;
 
     private String latestOperation = "";
-
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -45,9 +44,18 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+
+        if (latestOperation.isEmpty())  {
+
+            screen = "0";
+            latestValue = 0.0;
+            latestOperation = "";
+
+        } else {
+
+            screen = "0";
+        }
+
     }
 
     /**

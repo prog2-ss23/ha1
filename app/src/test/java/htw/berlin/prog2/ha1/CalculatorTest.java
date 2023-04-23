@@ -114,7 +114,7 @@ class CalculatorTest {
 
         calc.pressDigitKey(1);
         calc.pressDigitKey(1);
-        calc.pressBinaryOperationKey("*");
+        calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(2);
         calc.pressClearKey();
         calc.pressDigitKey(3);
