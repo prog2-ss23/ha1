@@ -9,6 +9,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CalculatorTest {
 
     @Test
+    @DisplayName("should calculate intermediate result when pressing binary operation key twice")
+    void testScreen() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+
+        String expected = "2";
+
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
     @DisplayName("should reset screen to 0 but not current result or operator")
     void testPressClearKey() {
 

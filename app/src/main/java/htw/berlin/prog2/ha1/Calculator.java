@@ -62,6 +62,9 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        if(pressBinaryOperationKey() < 1) {
+          String intermediateScreen = readScreen(screen) + latestValue + latestOperation;
+        };
     }
 
     /**
