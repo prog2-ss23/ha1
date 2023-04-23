@@ -91,18 +91,20 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("should display result after divide two positive multi-digit numbers")
-    void testPositiveDivision() {
+    @DisplayName("should display result after subtraction of two decimal numbers")
+    void testDecimalAddition() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("/");
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(1);
-        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(4);
         calc.pressEqualsKey();
 
-        String expected = "2";
+        String expected = "3.9";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
