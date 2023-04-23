@@ -60,8 +60,16 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        if(latestOperation != ""){
+            pressEqualsKey();
+            latestOperation = operation; //Damit die Operation korrekt geändert wird
+            
+        }
+        else{
+            latestOperation = operation;
+            
+        }
+        latestValue = Double.parseDouble(screen); // Außerhalb der Klammer, damit das Ergenis korrekt nach der Berechung in latestValue gespeichert wird
     }
 
     /**
@@ -116,6 +124,7 @@ public class Calculator {
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
+     * Beim drücken nach einer UnaryOperation passiert nichts.
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
@@ -123,6 +132,9 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "√" -> Double.parseDouble(screen);          //Beim Drücken von 'Equals'nach UnaryOPeraion verändert nichts
+            case "%" -> Double.parseDouble(screen);          //Beim Drücken von 'Equals'nach UnaryOPeraion verändert nichts
+            case "1/x" -> Double.parseDouble(screen);        //Beim Drücken von 'Equals'nach UnaryOPeraion verändert nichts
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);

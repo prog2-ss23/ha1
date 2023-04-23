@@ -88,7 +88,58 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should switch the operation symbol on screen to '-' or '' upon pressing '+/n'")
+    void changeOperationSymbol() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(1);
+        calc.pressNegativeKey();
+        calc.pressNegativeKey();
+
+        String expected = "1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    //Teilaufgabe 2
+    @Test
+    @DisplayName("Should show result of an operation with 2 operands when pressing another binary operation")
+    void testMultipleOperationKeys() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+
+        String expected = "91";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should not throw an error when pressing Equals on a result from a UnaryOperation")
+    void testEqualsAfterUnary() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x"); //kann ersetzt werden durch '1/x', '√' oder '%' Ergebnis muss angepasst werden
+        calc.pressEqualsKey();
+
+        String expected = "0.00125"; 
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    
 }
 
