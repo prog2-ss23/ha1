@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import java.sql.SQLOutput;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -46,8 +48,8 @@ public class Calculator {
      */
     public void pressClearKey() {
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        latestOperation="";
+        latestValue=0.0;
     }
 
     /**
@@ -60,8 +62,22 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        if(latestOperation==""){
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+        }else{
+            var result = switch(latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+                default -> Double.parseDouble(screen); //when no operation key was pressed, return number on screen
+            };
+            latestValue = result;
+            latestOperation = operation;
+            screen="0";
+        }
+
     }
 
     /**
@@ -123,7 +139,7 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            default -> Double.parseDouble(screen); //when no operation key was pressed, return number on screen
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";

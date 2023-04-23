@@ -90,5 +90,69 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should divide two decimal numbers")
+    void testDivide(){
+        //gegeben
+        Calculator calc = new Calculator();
+
+        //wenn
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        //dann
+        String erwartet = "4";
+        String ergebniss = calc.readScreen();
+
+        assertEquals(erwartet, ergebniss);
+    }
+
+
+    @Test
+    @DisplayName("should return a pressed number when no operation key was pressed")
+    void returnGivenNumber(){
+        //gegeben
+        Calculator calc = new Calculator();
+
+        //wenn
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        //dann
+        String erwartet = "5";
+        String ergebniss = calc.readScreen();
+
+        assertEquals(erwartet, ergebniss);
+    }
+    @Test
+    @DisplayName("should display correct result, even when more than 2 digits are added")
+    void addMultipleDigits(){
+        //gegeben
+        Calculator calc = new Calculator();
+
+        //wenn
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        //dann
+        String erwartet = "20";
+        String ergebniss = calc.readScreen();
+
+        assertEquals(erwartet, ergebniss);
+    }
+
+
+
+
+
 }
 
