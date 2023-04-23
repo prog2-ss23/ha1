@@ -60,20 +60,33 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        if(latestOperation==""){
         latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        latestOperation = operation;}
+        else {
+            pressEqualsKey();
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+        }
     }
 
     /**
      * Empfängt den Wert einer gedrückten unären Operationstaste, also eine der drei Operationen
      * Quadratwurzel, Prozent, Inversion, welche nur einen Operanden benötigen.
+     * Wenn Vorangegangene arithmetische Operationen vorhanden sind, werden diese zuerst berechnet.
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        if(latestOperation==""){
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;}
+         else {
+            pressEqualsKey();
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+        }
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
