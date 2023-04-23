@@ -111,5 +111,22 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display error after inversing zero")
+    void testInversionZero() {
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        //then
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
