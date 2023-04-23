@@ -60,8 +60,16 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        if(latestOperation != ""){
+            pressEqualsKey();
+            latestOperation = operation; //Damit die Operation korrekt geändert wird
+            
+        }
+        else{
+            latestOperation = operation;
+            
+        }
+        latestValue = Double.parseDouble(screen); // Außerhalb der Klammer, damit das Ergenis korrekt nach der Berechung in latestValue gespeichert wird
     }
 
     /**
