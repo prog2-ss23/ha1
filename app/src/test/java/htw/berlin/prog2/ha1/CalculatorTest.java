@@ -128,7 +128,19 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display error message after using Unary Operation 1/x after Dot Key")
+    void testInverseAfterDotKey() {
+        Calculator calc = new Calculator();
 
+        calc.pressDotKey();
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 }
 
