@@ -90,7 +90,7 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-    // Aufgabe mit Hilfe von Mustafa und Arno gelöst
+    // Aufgaben mit Hilfe von Mustafa und Arno gelöst
 
     @Test
     @DisplayName("should display result after subtract one positive multi-digit number from the other")
@@ -106,6 +106,22 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should work after pressing enter multiple times")
+    void testPressingEnterMultipleTimes(){
+        Calculator calc = new Calculator();
+
+
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
     }
 
 }
