@@ -124,5 +124,23 @@ class CalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("should delete last value after pressing the clear button")
+    void deleteLastValue(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
 
