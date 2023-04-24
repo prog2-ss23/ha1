@@ -1,3 +1,5 @@
+//@author Mojeeb Al-Hazmi, Ibrahim Danisman
+// wir haben zusammen gearbeitet(gegenseitig geholfen)
 package htw.berlin.prog2.ha1;
 
 /**
