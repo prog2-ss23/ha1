@@ -6,13 +6,19 @@ package htw.berlin.prog2.ha1;
  * und dessen Bildschirm bis zu zehn Ziffern plus einem Dezimaltrennzeichen darstellen kann.
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
  */
-public class Calculator {
+public class  Calculator {
 
     private String screen = "0";
 
     private double latestValue;
 
     private String latestOperation = "";
+
+    private Boolean isNegativ = false;
+
+    private int counter = 0;
+
+    private double speicher;
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -34,6 +40,10 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+
+        if (isNegativ){
+            pressNegativeKey();
+        }
     }
 
     /**
@@ -79,6 +89,7 @@ public class Calculator {
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
+
         };
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
@@ -94,7 +105,11 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.contains(".")) screen = screen + ".";
+        if(!screen.contains("."))
+        {
+            screen = screen + ".";
+        }
+
     }
 
     /**
@@ -104,8 +119,18 @@ public class Calculator {
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
+
+    // In Zusammenarbeit mit Max Budde
     public void pressNegativeKey() {
+
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+
+        if (screen.startsWith("-") ){
+            isNegativ = true;
+        }
+        else {
+            isNegativ = false;
+        }
     }
 
     /**
@@ -117,17 +142,34 @@ public class Calculator {
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
      */
+
+    //In Zusammenarbeit mit Max Budde
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.equals("Infinity")) screen = "Error";
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        counter++;
+        if (counter < 2) {
+            var result = switch (latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+
+                default -> throw new IllegalArgumentException();
+            };
+            screen = Double.toString(result);
+            if (screen.equals("Infinity")) screen = "Error";
+            if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+            if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        }
+        else {
+            double result;
+            if (latestOperation == "/"){
+                result = Double.parseDouble(screen) / latestValue;
+                screen = Double.toString(result);
+                if (screen.equals("Infinity")) screen = "Error";
+                if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+                if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+                };
+            }
+
     }
 }
