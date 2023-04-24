@@ -105,14 +105,16 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // auf den test mit Lara-Sophie Lohdau & Klaudia
     @Test
-    @DisplayName("should display 0 if any digit instead of an nummber digit is pressed")
-    void testDigitkey(){
+    @DisplayName("should display Error if 1/0")
+    void testDivisionWithZero(){
         Calculator calc = new Calculator();
-        calc.pressUnaryOperationKey("+");
-        calc.pressEqualsKey();
 
-        String expected = "0";
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
