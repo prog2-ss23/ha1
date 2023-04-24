@@ -105,5 +105,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display an integer as a result when drawing the square root of an integer")
+    void testSquareRootOfInteger() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(16);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 }
 
