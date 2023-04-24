@@ -123,6 +123,27 @@ class CalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("should delete the latest value after pressing C-Key and take the new value")
+    void testClearKey() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        System.out.println("screen:" + calc.readScreen());
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        System.out.println("screen:" + calc.readScreen());
+        calc.pressClearKey();
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+        System.out.println("screen:" + calc.readScreen());
+
+        String expected = "9";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
 
 
 

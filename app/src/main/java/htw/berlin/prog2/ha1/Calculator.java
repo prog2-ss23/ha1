@@ -30,12 +30,8 @@ public class Calculator {
      */
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
-        if(screen.equals("0.")) {
-            screen = "0.";
-            System.out.println("val1 "+latestValue);
-        }
+
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
-        System.out.println("val2 "+latestValue);
         screen = screen + digit;
     }
 
@@ -48,9 +44,11 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
+        if(latestOperation.equals("")) {
+            latestOperation = "";
+            latestValue = 0.0;
+        }
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
     }
 
     /**
