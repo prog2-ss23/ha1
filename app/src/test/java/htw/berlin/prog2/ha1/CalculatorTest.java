@@ -91,8 +91,8 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("should clear the value on the screen, after entering a multi-digit number without latest operation" +
-            "or latest value, when pressing Clear button first time ")
+    @DisplayName("should clear the value on the screen, after entering a multi-digit number"+
+            " without latest operation or latest value, when pressing Clear button first time")
     void testClearOne() {
         Calculator calc = new Calculator();
 
@@ -126,8 +126,10 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should display the result which applies the last operation and latest value to itself" +
-            "after pressing the equalsKey two times  ")
+    @DisplayName("if EqualsKey is pressed several times (without other keys in between)," +
+            " the last operation is applied again to the current screen content and the" +
+            " result is displayed directly")
+
     void testTwoTimeEquals() {
 
         Calculator calc = new Calculator();
