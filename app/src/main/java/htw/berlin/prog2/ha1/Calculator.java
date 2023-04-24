@@ -15,12 +15,13 @@ public class Calculator {
     private String latestOperation = "";
 
     /**
+     * Wenn die Double Ausgabe eine gerade zahl ist, dann wir .0 vom bildschirm entfernt.
      * @return den aktuellen Bildschirminhalt als String
      */
 
     public String readScreen() {
         if (screen.endsWith(".0")) {
-            return screen.substring(0, screen.length() - 2); // Entfernen Sie das ".0" am Ende der Zeichenfolge
+            return screen.substring(0, screen.length() - 2);
         } else {
             return screen;
         }
@@ -74,7 +75,7 @@ public class Calculator {
      * Empfängt den Wert einer gedrückten unären Operationstaste, also eine der drei Operationen
      * Quadratwurzel, Prozent, Inversion, welche nur einen Operanden benötigen.
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
-     * der Bildschirminhalt mit dem Ergebnis aktualisiert.
+     * der Bildschirminhalt mit dem Ergebnis aktualisiert. Versucht man einen Bruch (1/x) durch null (1/0), dann wird "Error angezeigt"
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
