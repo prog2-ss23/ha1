@@ -121,5 +121,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should not change latest value when pressing equals key more than once in a row")
+    void testPressEqualsKeyRepeatedly() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
