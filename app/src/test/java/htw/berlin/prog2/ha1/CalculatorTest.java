@@ -94,7 +94,7 @@ class CalculatorTest {
     //1. commit
     @Test
     @DisplayName("should display the result after dividing by 100")
-    void percent() {
+    void testPercent() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
@@ -117,12 +117,26 @@ class CalculatorTest {
         calc.pressDigitKey(5);
         calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(4);
+        calc.pressEqualsKey();
 
         String expected = "10";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display the last number we typed in after pressing the c button")
+    void testClearKey() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressClearKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
