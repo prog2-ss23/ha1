@@ -107,5 +107,72 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("1% der Eingabezahl")
+    void testProzent() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("%");
+
+
+
+        String expected = "0.09";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Negative Zahlen")
+    void testNegativeZahl() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(9);
+
+
+
+        String expected = "-9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Double Equals")
+    void testDoubleEquals() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "0.25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Double DotKey")
+    void testDoubleDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+
+
+        String expected = "2.22";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
