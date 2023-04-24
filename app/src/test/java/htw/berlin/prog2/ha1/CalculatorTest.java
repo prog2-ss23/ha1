@@ -110,19 +110,6 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Testet ob am Anfang eine Zahl kleiner als null stehen kann ")
-    void testOp(){
-        Calculator calc = new Calculator();
-         calc.pressBinaryOperationKey("-");
-         calc.pressDigitKey(2);
-         calc.pressEqualsKey();
-
-          String expected = "-2";
-          String actual = calc.readScreen();
-
-    assertEquals(expected, actual);
-}
-    @Test
     @DisplayName("Testet ob mehr als 9 Eingaben getätigt werden können")
     void testOverNine() {
         Calculator calc = new Calculator();
@@ -144,5 +131,27 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+
+
+
+    @Test
+    @DisplayName("Testet ob bei 0/0 Error rauskommt")
+    void testZero() {
+
+    Calculator calc = new Calculator();
+
+
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+
+        calc.pressEqualsKey();
+
+
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+}
 
 }
