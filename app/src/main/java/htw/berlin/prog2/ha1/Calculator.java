@@ -103,9 +103,11 @@ public class Calculator {
      * aktualisiert und die Inhalt fortan als negativ interpretiert.
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
+     * Da 0 weder negativ noch positiv ist, hat 0 kein Vorzeichen.
      */
     public void pressNegativeKey() {
         //screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        //Da 0 weder negativ noch positiv ist, hat 0 kein Vorzeichen.
         screen = screen.equals("0") ? "0" : (screen.startsWith("-") ? screen.substring(1) : "-" + screen);
     }
 
