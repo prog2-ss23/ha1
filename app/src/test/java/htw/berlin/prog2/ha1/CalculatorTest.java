@@ -90,5 +90,21 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+
+    @Test
+    @DisplayName("should display the result after dividing by 100")
+    void percent() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "0.01";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 

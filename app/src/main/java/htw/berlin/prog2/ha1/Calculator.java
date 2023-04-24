@@ -11,7 +11,6 @@ public class Calculator {
     private String screen = "0";
 
     private double latestValue;
-
     private String latestOperation = "";
 
     /**
@@ -22,6 +21,8 @@ public class Calculator {
     }
 
     /**
+     *
+     *
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
      * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
@@ -36,7 +37,7 @@ public class Calculator {
         screen = screen + digit;
     }
 
-    /**
+    /**1. Fehler
      * Empfängt den Befehl der C- bzw. CE-Taste (Clear bzw. Clear Entry).
      * Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm
      * so dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
@@ -50,7 +51,7 @@ public class Calculator {
         latestValue = 0.0;
     }
 
-    /**
+    /** 2.Fehler
      * Empfängt den Wert einer gedrückten binären Operationstaste, also eine der vier Operationen
      * Addition, Substraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
      * Beim ersten Drücken der Taste wird der Bildschirminhalt nicht verändert, sondern nur der
