@@ -191,6 +191,39 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //red test
+    @Test
+    @DisplayName("should display '-' before the first number")
+    void testMinus() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(9);
+
+        String expected = "-9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    // red test
+    @Test
+    @DisplayName("should be able to add two negative numbers correctly")
+    void testAdditionUsingNegativeNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "-5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 }
 
