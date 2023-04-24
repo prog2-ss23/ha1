@@ -86,7 +86,6 @@ public class Calculator {
         if(latestOperation.equals("1/x") && latestValue == 0 )  {
         screen = "Error";
 
-
         }
     }
 
