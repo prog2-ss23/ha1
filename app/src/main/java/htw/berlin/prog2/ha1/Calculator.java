@@ -17,7 +17,13 @@ public class Calculator {
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
-    
+    public String readScreen() {
+        if (screen.endsWith(".0")){
+            return screen.substring(0,screen.length()-2); // .0 wird am Ende entfernt
+        }else {
+        return screen;
+        }
+    }
 
     /**
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
