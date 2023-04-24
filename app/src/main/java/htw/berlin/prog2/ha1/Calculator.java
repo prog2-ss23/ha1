@@ -60,11 +60,12 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        // (latestOperation = "") 1 + (latestOperation = "+") 1 + (latestOperation != "")
+        if (!latestOperation.equals("")) {
+            pressEqualsKey();
+        }
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        if(pressBinaryOperationKey() < 1) {
-          String intermediateScreen = readScreen(screen) + latestValue + latestOperation;
-        };
     }
 
     /**

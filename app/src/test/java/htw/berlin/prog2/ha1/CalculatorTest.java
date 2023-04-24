@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Retro calculator")
 class CalculatorTest {
-""
+
     @Test
     @DisplayName("should calculate intermediate result when pressing binary operation key twice")
-    void testScreen() {
+    void testIntermediateScreen() {
 
         Calculator calc = new Calculator();
 
@@ -20,7 +20,6 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("+");
 
         String expected = "2";
-
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
