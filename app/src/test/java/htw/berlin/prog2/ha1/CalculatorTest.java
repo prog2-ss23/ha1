@@ -129,27 +129,27 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after adding one digit number with one multi-digit number")
+    @DisplayName("should display result after adding a digit number with one multi-digit number of the same digit")
     void testAdditionMultiDitgits() {
         //given
         Calculator calc = new Calculator();
 
         //when
         calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
 
         calc.pressBinaryOperationKey("+");
 
         calc.pressDigitKey(1);
-        calc.pressDigitKey(2);
-
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
         calc.pressEqualsKey();
 
         //then
-        String expected = "12";
+        String expected = "122";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
-
 }
 
