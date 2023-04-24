@@ -128,5 +128,28 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display result after adding one digit number with one multi-digit number")
+    void testAdditionMultiDitgits() {
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(1);
+
+        calc.pressBinaryOperationKey("+");
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+
+        calc.pressEqualsKey();
+
+        //then
+        String expected = "12";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
