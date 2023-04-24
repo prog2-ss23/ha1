@@ -190,9 +190,9 @@ class CalculatorTest {
     void testFraktionByZero() {
         Calculator calc = new Calculator();
 
-        calc.pressUnaryOperationKey("1/x");
         calc.pressDigitKey(0);
-        calc.pressEqualsKey();
+        calc.pressUnaryOperationKey("1/x");
+
 
         String expected = "Error";
         String actual = calc.readScreen();
