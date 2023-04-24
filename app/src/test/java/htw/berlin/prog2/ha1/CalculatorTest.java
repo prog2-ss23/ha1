@@ -132,6 +132,7 @@ class CalculatorTest {
         calc.pressDigitKey(3);
         calc.pressClearKey();
         calc.pressDigitKey(2);
+        calc.pressEqualsKey();
 
 
         String expected = "4";
