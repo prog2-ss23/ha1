@@ -17,9 +17,7 @@ public class Calculator {
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
-    public String readScreen() {
-        return screen;
-    }
+    
 
     /**
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
@@ -136,20 +134,4 @@ public class Calculator {
 
     }
 
-    /**
-     * Bei drücken der Operationstasten *,+,- ohne vorher eine Ziffer eingegeben zu haben muss das Ergebnis 0 sein
-
-    public void pressOperation() {
-        screen = "0";
-        latestValue = 0.0;
-        latestOperation = "";
-        var result = switch (latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        result = 0;
-
-    }*/
 }
