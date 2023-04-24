@@ -87,8 +87,50 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
-
+    /**
+     * Getestet wird das Verändern des Vorzeichens bei Multiplikation. Wird -5 mit -5 Multipliziert, wird eine positive 25 erwartet.
+     * Aufgabe 2: Der Test ist einer der nicht funkitonierenden Tests
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display positive result after the multiplication of two negative numbers")
+    void testMultiplication() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        pressNegativeKey();
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        pressNegativeKey();
+        calc.pressEqualsKey();
+
+        String expected = "25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }*/
+
+    /**
+     *
+     * Der Testfall deckt die Multiplikation zweier positiver Zahlen ab.
+     * Ich möchte darauf hinweisen, dass dieser und alle weitern Tests in Zusammenarbeit mit Jim Langecker geschehen,
+     * dem die Martrikelnr. S0587485 vergeben wurde.
+     *
+     */
+    @Test
+    @DisplayName("should display result after the multiplication of two positive numbers.")
+    void testMultiplication() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
