@@ -136,7 +136,7 @@ class CalculatorTest {
 
 
 
-        //funktioniert nicht
+
         String expected = "Error";
         String actual = calc.readScreen();
 
