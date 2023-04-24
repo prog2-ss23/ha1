@@ -111,7 +111,8 @@ class CalculatorTest {
     void testSquareRootOfInteger() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(16);
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(6);
         calc.pressUnaryOperationKey("√");
 
         String expected = "4";
@@ -135,7 +136,6 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
 
 }
 
