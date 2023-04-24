@@ -108,5 +108,18 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display number 0 without negative sign")
+    void testZeroUnsigned() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
