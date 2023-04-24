@@ -106,5 +106,27 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should work after pressing enter multiple times")
+    void testPressingEnterMultipleTimes() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
+
+
 }
+
+
 
