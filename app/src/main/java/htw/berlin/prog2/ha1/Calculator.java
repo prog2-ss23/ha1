@@ -1,3 +1,5 @@
+//@author Mojeeb Al-Hazmi, Ibrahim Danisman
+// wir haben zusammen gearbeitet(gegenseitig geholfen)
 package htw.berlin.prog2.ha1;
 
 /**
@@ -31,7 +33,15 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if (screen.contains("-")){
+            screen = screen + digit;
+        }
+
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen))
+            if(screen.equals("-0"))
+                screen="-";
+            else
+                screen = "";
 
         screen = screen + digit;
     }
@@ -45,19 +55,25 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if(latestValue==0.0 || screen.equals("0")) {
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+        }
+        else {
+            screen = "0";
+        }
+
     }
 
     /**
      * Empfängt den Wert einer gedrückten binären Operationstaste, also eine der vier Operationen
-     * Addition, Substraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
+     * Addition, Subtraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
      * Beim ersten Drücken der Taste wird der Bildschirminhalt nicht verändert, sondern nur der
      * Rechner in den passenden Operationsmodus versetzt.
      * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt des aktuelle Zwischenergebnis
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
-     * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
+     * @param operation "+" für Addition, "-" für Subtraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
@@ -83,7 +99,9 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+        if (screen.equals("0") && operation.equals("1/x"))
+            screen = "Error";
+        if(screen.equals("Infinity")) screen = "Error";
     }
 
     /**

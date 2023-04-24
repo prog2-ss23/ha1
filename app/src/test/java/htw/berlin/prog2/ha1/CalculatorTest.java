@@ -1,3 +1,5 @@
+//@author Mojeeb Al-Hazmi, Ibrahim Danisman
+// wir haben zusammen gearbeitet(gegenseitig geholfen)
 package htw.berlin.prog2.ha1;
 
 import org.junit.jupiter.api.DisplayName;
@@ -90,5 +92,56 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+        @Test
+        @DisplayName("sollte das Ergebnis einer Subtraktion von zweistelligen Zahlen anzeigen")
+        void testPositiveSubtraction() {
+            Calculator calc = new Calculator();
+
+            calc.pressDigitKey(2);
+            calc.pressDigitKey(0);
+            calc.pressBinaryOperationKey("-");
+            calc.pressDigitKey(1);
+            calc.pressDigitKey(0);
+            calc.pressEqualsKey();
+
+            String expected = "10";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        @DisplayName("zeigt Error an, wenn man ohne vorherige Eingabe auf die Kehrwert-Taste drückt")
+        void testDivisionByZeroByClickingOnTheReciprocalKey() {
+            Calculator calc = new Calculator();
+
+            calc.pressUnaryOperationKey("1/x");
+
+
+            String expected = "Error";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+        }
+        //bug gefixt unter der Methode pressUnaryOperationKey()
+        @Test
+        @DisplayName("zieht die Wurzel aus einer negativen Kommazahl")
+        void wurzelZiehen() {
+            Calculator calc = new Calculator();
+
+            calc.pressNegativeKey();
+            calc.pressDigitKey(6);
+            calc.pressDotKey();
+            calc.pressDigitKey(3);
+            calc.pressUnaryOperationKey("√");
+
+            String expected = "Error";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+        }
+        // bug gefixt unter der Methode pressDigitKey()
+
 }
 
