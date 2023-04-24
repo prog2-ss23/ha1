@@ -91,7 +91,7 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("should display result after subtraction of two decimal numbers")
+    @DisplayName("should display result after addition of two decimal numbers")
     void testDecimalAddition() {
         Calculator calc = new Calculator();
 
@@ -105,6 +105,28 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "3.9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+    //Fehlerhafter Test
+    @Test
+    @DisplayName("should display result after subtraction of two decimal numbers")
+    void testDecimalAdditionWithZeros() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "0.7";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
