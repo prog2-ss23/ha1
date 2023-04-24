@@ -91,7 +91,7 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
 
-
+    //1. commit
     @Test
     @DisplayName("should display the result after dividing by 100")
     void percent() {
