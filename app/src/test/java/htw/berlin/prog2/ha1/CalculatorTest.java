@@ -106,9 +106,9 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //roter test
-    /*@Test
-    @DisplayName("should allow subtrac or adding bevor divided or multiply two positive numbers")
+    /*//roter test
+    @Test
+    @DisplayName("should not allow subtrac or adding bevor divided or multiply two positive numbers")
     void testPointBevorLine() {
         Calculator calc = new Calculator();
 
@@ -124,7 +124,9 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-    }*/
+    }
+
+     */
 
 
     //roter test
@@ -166,6 +168,7 @@ class CalculatorTest {
 
      */
     //roter test
+    //Idee mit Mera Gebreyes und Klaudia Puchaczewski
     @Test
     @DisplayName("should display result after getting the square root of 9")
     void testSquareRootNine() {
@@ -175,6 +178,23 @@ class CalculatorTest {
         calc.pressUnaryOperationKey("√");
 
         String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //roter test
+    //Idee Klaudia Puchaczewski
+    @Test
+    @DisplayName("should display error when fraktion by zero")
+    void testFraktionByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressUnaryOperationKey("1/x");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
