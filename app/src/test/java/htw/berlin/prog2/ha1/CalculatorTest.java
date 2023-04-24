@@ -106,5 +106,23 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    // 2.commit
+    @Test
+    @DisplayName("should display the sum of all numbers added together")
+    void testCalculatingMoreThanTwoNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+
+        String expected = "10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
