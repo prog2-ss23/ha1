@@ -96,7 +96,6 @@ class CalculatorTest {
      */
 
     @Test
-    @Author Finn Wölk, Jim Langecker
     @DisplayName("should display result after the multiplication of two positive numbers.")
     void testMultiplication() {
         Calculator calc = new Calculator();
@@ -114,6 +113,7 @@ class CalculatorTest {
     /**Aufgabe 2:
      * Getestet wird das Löschen des Zwischenspeichers. Werden zwei Zahlen und ein Rechnenoperand eingegeben, soll die zweite Zahl jedoch
      * gelöscht (clear) und neu eingegeben werden, so prüft dieser Test den Löschvorgang.
+     * @Author Finn Wölk, Jim Langecker
      */
     //TODO hier weitere Tests erstellen
     @Test
@@ -135,22 +135,26 @@ class CalculatorTest {
     }
     /**Aufgabe 2:
      * Getestet wird das Kürzen von Zahlen, mit mehr als 11 Ziffern.
+     * @Author Finn Wölk, Jim Langecker
      */
     @Test
-    @Author Finn Wölk, Jim Langecker
     @DisplayName("should display number with 9 digits.")
     void TestInversion() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(3);
         calc.pressUnaryOperationKey("1/x");
-        calc.pressEqualsKey();
 
         String expected = "0.33333333";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
+    /**
+     * Bugfixes: Um den Test "TestInversion" zu fixen, musste in der Methode "pressUnaryOperationKey", in der zweiten If-Anweisung,
+     * die Zahl, mit welcher screen.length verglichen wird, auf 9 heruntergesetzt werden
+     */
 
 }
 
