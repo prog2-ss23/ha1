@@ -110,5 +110,20 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //erster roter Test
+    @Test
+    @DisplayName("should display the number which was entered before pressing equalKey")
+    void testonlyonenumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        String expected = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
