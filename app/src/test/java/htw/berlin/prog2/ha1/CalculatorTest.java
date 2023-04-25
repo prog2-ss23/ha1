@@ -156,5 +156,22 @@ class CalculatorTest {
      * die Zahl, mit welcher screen.length verglichen wird, auf 9 heruntergesetzt werden
      */
 
+    @Test
+    @DisplayName("should display the number without .0 ")
+    void TestUnnecessaryDecimal() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("1/x");
+        calc.pressUnaryOperationKey("1/x");
+
+
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
