@@ -111,7 +111,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Test
+    @Test //@author Jordan Schultka - 586959
     @DisplayName("should display error after inversing zero")
     void testInversionZero() {
         //given
