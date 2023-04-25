@@ -137,8 +137,46 @@ class CalculatorTest {
 
 
     }
-    
 
+    @Test
+    @DisplayName("should display result after pressing the euqlas key the second time ")
+    void testsecondequalskey(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(6);
+        calc.pressEqualsKey();
+
+
+        String expected = "11.1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    @DisplayName("should display Error after 1/x zero")
+    void testunaryoperationzero(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+
+    }
 
 }
 
