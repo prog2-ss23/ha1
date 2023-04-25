@@ -89,7 +89,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("hould display result after divide one positive one-digit number by another")
+    @DisplayName("should display result after divide one positive one-digit number by another")
     void testPositiveDivision() {
         Calculator calc = new Calculator();
 
@@ -104,5 +104,24 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should show the latest number when no Operation is used")
+    void testEqualKeyWithNoPreOperationkey(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressDotKey();
+        calc.pressEqualsKey();
+
+
+        String actual = calc.readScreen();
+        String expected = "6";
+
+        assertEquals(expected,actual);
+    }
+
+
+
 }
 
