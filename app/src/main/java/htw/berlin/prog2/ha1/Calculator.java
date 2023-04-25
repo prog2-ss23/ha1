@@ -41,13 +41,14 @@ public class Calculator {
      * Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm
      * so dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
      * Wird daraufhin noch einmal die Taste gedrückt, dann werden auch zwischengespeicherte
-     * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
+     * Werte sowie der aktuelle Operationsmodus zurückgesetzt, sodass der Rechner wieder
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+
     }
 
     /**
@@ -58,10 +59,16 @@ public class Calculator {
      * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt des aktuelle Zwischenergebnis
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
+     * @author Paul Heinecke
+     * Ausführen der EqualsKey opereation auch beim Drücken der Operationstasten
      */
     public void pressBinaryOperationKey(String operation)  {
+
+        pressEqualsKey();
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
+
     }
 
     /**
@@ -116,6 +123,9 @@ public class Calculator {
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
+     * @author Paul Heinecke
+     * defaultwert zu anzeigen des Screens geändert
+     * einen case für √ hinzugefügt
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
@@ -123,8 +133,12 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            case "√" -> Double.parseDouble(screen);
+            case "%" -> Double.parseDouble(screen);
+            case "1/x" -> Double.parseDouble(screen);
+            default -> Double.parseDouble(screen);
         };
+        System.out.println(result);
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
