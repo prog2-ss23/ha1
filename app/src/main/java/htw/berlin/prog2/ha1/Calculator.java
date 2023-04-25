@@ -11,6 +11,7 @@ public class Calculator {
     private String screen = "0";
 
     private double latestValue;
+    private int x=0;
 
     private String latestOperation = "";
 
@@ -39,28 +40,28 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
 
+        if(x<9) {
 
+            screen = screen + digit;
 
-
-        screen = screen + digit;
-
-
-
+        }
+                x++;
 
     }
 
     /**
      * Empfängt den Befehl der C- bzw. CE-Taste (Clear bzw. Clear Entry).
      * Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm
-     * so dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
+     * so, dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
      * Wird daraufhin noch einmal die Taste gedrückt, dann werden auch zwischengespeicherte
-     * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
+     * Werte sowie der aktuelle Operationsmodus zurückgesetzt, sodass der Rechner wieder
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+        x=0;
     }
 
     /**
@@ -68,13 +69,14 @@ public class Calculator {
      * Addition, Substraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
      * Beim ersten Drücken der Taste wird der Bildschirminhalt nicht verändert, sondern nur der
      * Rechner in den passenden Operationsmodus versetzt.
-     * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt des aktuelle Zwischenergebnis
+     * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt das aktuelle Zwischenergebnis
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        x = 0;
     }
 
     /**
@@ -96,7 +98,7 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+            x = 0;
     }
 
     /**
@@ -129,6 +131,7 @@ public class Calculator {
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
+     *
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
@@ -140,10 +143,12 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
-
+        if ("NaN".equals(screen)) {
+            screen = "Error";
+        }
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+        x=0;
     }
 
 

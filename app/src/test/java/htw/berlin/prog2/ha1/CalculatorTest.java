@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @DisplayName("Retro calculator")
 class CalculatorTest {
 
@@ -91,6 +90,7 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
 
+
     @Test
     @DisplayName("Zeigt das Ergebnis, nachdem eine positive Eingabe mit einer negativen Eingabe subtrahiert wird")
     void testSubtraction() {
@@ -108,7 +108,9 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
+    /**
+     *  @author ErayKadem hat mir bei der Methode testOverNine() Tipps gegeben
+     */
     @Test
     @DisplayName("Testet ob mehr als 9 Eingaben getätigt werden können")
     void testOverNine() {
@@ -133,7 +135,7 @@ class CalculatorTest {
     }
 
 
-
+// im Internet nach Fehlern im Taschenrechner gesucht und ausprobiert.
     @Test
     @DisplayName("Testet ob bei 0/0 Error rauskommt")
     void testZero() {
@@ -153,5 +155,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
 }
+    @Test
+    @DisplayName("Testet ob bei 0/0 Error rauskommt")void testYippi() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 }
