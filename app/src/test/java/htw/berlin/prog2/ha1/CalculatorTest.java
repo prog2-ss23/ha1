@@ -105,7 +105,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    
+
        @Test
         @DisplayName("should display the same number after pressing the equals key")
         void testNumberEqualsKey () {
