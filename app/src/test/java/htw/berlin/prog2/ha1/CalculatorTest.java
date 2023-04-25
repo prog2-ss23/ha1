@@ -91,7 +91,7 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
 
-    // Teilaufgabe 1
+    // Teilaufgabe 1 (Test der direkt funktioniert)
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
     void testNegativeSubtraction() {
@@ -105,6 +105,22 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "20";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2 & 3
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testNegativSquareRoot() {
+        Calculator calc = new Calculator();
+
+
+        calc.pressDigitKey(5);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
