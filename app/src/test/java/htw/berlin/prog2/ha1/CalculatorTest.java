@@ -90,5 +90,19 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    //test which tests if screen equals 0 if C is pressed
+    @Test
+    @DisplayName("should clear screen")
+
+    void testClearKey(){
+      Calculator calc = new Calculator();
+      calc.pressBinaryOperationKey("C");
+      String expected="0";
+      String actual=calc.readScreen();
+
+      assertEquals(expected,actual);
+    }
+
 }
 
