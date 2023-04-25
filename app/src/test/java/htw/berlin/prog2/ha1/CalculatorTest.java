@@ -56,6 +56,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
     @Test
     @DisplayName("should display error when drawing the square root of a negative number")
     void testSquareRootOfNegative() {
@@ -90,5 +91,95 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    //grüner Test
+    @Test
+    @DisplayName("should display result after dividing two positive one-digit numbers")
+    void testPositiveDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //1. roter Test (ohne Bugfix) -> keine Lösung gefunden/implementiert
+    /*
+    @Test
+    @DisplayName("should display result after multiplying two positive one-digit numbers and adding one-digit number to them")
+    void testPointBeforeLine() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+
+        calc.pressEqualsKey();
+
+        String expected = "17";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    */
+
+    //2. roter Test (mit Bugfix) -> funktioniert
+    @Test
+    @DisplayName("should display Error after the inverting 1 with 0")
+    void testFractionByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //3. roter Test (mit Bugfix) -> ungültiger Test!!!
+    /*
+    @Test
+    @DisplayName("should display Error after adding two multiple-digit numbers")
+    void test() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(55);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(45);
+        calc.pressEqualsKey();
+
+        String expected = "100";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+     */
+
+    //4. roter Test (mit Bugfix) -> funktioniert
+    //mit Mera Gebreyes
+    @Test
+    @DisplayName("should not display a double-number as result")
+    void test() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
