@@ -90,5 +90,66 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display result after adding two negative multi-digit numbers")
+    void testNegativeAddition() {
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(9);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(9);
+        calc.pressNegativeKey();
+        calc.pressEqualsKey();
+
+        //then
+        String expected = "-18";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test //@author Jordan Schultka - 586959
+    @DisplayName("should display error after inversing zero")
+    void testInversionZero() {
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        //then
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result after adding a digit number with one multi-digit number of the same digit")
+    void testAdditionMultiDitgits() {
+        //given
+        Calculator calc = new Calculator();
+
+        //when
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+
+        calc.pressBinaryOperationKey("+");
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        //then
+        String expected = "122";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
