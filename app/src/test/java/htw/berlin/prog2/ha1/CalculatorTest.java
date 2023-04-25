@@ -91,26 +91,18 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("should display Result after getting two numbers")
-    void testModulo() {
+    @DisplayName("soll eine Zahl von einer anderen Sutrahieren")
+    void testSubtraktion() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(9);
-        calc.pressUnaryOperationKey("%");
-        calc.pressDigitKey(4);
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
 
-        String expected ="1";
-        String actual =calc.readScreen();
-
-    }
-    @Test
-    @DisplayName("should allow starting with a negative number")
-    void testFirstNumberNegative() {
-        Calculator calc = new Calculator();
-        calc.pressNegativeKey();
-        calc.pressDigitKey(2);
-
-        String expected = "-2";
+        String expected = "6";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
