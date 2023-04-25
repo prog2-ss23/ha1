@@ -88,7 +88,51 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display result after divide one positive one-digit number by another")
+    void testPositiveDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(3);
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should show the latest number when no Operation is used")
+    void testEqualKeyWithNoPreOperationkey(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressDotKey();
+        calc.pressEqualsKey();
+
+
+        String actual = calc.readScreen();
+        String expected = "6";
+
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("should show Error on screen to prevent divisin by zero with unaryOperationKey")
+    void testMultipleEqualKeyAddition(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String actual = calc.readScreen();
+        String expected = "Error";
+        assertEquals(expected,actual);
+
+    }
+
 }
 
