@@ -117,12 +117,13 @@ public class Calculator {
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
      */
-    public void pressEqualsKey() {
+    public void pressEqualsKey() {  //Funktion drückt nicht =, sondern führt latestOperation aus
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "" -> Double.parseDouble(screen); //falls keine Operation gedrückt wurde -> einfach Wert ausgeben
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
