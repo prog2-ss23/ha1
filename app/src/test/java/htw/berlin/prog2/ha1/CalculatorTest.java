@@ -128,7 +128,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Test
+    @Test //@Trang Tran - Mtkn.: 586967 (Ideenfindung für den 2. roten Test)
     @DisplayName("should display error message after using Unary Operation 1/x after Dot Key")
     void testInverseAfterDotKey() {
         Calculator calc = new Calculator();
