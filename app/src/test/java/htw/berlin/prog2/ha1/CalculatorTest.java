@@ -90,6 +90,11 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    /**
+     * Testet Multiplikationsfunkion mit zwei positiven Zahlen und überprüft, ob das tatsächliche Ergebnis dem erwarteten Ergebnis entspricht.
+     * Diesen Test habe ich mithilfe von Finn Wölk erarbeitet. Matrikelnummer: 586871
+     */
     @Test
     @DisplayName("should display result after multiplying two positive numbers")
     void testmultiplaypos() {
@@ -102,6 +107,42 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "60";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+    @Test
+    @DisplayName("should display the number without .0")
+    void testUnnecessaryDecimal() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("1/x");
+        calc.pressUnaryOperationKey("1/x");
+
+
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should clear second entry and keeps first.")
+    void TestClear() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressClearKey();
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+
+        String expected = "27";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
