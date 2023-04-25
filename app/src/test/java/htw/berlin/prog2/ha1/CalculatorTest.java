@@ -140,5 +140,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display error when pressing operations without operators")
+    void testOperationKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("+");
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+
+    }
 }
 
