@@ -14,6 +14,7 @@ public class Calculator {
 
     private String latestOperation = "";
 
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -119,13 +120,15 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+
+
+
         var result = switch(latestOperation) {
 
-            case "+" -> latestValue + Double.parseDouble(screen);
+            case "+" -> latestValue + Double.parseDouble(screen) ;
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-
 
             default -> throw new IllegalArgumentException();
         };
@@ -133,5 +136,7 @@ public class Calculator {
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+
     }
 }
