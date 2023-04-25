@@ -131,5 +131,25 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
+
+    @Test
+    @DisplayName("ins negative subtrahieren ")
+    void testNegativeSubstraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "-3";  //Expected:-3 | Actual:0
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
