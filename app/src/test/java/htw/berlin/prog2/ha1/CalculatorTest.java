@@ -91,7 +91,7 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("soll eine Zahl von einer anderen Sutrahieren")
+    @DisplayName("sollte eine Zahl von einer anderen Sutrahieren")
     void testSubtraktion() {
         Calculator calc = new Calculator();
 
@@ -108,8 +108,8 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should display error when getting reciprocal from 0 ")
-    void testReciprocalFromZero() {
+    @DisplayName("sollte ein Error anzeigen wenn nach dem Umkehrwert von 0 gesucht wird")
+    void testUmkehrwertVon0() {
         Calculator calc = new Calculator();
 
 
