@@ -13,6 +13,8 @@ public class Calculator {
     private double latestValue;
 
     private String latestOperation = "";
+    private Boolean haveOperation= false;
+    private Boolean multipleEquals= false;
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -34,6 +36,7 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+        multipleEquals= false;
     }
 
     /**
@@ -48,6 +51,8 @@ public class Calculator {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+        haveOperation= false;
+        multipleEquals= false;
     }
 
     /**
@@ -60,8 +65,10 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        haveOperation = true;
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        multipleEquals= false;
     }
 
     /**
@@ -72,6 +79,7 @@ public class Calculator {
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
+        haveOperation = true;
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         var result = switch(operation) {
@@ -83,6 +91,7 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        multipleEquals= false;
 
     }
 
@@ -104,9 +113,15 @@ public class Calculator {
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
+
     public void pressNegativeKey() {
-        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        if (!haveOperation){
+            screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        }else{
+            screen = "-0";
+        }
     }
+
 
     /**
      * Empfängt den Befehl der gedrückten "="-Taste.
@@ -125,9 +140,15 @@ public class Calculator {
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+        if(!multipleEquals){
+            latestValue = Double.parseDouble(screen);
+            multipleEquals = true;
+        }
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        haveOperation = false;
     }
+
 }
