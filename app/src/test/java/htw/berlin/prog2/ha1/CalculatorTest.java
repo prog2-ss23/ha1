@@ -13,14 +13,13 @@ class CalculatorTest {
     void testPositiveAddition() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
-        calc.pressDigitKey(0);
+        calc.pressDigitKey(4);
         calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "40";
+        String expected = "24";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -89,6 +88,90 @@ class CalculatorTest {
     }
 
 
+
+
+
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display result of subtraction by two numbers ")
+    void testSubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display multiplication of two numbers with each other")
+    void testZeroInvertion() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display multiplication of two numbers with each other")
+    void testMinusUnaryOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Zero Test")
+    void displayZero () {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        String expected = "3.7";
+        String actual = calc.readScreen();
+        assertEquals (expected, actual);
+    }
+
+    @Test
+    @DisplayName("Zero Test")
+    void displayZero1 () {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "5.5";
+        String actual = calc.readScreen();
+        assertEquals (expected, actual);
+    }
+    //update
+
+
 }
 
