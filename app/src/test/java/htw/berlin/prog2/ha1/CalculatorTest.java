@@ -90,5 +90,29 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display Result after getting two numbers")
+    void testModulo() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("%");
+        calc.pressDigitKey(4);
+
+        String expected ="1";
+        String actual =calc.readScreen();
+    }
+    @Test
+    @DisplayName("should allow starting with a negative number")
+    void testFirstNumberNegative() {
+        Calculator calc = new Calculator();
+        calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+
+        String expected = "-2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
