@@ -124,8 +124,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("sample text")
-    void testSomething() {
+    @DisplayName("Displays result after multiplicating 2 negative numbers")
+    void testMultiplicationWithTwoNegatives() {
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
