@@ -129,5 +129,21 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Should display an integer for a square root") 
+     void testRoundedSquare() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("√");
+
+
+        String expected = "8";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+
+
+}
 }
 
