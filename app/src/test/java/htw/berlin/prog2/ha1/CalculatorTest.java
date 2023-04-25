@@ -121,21 +121,24 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("display result when 1 is divided by 6")
-    void testNew() {
+    @DisplayName("display result when performing multiplication")
+    void testNew2() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
-        calc.pressBinaryOperationKey("/");
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
         calc.pressDigitKey(6);
+        calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "0.16666667";
+        String expected = "160"; //error: ignores the 1 pressed after multiplication and continues with mylitplying by 60
+        //however, if we would be multiplying 1 * y60 where y is any number except for 1, the result would be correct
         String actual = calc.readScreen();
 
-        assertEquals(expected, actual); /*expected 0, actual 6*/
-    }
+        assertEquals(expected, actual);
 
+    }
 
 
 }

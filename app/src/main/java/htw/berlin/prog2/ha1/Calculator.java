@@ -28,12 +28,15 @@ public class Calculator {
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
+
+
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
         screen = screen + digit;
+
     }
 
     /**
@@ -82,7 +85,9 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
+        //if(screen.contains(".") && screen.length() > 11 && (double) screen.charAt(10) > 5) screen = screen.substring(0, 10) + 0.00000001;
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //if(screen.contains(".") && screen.length() > 11) screen = String.format("%.8", screen); //fix ?
         if(screen.contains(".0")) screen = screen.substring(0,screen.length()-2);
     }
 
@@ -128,6 +133,8 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2); //fix for float to int
+        //if(screen.contains(".") && screen.length() > 11 && (double) screen.charAt(10) > 5) screen = screen.substring(0, 10) + 0.00000001;
+        //if(screen.contains(".") && screen.length() > 11) screen = String.format("%.8", screen);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
 }
