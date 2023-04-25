@@ -90,5 +90,55 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    //Teilaufgabe 1.
+
+    @Test
+    @DisplayName("should reset calculator when pressing Clear button")
+    void testClearButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2.
+
+    @Test
+    @DisplayName("should display zero after multiplying any number with zero")
+    void testMultiplicationWithZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("*");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display error when only having a binary operation key without any numbers")
+    void testBinaryOperationWithoutNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("+");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
