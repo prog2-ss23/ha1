@@ -80,8 +80,7 @@ public class Calculator {
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
-        if (operation.equals("√") && latestValue<0) {screen= "NaN";}     //wenn man √ rechnet und das Ergebnis <0 ist, dann screen=NaN -> Error
-        else screen = Double.toString(result);
+        screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
@@ -127,7 +126,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
-        if(screen.equals("Infinity")) screen = "Error";
+        if(screen.equals("Infinity") || screen.equals("-Infinity") ) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }

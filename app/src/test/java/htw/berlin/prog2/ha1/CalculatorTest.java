@@ -113,13 +113,15 @@ class CalculatorTest {
     //Teilaufgabe 2 & 3
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
-    void testNegativSquareRoot() {
+    void testNegativeInfinity() {
         Calculator calc = new Calculator();
-
 
         calc.pressDigitKey(5);
         calc.pressNegativeKey();
-        calc.pressUnaryOperationKey("√");
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
         String expected = "Error";
         String actual = calc.readScreen();
 
