@@ -12,6 +12,8 @@ public class Calculator {
 
     private double latestValue;
 
+    private double repeatOperand;
+
     private String latestOperation = "";
 
     /**
@@ -32,6 +34,7 @@ public class Calculator {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        repeatOperand = 0.0;
 
         screen = screen + digit;
     }
@@ -48,6 +51,7 @@ public class Calculator {
         if(screen.equals("0")) {
             latestOperation = "";
             latestValue = 0.0;
+            repeatOperand = 0.0;
         } else screen = "0";
     }
 
@@ -63,6 +67,7 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        repeatOperand = 0.0;
     }
 
     /**
@@ -119,13 +124,25 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
+        double result;
+        if (repeatOperand == 0.0) {
+            result = switch (latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+            repeatOperand = Double.parseDouble(screen);
+        } else {
+            result = switch (latestOperation) {
+                case "+" -> repeatOperand + Double.parseDouble(screen);
+                case "-" -> repeatOperand - Double.parseDouble(screen);
+                case "x" -> repeatOperand * Double.parseDouble(screen);
+                case "/" -> repeatOperand / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+        }
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
