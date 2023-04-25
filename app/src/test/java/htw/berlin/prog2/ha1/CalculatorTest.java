@@ -61,7 +61,7 @@ class CalculatorTest {
     void testSquareRootOfNegative() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(7);
+        calc.pressDigitKey(9);
         calc.pressNegativeKey();
         calc.pressUnaryOperationKey("√");
 
@@ -90,5 +90,55 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    //erster grüner Test
+    @Test
+    @DisplayName("should display result after subtracting two positive multi-digit numbers")
+    void testsubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "15";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //erster roter Test
+    @Test
+    @DisplayName("should display the number which was entered before pressing equalKey")
+    void testonlyonenumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        String expected = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //zweiter roter Test
+    @Test
+    @DisplayName("should display Error when iversion is done with zero")
+    void testinversionzero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
