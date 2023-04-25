@@ -101,6 +101,7 @@ class CalculatorTest {
 
         String expected ="1";
         String actual =calc.readScreen();
+
     }
     @Test
     @DisplayName("should allow starting with a negative number")
