@@ -121,7 +121,18 @@ class CalculatorTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("should show Error on screen to prevent divisin by zero with unaryOperationKey")
+    void testMultipleEqualKeyAddition(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
 
+        String actual = calc.readScreen();
+        String expected = "Error";
+        assertEquals(expected,actual);
+
+    }
 
 }
 
