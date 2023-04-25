@@ -90,11 +90,44 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-    //Teilaufgabe 1
-    @Test
+    /*@Test
     @DisplayName("should display result after adding two negative multi-digit numbers")
     void testNegativeAddition() {
         Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("+/-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressBinaryOperationKey("+/-");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "-35";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
     }
+     */
+
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after multiplying two positive numbers")
+    void testPositiveMultiplication(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
