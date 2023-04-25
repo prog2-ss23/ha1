@@ -92,7 +92,7 @@ class CalculatorTest {
     //TODO hier weitere Tests erstellen
 
     @Test
-    @DisplayName("should show show 3 instead of 3.0")
+    @DisplayName("should show show 4 instead of 4.0")
     void testsquare() {
         Calculator calc = new Calculator();
 
@@ -134,4 +134,18 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-    }}
+    }
+
+    @Test
+    @DisplayName("should show 5 instead of nothing")
+    void errorEquals() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+}}
