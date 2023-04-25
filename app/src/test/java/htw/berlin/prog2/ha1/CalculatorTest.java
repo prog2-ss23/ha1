@@ -90,5 +90,66 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    // grüner Test
+    @Test
+    @DisplayName("should change percentage to decimal")
+    void testChangePercentageToDecimal() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(3);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "0.33";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+    // 1. roter Test
+    @Test
+    @DisplayName("should multiply decimal numbers and only show 2 digits after the comma")
+    void testMultiplyDecimalNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "10.24"; //Expected :10.24 Actual   :10.2400000
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+    @Test
+    @DisplayName("ins negative subtrahieren ")
+    void testNegativeSubstraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "-3";  //Expected:-3 | Actual:0
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 

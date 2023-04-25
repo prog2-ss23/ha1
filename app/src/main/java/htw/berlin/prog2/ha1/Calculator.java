@@ -1,5 +1,8 @@
 package htw.berlin.prog2.ha1;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -60,6 +63,9 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        if(!latestOperation.isEmpty()) {
+            pressEqualsKey();
+        }
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
     }
@@ -117,7 +123,7 @@ public class Calculator {
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
      */
-    public void pressEqualsKey() {
+    /*public void pressEqualsKey() {
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
@@ -129,5 +135,26 @@ public class Calculator {
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //if(screen.contains(".") && screen.length() > 11)  screen = result.setScale(2, RoundingMode.HALF_UP).toString();
+        //if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+    */
+
+        //BigDecimal statt Double
+    public void pressEqualsKey() {
+        BigDecimal latestValueDecimal = BigDecimal.valueOf(latestValue);
+        BigDecimal screenDecimal = new BigDecimal(screen);
+        BigDecimal result = switch (latestOperation) {
+            case "+" -> latestValueDecimal.add(screenDecimal);
+            case "-" -> latestValueDecimal.subtract(screenDecimal);
+            case "x" -> latestValueDecimal.multiply(screenDecimal).setScale(2, RoundingMode.HALF_UP);
+            case "/" -> latestValueDecimal.divide(screenDecimal, 2, RoundingMode.HALF_UP);
+            default -> throw new IllegalArgumentException();
+        };
+        screen = result.toString();
+        if (screen.equals("Infinity")) screen = "Error";
+        if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+    }
+
 }
