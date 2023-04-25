@@ -129,6 +129,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
 
+
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
