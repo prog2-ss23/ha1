@@ -90,5 +90,51 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-}
+    @Test
+    @DisplayName("should reverse the sign of current value")
+    void testSignReversal() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(5);
+        calc.pressNegativeKey();
+
+        String expected = "-5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should cache latest entry")
+    void testCachingOfLatestValue() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressClearKey();
+        calc.pressEqualsKey();
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should repeat last operation on latest result")
+    void testRepeatOfOperation(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+}
