@@ -88,7 +88,21 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display correct result after multiplying two positive numbers")
+    void testPositiveMultiplication(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
 
-    //TODO hier weitere Tests erstellen
+        String expected = "72";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+    }
+
+
 }
 
