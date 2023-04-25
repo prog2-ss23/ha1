@@ -87,8 +87,91 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    /**
+     *
+     * Der Testfall deckt die Multiplikation zweier positiver Zahlen ab.
+     * Ich möchte darauf hinweisen, dass dieser und alle weitern Tests in Zusammenarbeit mit Jim Langecker geschehen,
+     * dem die Matrikelnr. S0587485 vergeben wurde.
+     *
+     */
 
+    @Test
+    @DisplayName("should display result after the multiplication of two positive numbers.")
+    void testMultiplication() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    /**Aufgabe 2:
+     * Getestet wird das Löschen des Zwischenspeichers. Werden zwei Zahlen und ein Rechnenoperand eingegeben, soll die zweite Zahl jedoch
+     * gelöscht (clear) und neu eingegeben werden, so prüft dieser Test den Löschvorgang.
+     * @Author Finn Wölk, Jim Langecker
+     */
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should clear second entry and keeps first.")
+    void TestClear() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressClearKey();
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+
+        String expected = "27";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    /**Aufgabe 2:
+     * Getestet wird das Kürzen von Zahlen, mit mehr als 11 Ziffern.
+     * @Author Finn Wölk, Jim Langecker
+     */
+    @Test
+    @DisplayName("should display number with 9 digits.")
+    void TestInversion() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.33333333";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Bugfixes: Um den Test "TestInversion" zu fixen, musste in der Methode "pressUnaryOperationKey", in der zweiten If-Anweisung,
+     * die Zahl, mit welcher screen.length verglichen wird, auf 9 heruntergesetzt werden
+     */
+
+    @Test
+    @DisplayName("should display the number without .0 ")
+    void TestUnnecessaryDecimal() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("1/x");
+        calc.pressUnaryOperationKey("1/x");
+
+
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
