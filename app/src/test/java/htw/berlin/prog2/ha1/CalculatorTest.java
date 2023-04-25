@@ -106,15 +106,32 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-       @Test
-        @DisplayName("should display the same number after pressing the equals key")
-        void testNumberEqualsKey () {
+    @Test
+    @DisplayName("should display the same number after pressing the equals key")
+    void testNumberEqualsKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+        @Test
+        @DisplayName("should display the sum of multiple numbers after adding them")
+        void testMultipleAddition () {
             Calculator calc = new Calculator();
 
             calc.pressDigitKey(2);
+            calc.pressBinaryOperationKey("+");
+            calc.pressDigitKey(2);
+            calc.pressBinaryOperationKey("+");
+            calc.pressDigitKey(2);
             calc.pressEqualsKey();
 
-            String expected = "2";
+            String expected = "6";
+
             String actual = calc.readScreen();
             assertEquals(expected, actual);
         }
