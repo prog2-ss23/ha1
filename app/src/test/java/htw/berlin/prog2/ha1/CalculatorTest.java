@@ -115,11 +115,29 @@ class CalculatorTest {
 
         calc.pressDigitKey(0);
         calc.pressUnaryOperationKey("1/x");
+
         String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
 
+    }
+    @Test
+    @DisplayName("sollte als Ergebnis keine negative Null zeigen")
+    void testNegativeNull() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
     }
 }
 
