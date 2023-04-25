@@ -121,17 +121,18 @@ public class Calculator {
      */
     public void pressEqualsKey() {
 
-
-
+        double currentValue = Double.parseDouble(screen);
         var result = switch(latestOperation) {
 
-            case "+" -> latestValue + Double.parseDouble(screen) ;
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "+" -> latestValue + currentValue ;
+            case "-" -> latestValue - currentValue;
+            case "x" -> latestValue * currentValue;
+            case "/" -> latestValue / currentValue;
 
             default -> throw new IllegalArgumentException();
         };
+
+        latestValue = currentValue;
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
