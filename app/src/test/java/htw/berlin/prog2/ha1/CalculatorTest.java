@@ -97,12 +97,17 @@ class CalculatorTest {
 
     void testClearKey(){
       Calculator calc = new Calculator();
-      calc.pressBinaryOperationKey("C");
+      calc.pressDigitKey(1);
+      calc.pressBinaryOperationKey("+");
+      calc.pressDigitKey(1);
+      calc.pressEqualsKey();
+      calc.pressClearKey();
       String expected="0";
       String actual=calc.readScreen();
 
       assertEquals(expected,actual);
     }
+
 
 }
 
