@@ -125,10 +125,10 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(5);
         calc.pressClearKey();
-        calc.pressDigitKey(10);
+        calc.pressDigitKey(9);
         calc.pressEqualsKey();
 
-        String expected = "50";
+        String expected = "27";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
