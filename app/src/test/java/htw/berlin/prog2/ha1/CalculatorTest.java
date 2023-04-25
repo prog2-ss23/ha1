@@ -89,18 +89,18 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should calculate dot before dash")
-    void testDotBeforeDash() {
+    @DisplayName("should calculate longer terms")
+    void testTermsWithTwoOperators() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(4);
         calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(7);
-        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(8);
         calc.pressEqualsKey();
 
-        String expected = "60";
+        String expected = "14";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -122,6 +122,41 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should calculate decimal numbers")
+    void testDecimalNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "24.36";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should reflect an error when the root is drawn from negative numbers")
+    void testRootNegativeNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressNegativeKey() ;
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 }
 
