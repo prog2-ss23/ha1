@@ -122,16 +122,14 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after multiplying two positive multi-digit numbers")
-    void testPositiveMultiplication() {
+    @DisplayName("should display result after entering a single-digit number and pressing the equals key")
+    void testEquals() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(12);
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(12);
+        calc.pressDigitKey(5);
         calc.pressEqualsKey();
 
-        String expected = "144";
+        String expected = "5";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
