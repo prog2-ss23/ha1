@@ -88,35 +88,15 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     /**
-     * Getestet wird das Verändern des Vorzeichens bei Multiplikation. Wird -5 mit -5 Multipliziert, wird eine positive 25 erwartet.
-     * Aufgabe 2: Der Test ist einer der nicht funkitonierenden Tests
-    //TODO hier weitere Tests erstellen
-    @Test
-    @DisplayName("should display positive result after the multiplication of two negative numbers")
-    void testMultiplication() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(5);
-        pressNegativeKey();
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(5);
-        pressNegativeKey();
-        calc.pressEqualsKey();
-
-        String expected = "25";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }*/
-
-    /**
      *
      * Der Testfall deckt die Multiplikation zweier positiver Zahlen ab.
      * Ich möchte darauf hinweisen, dass dieser und alle weitern Tests in Zusammenarbeit mit Jim Langecker geschehen,
-     * dem die Martrikelnr. S0587485 vergeben wurde.
+     * dem die Matrikelnr. S0587485 vergeben wurde.
      *
      */
+
     @Test
+    @Author Finn Wölk, Jim Langecker
     @DisplayName("should display result after the multiplication of two positive numbers.")
     void testMultiplication() {
         Calculator calc = new Calculator();
@@ -127,6 +107,46 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    /**Aufgabe 2:
+     * Getestet wird das Löschen des Zwischenspeichers. Werden zwei Zahlen und ein Rechnenoperand eingegeben, soll die zweite Zahl jedoch
+     * gelöscht (clear) und neu eingegeben werden, so prüft dieser Test den Löschvorgang.
+     */
+    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should clear second entry and keeps first.")
+    void TestClear() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressClearKey();
+        calc.pressDigitKey(10);
+        calc.pressEqualsKey();
+
+        String expected = "50";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    /**Aufgabe 2:
+     * Getestet wird das Kürzen von Zahlen, mit mehr als 11 Ziffern.
+     */
+    @Test
+    @Author Finn Wölk, Jim Langecker
+    @DisplayName("should display number with 9 digits.")
+    void TestInversion() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressUnaryOperationKey("1/x");
+        calc.pressEqualsKey();
+
+        String expected = "0.33333333";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
