@@ -109,9 +109,12 @@ class CalculatorTest {
         Calculator calc = new Calculator();
         calc.pressDigitKey(5);
         calc.pressBinaryOperationKey("+");
+        calc.pressEqualsKey();
         calc.pressClearKey();
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
 
-        String expected = "5.0+";
+        String expected = "10";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
