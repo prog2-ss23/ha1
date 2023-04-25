@@ -159,10 +159,10 @@ class CalculatorTest {
     @DisplayName("Zero Test")
     void displayZero1 () {
         Calculator calc = new Calculator();
-        calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(0);
         calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(5);
         calc.pressEqualsKey();
 
@@ -170,6 +170,7 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals (expected, actual);
     }
+    //update
 
 
 }

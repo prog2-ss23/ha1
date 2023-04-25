@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private double laterValue;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -62,6 +64,7 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        screen= "0";
     }
 
     /**
