@@ -90,5 +90,71 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+
+    @Test
+    @DisplayName("should display 0.01 as a result of inverse of 100")
+    void testInverseFunction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.01";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+    // Rote Tests
+    @Test
+    @DisplayName("Wenn der Clear Button einmal gedürckt wird soll die eben eingegebene Zahl gelöscht werden und eine neue kann hinzugefüt werden")
+    void testClearButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressClearKey();
+        calc.pressDigitKey(4);
+
+        calc.pressEqualsKey();
+
+        String expected = "9";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    @DisplayName("Wenn eine Binary Operation durchgeführt wird, soll eine neue Zahl eingetippt werden und daraufhin direkt das Ergebnis angezeigt werden")
+    void testBinaryOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+
+        String expected = "25";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 

@@ -10,6 +10,7 @@ public class Calculator {
 
     private String screen = "0";
 
+
     private double latestValue;
 
     private String latestOperation = "";
@@ -45,9 +46,13 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+
+        if (screen == "0") {
+            latestOperation = "";
+            latestValue = 0.0;
+        } else {
+            screen = "0";
+        }
     }
 
     /**
@@ -60,8 +65,14 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        if (latestOperation == "") {
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+        } else {
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+            pressEqualsKey();
+        }
     }
 
     /**
@@ -118,6 +129,7 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
@@ -125,9 +137,11 @@ public class Calculator {
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
 }
+
