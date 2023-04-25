@@ -35,6 +35,10 @@ public class Calculator {
             if (screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
         }
         screen = screen + digit;
+
+     /*   if (!screen.equals("-0")) {
+            screen = screen + digit;
+        }*/
     }
 
     /**
@@ -63,6 +67,11 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
+        if (screen.startsWith("-")) {
+            screen = "0";
+           // pressNegativeKey();
+        }
     }
 
     /**
