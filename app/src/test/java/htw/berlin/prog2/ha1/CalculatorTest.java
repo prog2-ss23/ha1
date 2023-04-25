@@ -103,6 +103,32 @@ class CalculatorTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("should only clear screen when clearKey() is used once, but not latestOperation and latestValue")
+    void testPressClearKey() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressClearKey();
 
+        String expected = "5.0+";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display a 0. decimal when pressing dot key right away")
+    void testPressDotKey(){
+        Calculator calc = new Calculator();
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(8);
+        String expected = "0.518";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
