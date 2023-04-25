@@ -91,7 +91,7 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
     @Test
-    @DisplayName("should display error when dividing by zero")
+    @DisplayName("Division 8 by 2. Should display 4")
     void testDivisionNatuerlicheGradeZahlDurchZwei() {
         Calculator calc = new Calculator();
 
@@ -126,7 +126,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Addition with a result over 9 ")
+    @DisplayName("calculate squareroot from 4 ")
     void summeOverNine() {
         Calculator calc = new Calculator();
 

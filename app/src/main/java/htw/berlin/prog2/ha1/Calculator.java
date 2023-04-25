@@ -59,6 +59,8 @@ public class Calculator {
      * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt des aktuelle Zwischenergebnis
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
+     * @author Paul Heinecke
+     * Ausführen der EqualsKey opereation auch beim Drücken der Operationstasten
      */
     public void pressBinaryOperationKey(String operation)  {
 
@@ -121,6 +123,9 @@ public class Calculator {
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
+     * @author Paul Heinecke
+     * defaultwert zu anzeigen des Screens geändert
+     * einen case für √ hinzugefügt
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
