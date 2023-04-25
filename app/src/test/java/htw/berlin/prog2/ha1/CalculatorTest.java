@@ -90,5 +90,11 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after adding two negative multi-digit numbers")
+    void testNegativeAddition() {
+        Calculator calc = new Calculator();
+    }
 }
 
