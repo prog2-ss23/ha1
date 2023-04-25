@@ -59,10 +59,16 @@ public class Calculator {
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
-    public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+    public void pressBinaryOperationKey(String operation) {
+        if ((operation.equals("-") || operation.equals("+")) && latestOperation.equals("-")) {
+            latestValue -= Double.parseDouble(screen);
+        } else {
+            latestValue += Double.parseDouble(screen);
+            latestOperation = operation;
+        }
+        screen = "0";
     }
+
 
     /**
      * Empfängt den Wert einer gedrückten unären Operationstaste, also eine der drei Operationen
@@ -82,6 +88,7 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
+        if(screen.equals("Infinity")) screen  = "Error"; //Lösung
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
@@ -118,11 +125,13 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+        double secondOperand = Double.parseDouble(screen);
+
         var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "+" -> latestValue + secondOperand;
+            case "-" -> latestValue - secondOperand;
+            case "x" -> latestValue * secondOperand;
+            case "/" -> latestValue / secondOperand;
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
@@ -130,4 +139,5 @@ public class Calculator {
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+
 }
