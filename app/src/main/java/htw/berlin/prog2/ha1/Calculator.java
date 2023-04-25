@@ -149,5 +149,5 @@ public class Calculator {
 
 /**
  1. Rechnet Reihe entlang nach und beachtet nicht, dass man Punkt vor Strich rechnet.
- 2. Rundet das Ergebnis nicht auf sondern gibt genaue Dezimalstellen
+ 2. Rundet das Ergebnis nicht auf sondern gibt genaue Dezimalstellen an
  */
