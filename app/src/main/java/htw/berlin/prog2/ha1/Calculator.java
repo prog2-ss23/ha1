@@ -14,7 +14,7 @@ public class Calculator {
 
     private String latestOperation = "";
 
-    // private double zwischen = 0; 
+    private double zwischen = 0; 
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -50,7 +50,7 @@ public class Calculator {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
-        // zwischen = 0; 
+        zwischen = 0; 
         }
 
     /**
@@ -65,7 +65,7 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
        
         latestValue = Double.parseDouble(screen);
-        // zwischen += latestValue; 
+        zwischen += latestValue; 
         latestOperation = operation;
     }
 
@@ -124,7 +124,7 @@ public class Calculator {
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
+            case "+" -> zwischen + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
