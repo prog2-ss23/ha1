@@ -122,14 +122,14 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after entering a single-digit number and pressing the equals key")
+    @DisplayName("should display result after entering a single-digit number and pressing the equals key without any operation key.")
     void testEquals() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(5);
+        calc.pressDigitKey(8);
         calc.pressEqualsKey();
 
-        String expected = "5";
+        String expected = "8";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
