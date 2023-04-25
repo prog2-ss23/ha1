@@ -119,6 +119,7 @@ public class Calculator {
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
+            case "" -> Double.parseDouble(screen);                  // Bugfix 1 ---> what happens if you only write a number and press the equals Key
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
