@@ -104,8 +104,21 @@ class CalculatorTest {
       calc.pressClearKey();
       String expected="0";
       String actual=calc.readScreen();
-
       assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("Test double click of Binary Operations")
+
+    void TestDoubleClickBinaryOperations(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("/");
+        String expected="4";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
     }
 
 
