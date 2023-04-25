@@ -121,6 +121,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    // credits: Nick Bohm
     @Test
     @DisplayName("should display result after entering a single-digit number and pressing the equals key without any operation key.")
     void testEquals() {
