@@ -135,7 +135,10 @@ class CalculatorTest {
     }
 
 
-// im Internet nach Fehlern im Taschenrechner gesucht und ausprobiert.
+    /**
+     *  im Internet nach Fehlern im Taschenrechner gesucht und ausprobiert.
+     */
+
     @Test
     @DisplayName("Testet ob bei 0/0 Error rauskommt")
     void testZero() {
