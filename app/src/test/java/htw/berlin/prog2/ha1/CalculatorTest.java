@@ -90,5 +90,57 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    // Aufgaben mit Hilfe von Mustafa und Arno gelöst
+
+    @Test
+    @DisplayName("should display result after subtract one positive multi-digit number from the other")
+    void testPositiveSubtraction(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should work after pressing enter multiple times")
+    void testPressingEnterMultipleTimes(){
+        Calculator calc = new Calculator();
+
+
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("should delete last value after pressing the clear button")
+    void deleteLastValue(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
 
