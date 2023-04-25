@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    // private double zwischen = 0; 
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -48,7 +50,8 @@ public class Calculator {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
-    }
+        // zwischen = 0; 
+        }
 
     /**
      * Empfängt den Wert einer gedrückten binären Operationstaste, also eine der vier Operationen
@@ -60,7 +63,9 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+       
         latestValue = Double.parseDouble(screen);
+        // zwischen += latestValue; 
         latestOperation = operation;
     }
 
@@ -106,7 +111,7 @@ public class Calculator {
      */
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
-    }
+    } 
 
     /**
      * Empfängt den Befehl der gedrückten "="-Taste.
