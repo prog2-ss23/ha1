@@ -109,6 +109,27 @@ class CalculatorTest {
 
 
 
+    // 1. roter Test
+    @Test
+    @DisplayName("should multiply decimal numbers and only show 2 digits after the comma")
+    void testMultiplyDecimalNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "10.24"; //Expected :10.24 Actual   :10.2400000
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 }
 
