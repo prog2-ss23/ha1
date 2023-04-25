@@ -166,6 +166,7 @@ class CalculatorTest {
      */
 
     //4. roter Test (mit Bugfix) -> funktioniert
+    // mit Mera Gebreyes
     @Test
     @DisplayName("should not display a double-number as result")
     void test() {
