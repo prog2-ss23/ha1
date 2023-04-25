@@ -96,7 +96,7 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("x");
+        calc.pressBinaryOperationKey("*");
         calc.pressDigitKey(7);
         calc.pressEqualsKey();
 
@@ -113,8 +113,7 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(7);
-        calc.pressBinaryOperationKey("%");
-        calc.pressEqualsKey();
+        calc.pressUnaryOperationKey("%");
 
 
         String expected = "0.07";
@@ -122,22 +121,23 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
-    // überprüfung von Eingebenen Zahlen mit EqualsKey
+    //1 das ergebniss der ersten zwei angegebnen Zahlen wird nicht wiedergegeben.
+    // Rechnung der Letzten 2 Zahlen wird durchgwführt
     @Test
-    @DisplayName("test  =")
-    void testerror2() {
+    @DisplayName("minus")
+    void Fehler1() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(7);
-        calc.pressEqualsKey();
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("*");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
 
-
-        String expected = "7";
+        String expected = "20.0";
         String actual = calc.readScreen();
-
         assertEquals(expected, actual);
+
+
     }
 }
-
 

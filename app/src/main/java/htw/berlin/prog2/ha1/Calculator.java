@@ -1,5 +1,13 @@
 package htw.berlin.prog2.ha1;
 
+import com.sun.jdi.Value;
+import jdk.dynalink.Operation;
+
+import javax.management.ValueExp;
+import java.awt.desktop.ScreenSleepEvent;
+import java.time.temporal.ValueRange;
+import java.util.function.BinaryOperator;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -36,7 +44,7 @@ public class Calculator {
         screen = screen + digit;
     }
 
-    /**
+    /** 2 Fehler
      * Empfängt den Befehl der C- bzw. CE-Taste (Clear bzw. Clear Entry).
      * Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm
      * so dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
@@ -44,13 +52,18 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
+    int a = 0;
     public void pressClearKey() {
+
+        //if a = 0
+
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+        System.out.println(a);
     }
 
-    /**
+    /** 1 Fehler
      * Empfängt den Wert einer gedrückten binären Operationstaste, also eine der vier Operationen
      * Addition, Substraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
      * Beim ersten Drücken der Taste wird der Bildschirminhalt nicht verändert, sondern nur der
@@ -61,7 +74,13 @@ public class Calculator {
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+       latestOperation = operation;
+
+
+
+
+
+
     }
 
     /**
