@@ -105,7 +105,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("display an integer as a result after using unary operator twice")
+    @DisplayName("display an integer as a result after using 1/x unary operator")
     void testDoubleUnaryOperator() {
         Calculator calc = new Calculator();
 
@@ -121,19 +121,15 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("display result when performing multiplication")
+    @DisplayName("display error when divided by zero using unary operator ")
     void testNew2() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(6);
         calc.pressDigitKey(0);
-        calc.pressEqualsKey();
+        calc.pressUnaryOperationKey("1/x");
 
-        String expected = "160"; //error: ignores the 1 pressed after multiplication and continues with mylitplying by 60
-        //however, if we would be multiplying 1 * y60 where y is any number except for 1, the result would be correct
+
+        String expected = "Error"; //Actual before fix: "Infinity"
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
