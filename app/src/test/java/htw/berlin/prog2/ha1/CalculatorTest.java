@@ -88,7 +88,54 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("display result for positive multiplication")
+    void testMultiplication() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("display an integer as a result after using 1/x unary operator")
+    void testDoubleUnaryOperator() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%"); /*0.5*/
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual); /*expected as in online calculator: integer 2, returned: float 2.0*/
+    }
+
+    @Test
+    @DisplayName("display error when divided by zero using unary operator ")
+    void testNew2() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+
+        String expected = "Error"; //Actual before fix: "Infinity"
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
 }
 
