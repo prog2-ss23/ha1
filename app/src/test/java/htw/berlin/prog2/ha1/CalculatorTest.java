@@ -130,7 +130,7 @@ class CalculatorTest {
         calc.pressDigitKey(5);
         calc.pressClearKey();
 
-        String expected = "1";
+        String expected = "2";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -148,4 +148,22 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-}}
+}
+
+    @Test
+    @DisplayName("negative addition")
+void negativeAddition() {
+    Calculator calc = new Calculator();
+
+    calc.pressDigitKey(5);
+    calc.pressNegativeKey();
+    calc.pressBinaryOperationKey("+");
+    calc.pressDigitKey(4);
+    calc.pressEqualsKey();
+
+    String expected = "-1";
+    String actual = calc.readScreen();
+
+    assertEquals(expected, actual);
+    }
+}
