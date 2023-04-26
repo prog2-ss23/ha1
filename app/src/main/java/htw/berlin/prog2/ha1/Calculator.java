@@ -130,7 +130,15 @@ public class Calculator {
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
      */
+
     public void pressEqualsKey() {
+        if (latestOperation.equals("")) {
+            if (screen.equals("0")) {
+                screen = Double.toString(latestValue);
+            }
+            return;
+        }
+
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);

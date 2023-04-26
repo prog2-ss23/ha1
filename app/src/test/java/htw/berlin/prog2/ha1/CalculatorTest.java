@@ -156,7 +156,20 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should give a number back if there are no operations")
+    void testDoNothing() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 }
 
