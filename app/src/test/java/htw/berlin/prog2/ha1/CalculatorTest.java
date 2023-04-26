@@ -110,4 +110,36 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display result after adding - bevor the number")
+    void testNegativeKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(0);
+
+        String expected = "-0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Löscht das was auf dem Bildschirm ist, jedoch ohne zuvor zwischengespeicherte Werte zu löschen")
+    void druckeC() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
+        calc.pressDigitKey(6);
+        calc.pressEqualsKey();
+
+        String expected = "36";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
