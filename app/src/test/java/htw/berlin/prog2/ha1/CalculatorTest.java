@@ -108,7 +108,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should display error after clicking 1/x and zero") //Roter Test 1 repariert
+    @DisplayName("should display number in percent") //Roter Test 1 repariert
     void testPercent() {
         Calculator calc = new Calculator();
 
@@ -130,13 +130,28 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("x2");
+        calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("x2");
+        calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
         String expected = "8";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display same number when only pressed equals key") // Roter Test 2  repariert
+    void test3() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+
+        calc.pressEqualsKey();
+
+        String expected = "7";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
