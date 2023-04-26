@@ -91,7 +91,9 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
 
- // @author mit Hilfe von Ahmad und Tutoren
+ // @author mit Hilfe von Tutoren und Ahmad
+
+
     @Test
     @DisplayName("should display zero after pressing AC key")
     void testAllClear() {
@@ -147,7 +149,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should give same number back if there are no operations")
+    @DisplayName("it should give same number back if there are no operations")
     void testGiveSameNumber() {
         Calculator calc = new Calculator();
 
