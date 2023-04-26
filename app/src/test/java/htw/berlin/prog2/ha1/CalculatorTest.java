@@ -128,9 +128,8 @@ class CalculatorTest {
         calc.pressDigitKey(0);
         calc.pressDigitKey(0);
         calc.pressUnaryOperationKey("%");
-        calc.pressEqualsKey();
 
-        String expected = "0";
+        String expected = "8";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
