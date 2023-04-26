@@ -60,6 +60,9 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        if(!latestOperation.equals("")){
+            pressEqualsKey();
+        }
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
     }
@@ -74,7 +77,7 @@ public class Calculator {
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        var result = switch(operation) {
+        var result = switch(operation){
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
@@ -123,7 +126,7 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            default -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
