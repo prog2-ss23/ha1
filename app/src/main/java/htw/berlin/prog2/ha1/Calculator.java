@@ -60,8 +60,11 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
+
     }
 
     /**
@@ -118,15 +121,23 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+
+        double commonValue = Double.parseDouble(screen);
         var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+
+            case "+" -> latestValue + commonValue;
+            case "-" -> latestValue - commonValue;
+            case "x" -> latestValue * commonValue;
+            case "/" -> latestValue / commonValue;
             default -> throw new IllegalArgumentException();
         };
+        latestValue = commonValue;
         screen = Double.toString(result);
+
+
+
         if(screen.equals("Infinity")) screen = "Error";
+        if(screen.equals("NaN")) screen = "Error";  // https://www.sololearn.com/Discuss/254622/why-is-dividing-0-0-by-0-0-equal-to-nan-why-is-there-no-arithmetic-exception Hilfsmittel
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }

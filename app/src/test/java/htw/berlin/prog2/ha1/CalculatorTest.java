@@ -89,6 +89,57 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    // weitere Tests hier erstellen
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testPositiveMultiplication() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName ("should display result after press more times on equal Button")
+
+    void testEqualButton () {
+        Calculator calc = new Calculator ();
+
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        String expected = "8";
+        calc.pressEqualsKey();
+
+        expected = "10";
+        String actual = calc.readScreen ();
+
+        assertEquals (expected, actual);
+
+    }
+    @Test
+    @DisplayName("should display result after deviding zero by zero")
+    void testDevideZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+
+        calc.pressEqualsKey();
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
