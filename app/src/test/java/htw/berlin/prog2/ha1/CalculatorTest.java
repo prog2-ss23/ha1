@@ -125,5 +125,20 @@ class CalculatorTest {
         assertEquals (expected, actual);
 
     }
+    @Test
+    @DisplayName("should display result after deviding zero by zero")
+    void testBinaryOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
