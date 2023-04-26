@@ -47,9 +47,11 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
+        //Beim ersten C = Nur zuvor eingegebene Zahl löschen
         if (clearCount == 0) {
             screen = "0";
         }
+        //Beim zweiten C = Löscht alle zwischengespeicherte Werte
         else {
             screen = "0";
             latestOperation = "";
@@ -131,7 +133,8 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            //Fix: default gibt Double.parseDouble(screen) aus (Damit nicht passiert)
+            default -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";

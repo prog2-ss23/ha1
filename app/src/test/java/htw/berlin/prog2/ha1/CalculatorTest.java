@@ -112,25 +112,7 @@ class CalculatorTest {
 
 
     //Fehlerhafter Test
-    @Test
-    @DisplayName("should display result after subtraction of two decimal numbers")
-    void testDecimalAdditionWithZeros() {
-        Calculator calc = new Calculator();
 
-        calc.pressDigitKey(0);
-        calc.pressDotKey();
-        calc.pressDigitKey(6);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(0);
-        calc.pressDotKey();
-        calc.pressDigitKey(1);
-        calc.pressEqualsKey();
-
-        String expected = "0.7";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
     @Test
     @DisplayName("should delete last Number before Operation")
     void testClear() {
@@ -140,10 +122,23 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(2);
         calc.pressClearKey();
-        calc.pressDigitKey(10);
+        calc.pressDigitKey(9);
         calc.pressEqualsKey();
 
-        String expected = "16";
+        String expected = "15";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Test:Wurde zuvor keine Operationstaste gedrückt, passiert nichts.")
+    void testEqualsWithoutOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressEqualsKey();
+
+        String expected = "6";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
