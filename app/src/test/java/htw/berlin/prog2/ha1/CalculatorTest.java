@@ -106,6 +106,22 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+      //Fehlertest 1: Expected: 7; Actual: 7.0    behoben!
+      @Test
+      @DisplayName("should display even number as a result after calculating the percentage of a positive number")
+      void testPercentage() {
+          Calculator calc = new Calculator();
+  
+          calc.pressDigitKey(7);
+          calc.pressDigitKey(0);
+          calc.pressDigitKey(0);
+          calc.pressUnaryOperationKey("%");
+  
+          String expected = "7";
+          String actual = calc.readScreen();
+  
+          assertEquals(expected, actual);
+      }
 
 
     //TODO hier weitere Tests erstellen
