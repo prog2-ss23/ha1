@@ -42,7 +42,10 @@ public class Calculator {
             throw new IllegalArgumentException();
 
         if (screen.equals("0") || latestValue == Double.parseDouble(screen))
-            screen = "";
+            if (screen.contains("-")) {
+                screen = "-";
+            } else
+                screen = "";
 
         screen = screen + digit;
     }
@@ -60,9 +63,14 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (latestValue == 0.0 || screen.equals("0")) {
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+        } else {
+            screen = "0";
+        }
+
     }
 
     /**
@@ -110,7 +118,6 @@ public class Calculator {
             screen = "Error";
         if (screen.contains(".") && screen.length() > 11)
             screen = screen.substring(0, 10);
-
     }
 
     /**
