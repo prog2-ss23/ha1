@@ -90,5 +90,61 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    // Prozentanzeige von eingegebenen Zahlen
+    @Test
+    @DisplayName("test Prozent ")
+    void testerror1() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressUnaryOperationKey("%");
+
+
+        String expected = "0.07";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    //1 das ergebniss der ersten zwei angegebnen Zahlen wird nicht wiedergegeben.
+    // Rechnung der Letzten 2 Zahlen wird durchgeführt
+    @Test
+    @DisplayName("zwei Rechnungen")
+    void Fehler1() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+
+
+    }
+
+    // bei 1x auswählen soll das ergebniss in die Zwischen ablage
+    // bei 2x auswählen soll das Ergebnis gelöscht werden
+
+    @Test
+    @DisplayName("loeschen")
+    void Fehler2() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+        calc.pressEqualsKey();
+
+        String expected = "8";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 

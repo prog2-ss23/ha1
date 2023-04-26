@@ -1,5 +1,13 @@
 package htw.berlin.prog2.ha1;
 
+import com.sun.jdi.Value;
+import jdk.dynalink.Operation;
+
+import javax.management.ValueExp;
+import java.awt.desktop.ScreenSleepEvent;
+import java.time.temporal.ValueRange;
+import java.util.function.BinaryOperator;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -36,7 +44,7 @@ public class Calculator {
         screen = screen + digit;
     }
 
-    /**
+    /** 2 Fehler
      * Empfängt den Befehl der C- bzw. CE-Taste (Clear bzw. Clear Entry).
      * Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm
      * so dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
@@ -44,13 +52,21 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
+
     public void pressClearKey() {
+        if (screen.equals("0")) {
+            latestValue = 0.0;
+            latestOperation = "";
+        } else {
+            latestOperation = latestOperation;
+            latestValue = latestValue;;
+        }
+
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+
     }
 
-    /**
+    /** 1 Fehler
      * Empfängt den Wert einer gedrückten binären Operationstaste, also eine der vier Operationen
      * Addition, Substraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
      * Beim ersten Drücken der Taste wird der Bildschirminhalt nicht verändert, sondern nur der
@@ -60,8 +76,25 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        if(latestOperation.equals ("+"))
+            screen = String.valueOf(latestValue+Double.parseDouble(screen));
+
+        if(latestOperation.equals ("-"))
+            screen = String.valueOf(latestValue-Double.parseDouble(screen));
+
+        if(latestOperation.equals ("x"))
+            screen = String.valueOf(latestValue*Double.parseDouble(screen));
+
+        if(latestOperation.equals ("/"))
+            screen = String.valueOf(latestValue/Double.parseDouble(screen));
         latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+       latestOperation = operation;
+
+
+
+
+
+
     }
 
     /**
@@ -123,7 +156,7 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            default -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
