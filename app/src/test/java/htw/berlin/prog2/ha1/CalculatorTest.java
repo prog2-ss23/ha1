@@ -119,5 +119,18 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display number with zero as first digit")
+    void testDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+
+        String expected = "0.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
