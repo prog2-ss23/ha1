@@ -83,7 +83,7 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-        if(Double.parseDouble(screen) % 1 == 0) screen = "" + (int) Double.parseDouble(screen);
+        if(!screen.equals("Error") && Double.parseDouble(screen) % 1 == 0) screen = "" + (int) Double.parseDouble(screen);
 
  // mit Hilfe von Théo Thoumine erstellt
     }
