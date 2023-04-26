@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private boolean negativeDigit = false; // 1.für das negative Vorzeichen
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -21,19 +23,32 @@ public class Calculator {
         return screen;
     }
 
+
     /**
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
      * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
+     *
      */
     public void pressDigitKey(int digit) {
-        if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        System.out.println("press DK " + screen + " latest value DK" + latestValue);
+
+
+        if (digit > 9 || digit < 0) throw new IllegalArgumentException();
+
+        if (screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+
+        if (negativeDigit){  //3. multiplizierz die Zahl mal -1, um eine negative Zahl zu speichern
+
+            digit *= -1;
+            negativeDigit = false;
+        }
 
         screen = screen + digit;
+
     }
 
     /**
@@ -58,12 +73,13 @@ public class Calculator {
      * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt des aktuelle Zwischenergebnis
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
+     *
      */
-    public void pressBinaryOperationKey(String operation)  {
+    public void pressBinaryOperationKey(String operation) {
+        latestOperation = operation;
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
     }
-
     /**
      * Empfängt den Wert einer gedrückten unären Operationstaste, also eine der drei Operationen
      * Quadratwurzel, Prozent, Inversion, welche nur einen Operanden benötigen.
@@ -74,14 +90,22 @@ public class Calculator {
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
+        if (negativeDigit){ //5. vorzeichen muss vor dem case gesetzt werden
+
+            screen ="-" + screen;
+        }
+
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
+        if(screen.equals("Infinity")) screen = "Error"; // naN zu Infinity geändert
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
@@ -105,7 +129,9 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
-        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        negativeDigit = !negativeDigit;  //2. Vorzeichen aktivieren
+
+
     }
 
     /**
@@ -130,4 +156,7 @@ public class Calculator {
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+
+
+
 }
