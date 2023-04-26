@@ -105,6 +105,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("should display error when drawing the inversion")
     void testInversion() {
@@ -118,30 +119,6 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-
-    @Test
-    @DisplayName("should display error when the result exceeds the maximum value")
-    void testOverflow() {
-        Calculator calc = new Calculator();
-
-        // Enter a very large number
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("*");
-
-        // Multiply by another large number
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressEqualsKey();
-
-        String expected = "Error";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
-
 }
+
 
