@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    int count;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -82,8 +84,8 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+        if(screen.contains(".") && screen.length() > 11) { screen = screen.substring(0, 10); }
+        if (screen.endsWith(".0")) { screen = screen.substring(0, screen.length()-2); }
     }
 
     /**
@@ -130,4 +132,13 @@ public class Calculator {
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+    /* public void countOperation() {
+        int count = 0;
+
+        for(int i = 0; i < screen.length(); i++){
+            if(screen.charAt(i) == operation){
+                count += 1;
+            }
+        }
+    }*/
 }

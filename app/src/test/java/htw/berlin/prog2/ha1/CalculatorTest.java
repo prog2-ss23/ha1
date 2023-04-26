@@ -111,10 +111,12 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    /*@Test
+    @DisplayName("should add number in memory")
+    void testMemoryPlus() {
 
-    @Test
-    @DisplayName("hh")
-    void test() {
+    }
+     void test() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
@@ -126,6 +128,21 @@ class CalculatorTest {
         calc.pressDigitKey(1);
 
         String expected = "40";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }*/
+    @Test
+    @DisplayName("can handle %")
+    void testDecimal() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "2.34";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
