@@ -163,6 +163,18 @@ class CalculatorTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("Test Negative key")
+
+    void TestNegativeKeyPress(){
+        Calculator calc=new Calculator();
+        calc.pressNegativeKey();
+        calc.pressDigitKey(6);
+        String expected="-6";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
 
 
 
