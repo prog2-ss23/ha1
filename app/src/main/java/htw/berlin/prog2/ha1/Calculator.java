@@ -14,7 +14,7 @@ public class Calculator {
 
     private String latestOperation = "";
 
-
+    private int clearCount = 0;
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -47,9 +47,15 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (clearCount == 0) {
+            screen = "0";
+        }
+        else {
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+        }
+        clearCount++;
     }
 
     /**
