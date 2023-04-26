@@ -14,7 +14,7 @@ public class Calculator {
 
     private String latestOperation = "";
 
-    private int zähler = 0;
+    private int zaeler = 0;
     private String subSafe = "";
 
     /**
@@ -38,7 +38,7 @@ public class Calculator {
 
         screen = screen + digit;
 
-        zähler = 0;
+        zaeler = 0;
 
         subSafe = "";
     }
@@ -55,7 +55,7 @@ public class Calculator {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
-        zähler = 0;
+        zaeler = 0;
         subSafe = "";
     }
 
@@ -136,9 +136,9 @@ public class Calculator {
         };
 
         //Teilaufgabe 3: Bugfix for testRecurringOperation
-        zähler++;
-        if (subSafe == "" && latestOperation == "-") subSafe = screen;
-        if (zähler > 1 && latestOperation == "-") result = Double.parseDouble(screen) - Double.parseDouble(subSafe);
+        zaeler++;
+        if (subSafe.equals("") && latestOperation.equals("-")) subSafe = screen;
+        if (zaeler > 1 && latestOperation.equals("-")) result = Double.parseDouble(screen) - Double.parseDouble(subSafe);
 
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
