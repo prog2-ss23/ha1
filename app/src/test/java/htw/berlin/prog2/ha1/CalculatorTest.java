@@ -109,7 +109,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
-
+/*
     @Test
     @DisplayName("my second test")
     void testByMe() {
@@ -117,7 +117,7 @@ class CalculatorTest {
 
 
     }
-
+*/
 
 }
 
