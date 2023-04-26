@@ -52,14 +52,18 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
-    int a = 0;
-    public void pressClearKey() {
 
+    public void pressClearKey() {
+        if (screen.equals("0")) {
+            latestValue = 0.0;
+            latestOperation = "";
+        } else {
+            latestOperation = latestOperation;
+            latestValue = latestValue;;
+        }
 
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
-        System.out.println(a);
+
     }
 
     /** 1 Fehler

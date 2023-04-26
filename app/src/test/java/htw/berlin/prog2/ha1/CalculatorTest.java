@@ -122,9 +122,9 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     //1 das ergebniss der ersten zwei angegebnen Zahlen wird nicht wiedergegeben.
-    // Rechnung der Letzten 2 Zahlen wird durchgwführt
+    // Rechnung der Letzten 2 Zahlen wird durchgeführt
     @Test
-    @DisplayName("minus")
+    @DisplayName("zwei Rechnungen")
     void Fehler1() {
         Calculator calc = new Calculator();
 
@@ -147,16 +147,16 @@ class CalculatorTest {
 
     @Test
     @DisplayName("loeschen")
-    void testClearKey() {
+    void Fehler2() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(5);
+        calc.pressDigitKey(8);
         calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(4);
+        calc.pressDigitKey(1);
         calc.pressClearKey();
         calc.pressEqualsKey();
 
-        String expected = "5";
+        String expected = "8";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
