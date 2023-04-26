@@ -138,7 +138,7 @@ class CalculatorTest {
         calc.pressDotKey();
         calc.pressDigitKey(7);
         calc.pressDigitKey(5);
-        calc.pressUnaryOperationKey("1/x");
+      //  calc.pressUnaryOperationKey("1/x");
 
         String expected = "1.33333333";
         String actual = calc.readScreen();
@@ -420,6 +420,51 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+     /*Negativer Test 3
+    Wurzel auf -7, ergibt Error, obwohl negatives Ergebnis ausgegeben werden soll
+     */
+
+    @Test
+    @DisplayName("should display error when drawing the square root of a negative number")
+    void testSquareRootOfNegative1() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(7);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+/*Negativer Test 4
+    Maximale Zahl
+     */
+
+    @Test
+    @DisplayName("should display 9 numbers only")
+    void testmaxNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(8);
+
+        String expected = "123456789";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
 

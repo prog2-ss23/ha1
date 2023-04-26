@@ -32,8 +32,11 @@ public class Calculator {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        
+        if(screen.length() <9) {
 
-        screen = screen + digit;
+            screen = screen + digit;
+        }
     }
 
     /**
@@ -78,6 +81,40 @@ public class Calculator {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
+
+           /* {
+
+                if (String.contains(".")) {
+                    String [] parts = Double.parseDouble().split(Pattern.quote("."));
+                } else {
+                    throw new IllegalArgumentException("String " + string + " does not contain -");
+                }
+
+                int DecimalNumber = Double.parseDouble().count();
+
+                if ((1 / Double.parseDouble(screen)) < 1 && DecimalNumber == 1) {
+                    double v = (1 / Double.parseDouble(screen)) * 10;
+                } else if ((1 / Double.parseDouble(screen)) < 1 && DecimalNumber == 2) {
+                    double v = (1 / Double.parseDouble(screen)) * 100;
+                } else if ((1 / Double.parseDouble(screen)) < 1 && DecimalNumber == 3) {
+                    double v = (1 / Double.parseDouble(screen)) * 1000;
+                } else if ((1 / Double.parseDouble(screen)) < 1 && DecimalNumber == 4) {
+                    double v = (1 / Double.parseDouble(screen)) * 10000;
+                } else if ((1 / Double.parseDouble(screen)) < 1 && DecimalNumber == 5) {
+                    double v = (1 / Double.parseDouble(screen)) * 100000;
+                } else if ((1 / Double.parseDouble(screen)) < 1 && DecimalNumber == 6) {
+                    double v = (1 / Double.parseDouble(screen)) * 1000000;
+                } else if ((1 / Double.parseDouble(screen)) < 1 && DecimalNumber == 7) {
+                    double v = (1 / Double.parseDouble(screen)) * 10000000;
+                } else if ((1 / Double.parseDouble(screen)) < 1 && DecimalNumber == 8) {
+                    double v = (1 / Double.parseDouble(screen)) * 100000000;
+                } else {
+                    double v = 1 / Double.parseDouble(screen);
+                }
+            }
+
+            */
+
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
@@ -130,4 +167,5 @@ public class Calculator {
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+
 }
