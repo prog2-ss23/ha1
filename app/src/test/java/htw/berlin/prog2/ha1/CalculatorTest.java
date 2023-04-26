@@ -139,7 +139,21 @@ class CalculatorTest {
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "4";
+        String expected = "4.0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should give same number back if there are no operations")
+    void testGiveSameNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressEqualsKey();
+
+
+        String expected = "6";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
