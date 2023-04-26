@@ -88,7 +88,57 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //1. Neuer grüner Test
+    @Test
+    @DisplayName("should display result after multiplying two positive numbers")
+    void testPositiveMultiplication() {
+        Calculator calc = new Calculator();
+    
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+    
+        String expected = "70";
+        String actual = calc.readScreen();
+    
+        assertEquals(expected, actual);
+    }
 
-    //TODO hier weitere Tests erstellen
+    //Fehlertest 1: Expected: 7; Actual: 7.0    behoben!
+    @Test
+    @DisplayName("should display even number as a result after calculating the percentage of a positive number")
+    void testPercentage() {
+        Calculator calc = new Calculator();
+  
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+  
+        String expected = "7";
+        String actual = calc.readScreen();
+  
+        assertEquals(expected, actual);
+    }
+
+    //Fehlertest 2: Expected: 50; Actual: 20    behoben!
+    @Test
+    @DisplayName("should display multiplied result with last entered number after pressing a second time the equals button")
+    void testPressingEqualsKeyAgain() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "50";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
-

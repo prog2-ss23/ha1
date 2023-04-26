@@ -11,6 +11,7 @@ public class Calculator {
     private String screen = "0";
 
     private double latestValue;
+    private double newestValue;
 
     private String latestOperation = "";
 
@@ -33,6 +34,7 @@ public class Calculator {
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
+        newestValue = digit;
         screen = screen + digit;
     }
 
@@ -84,6 +86,7 @@ public class Calculator {
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length() - 2);
     }
 
     /**
@@ -129,5 +132,7 @@ public class Calculator {
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        latestValue = newestValue;
     }
 }
