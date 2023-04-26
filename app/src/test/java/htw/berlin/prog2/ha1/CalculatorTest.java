@@ -88,6 +88,25 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //1. Neuer grüner Test
+    @Test
+    @DisplayName("should display result after multiplying two positive numbers")
+    void testPositiveMultiplication() {
+        Calculator calc = new Calculator();
+    
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+    
+        String expected = "70";
+        String actual = calc.readScreen();
+    
+        assertEquals(expected, actual);
+    }
+
+
 
     //TODO hier weitere Tests erstellen
 }
