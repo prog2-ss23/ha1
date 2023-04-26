@@ -90,5 +90,80 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should show show 4 instead of 4.0")
+    void testsquare() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(6);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("schould show NaN instead of Error")
+    void testNaNError() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "1.0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should only clear number after dot")
+    void testClearKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressClearKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should show 5 instead of nothing")
+    void errorEquals() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
 }
 
+    @Test
+    @DisplayName("negative addition")
+void negativeAddition() {
+    Calculator calc = new Calculator();
+
+    calc.pressDigitKey(5);
+    calc.pressNegativeKey();
+    calc.pressBinaryOperationKey("+");
+    calc.pressDigitKey(4);
+    calc.pressEqualsKey();
+
+    String expected = "-1";
+    String actual = calc.readScreen();
+
+    assertEquals(expected, actual);
+    }
+}
