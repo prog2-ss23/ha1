@@ -111,9 +111,18 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("my second test")
-    void testByMe() {
+    @DisplayName("enter binary key which is not supported should display Error")
+    void testByMe1() {
         Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("^");
+        calc.pressDigitKey(2);
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
 
 
     }
