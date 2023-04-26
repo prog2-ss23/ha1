@@ -62,7 +62,7 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(7);
-        calc.pressNegativeKey("+/-");
+        calc.pressNegativeKey();
         calc.pressUnaryOperationKey("√");
 
         String expected = "Error";
@@ -115,12 +115,9 @@ class CalculatorTest {
     void testPlusMinus() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(9);
-        calc.pressEqualsKey();
-        calc.pressNegativeKey("+/-");
-        String expected = "8";
+        calc.pressNegativeKey();
+        calc.pressDigitKey(5);
+        String expected = "-5";
 
         String actual = calc.readScreen();
 

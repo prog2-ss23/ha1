@@ -19,6 +19,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private boolean isNegativ;
+
     Integer count = 0;
 
     /**
@@ -41,6 +43,10 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+
+        if(isNegativ){
+            pressNegativeKey();
+        }
     }
 
     /**
@@ -121,29 +127,17 @@ public class Calculator {
      * aktualisiert und die Inhalt fortan als negativ interpretiert.
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
-     * @param operation
      */
-    public void pressNegativeKey(String operation) {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+    public void pressNegativeKey() {
+        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
 
-        double result;
-        if (screen.contains("-")){
-            result = switch (operation) {
-                case "+/-" -> Math.abs(Double.parseDouble(screen));
-                default -> throw new IllegalArgumentException();
-            };
-
-        }else {
-            result = switch (operation) {
-                case "+/-" -> (Double.parseDouble(screen) - latestValue * 2);
-                default -> throw new IllegalArgumentException();
-            };
+        if (screen.startsWith("-")){
+            isNegativ = true;
         }
-        screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
+        else {
+            isNegativ = false;
+        }
     }
-
 
 
 
