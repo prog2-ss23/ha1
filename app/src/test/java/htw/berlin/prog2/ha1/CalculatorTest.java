@@ -122,7 +122,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("the order when the sign is negative and the number doesn't matters")
+    void orderOfNegativeSignAndNumber() {
+        Calculator calc = new Calculator();
+        calc.pressNegativeKey();
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
 
+        String expected = "-123";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 
 
 
