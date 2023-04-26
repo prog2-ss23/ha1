@@ -14,7 +14,6 @@ public class Calculator {
 
     private String latestOperation = "";
 
-    int count;
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -47,9 +46,13 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (screen == "0") {
+            latestOperation = "";
+            latestValue = 0.0;
+        } else {
+
+            screen = "0";
+        }
     }
 
     /**
@@ -61,9 +64,15 @@ public class Calculator {
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
-    public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+    public void pressBinaryOperationKey(String operation) {
+        if (latestOperation == "") {
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+        } else {
+            pressEqualsKey();
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+        }
     }
 
     /**
@@ -120,6 +129,7 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
