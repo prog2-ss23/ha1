@@ -109,40 +109,41 @@ class CalculatorTest {
 
     }
 
-    //zweite Teilaufgabe: roter Test 1.0
+
+    //ROTER TEST
 
     @Test
-    @DisplayName("Der Taschenrechner darf keine Wurzel aus einer negativen Zahl ziehen")
-    void testSquareRootOfNegativeNumber() {
+    @DisplayName("Berechnungen von mehr als zwei Zahlen")
+    void testTermsWithTwoOperators() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
-        calc.pressNegativeKey();
-        calc.pressUnaryOperationKey("√");
-        String expected = "Error";
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "17";
         String actual = calc.readScreen();
+
         assertEquals(expected, actual);
     }
 
+//zweiter roter Test
 
-
-
-    //zweite Teilaufgabe: roter Test 1.1
     @Test
-    @DisplayName("Der Taschenrechner kann Berechnungen mit Klammern durchführen")
-    void testParentheses() {
+    @DisplayName("should display 'Error' when pressing equals key without previous binary operation")
+    void testEqualsKeyWithoutPreviousBinaryOperation() {
         Calculator calc = new Calculator();
-        calc.pressDigitKey(8);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(3);
-        calc.pressBinaryOperationKey("*");
-        calc.pressDigitKey(5);
 
+        calc.pressDigitKey(5);
         calc.pressEqualsKey();
 
-        String expected = "26";
+        String expected = "5";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
 }
+
