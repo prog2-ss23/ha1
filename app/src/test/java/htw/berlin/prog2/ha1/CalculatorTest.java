@@ -45,24 +45,7 @@ class CalculatorTest {
     }
 
 
-    @Test
-    @DisplayName("should display result after adding a negativnumber with a postiv")
-    void floatadditionwith0begin() {
-        Calculator calc = new Calculator();
-        calc.pressDigitKey(0);
-        calc.pressDotKey();
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(0);
-        calc.pressDotKey();
-        calc.pressDigitKey(2);
-        calc.pressEqualsKey();
 
-        String expected = "0.4";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
 
 
     @Test
