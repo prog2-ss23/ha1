@@ -14,6 +14,9 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private int zaeler = 0;
+    private String subSafe = "";
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -34,6 +37,10 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+
+        zaeler = 0;
+
+        subSafe = "";
     }
 
     /**
@@ -48,6 +55,8 @@ public class Calculator {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+        zaeler = 0;
+        subSafe = "";
     }
 
     /**
@@ -125,9 +134,18 @@ public class Calculator {
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
+        //Teilaufgabe 3: Bugfix for testRecurringOperation
+        zaeler++;
+        if (subSafe.equals("") && latestOperation.equals("-")) subSafe = screen;
+        if (zaeler > 1 && latestOperation.equals("-")) result = Double.parseDouble(screen) - Double.parseDouble(subSafe);
+
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        //Teilaufgabe 3: Bugfix for testNegativeZero
+        if(screen.equals("-0")) screen = "0";
     }
 }
