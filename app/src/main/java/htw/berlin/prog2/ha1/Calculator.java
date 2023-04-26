@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import java.util.Objects;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -31,8 +33,7 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
-
+        if(screen.equals("0") || (latestValue == Double.parseDouble(screen)&&latestValue!=0)) screen = "";
         screen = screen + digit;
     }
 
@@ -44,10 +45,17 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
+
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (!Objects.equals(screen, "0")){
+            screen = "0";
+        }
+        else{
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+        }
+
     }
 
     /**
@@ -60,6 +68,7 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
     }
