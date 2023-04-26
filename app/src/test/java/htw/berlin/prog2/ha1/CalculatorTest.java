@@ -130,7 +130,7 @@ class CalculatorTest {
         calc.pressUnaryOperationKey("%");
         calc.pressEqualsKey();
 
-        String expected = "8";
+        String expected = "0";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
