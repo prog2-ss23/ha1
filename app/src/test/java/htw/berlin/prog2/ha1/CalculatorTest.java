@@ -110,4 +110,52 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+
+
+    @Test
+    // test 1: 3 ads
+    @DisplayName("should display result after adding 2 number and then add another number ")
+    void testAddThreeNumbers (){
+
+        Calculator calc= new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(0);
+
+
+        calc.pressEqualsKey();
+
+        String expected="80";
+        String actual= calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("should display result 2,5 after adding fractions")
+    void testAddingFractions() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+
+        calc.pressEqualsKey();
+
+        String expected = "2.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
+
