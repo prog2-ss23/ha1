@@ -89,6 +89,64 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //weitere Tests für die anderen Methoden
+    @Test
+    @DisplayName("should display result after multiple two positive multi-digit numbers")
+    void testPositiveMultiplication() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "400";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    // write the test that documents the bug
+    /**
+     * when we press the same digit twice, the calculator should display the digit twice
+     * */
+    @Test
+    @DisplayName("should display result after pressing dot after zero")
+    void testPositiveAdditionBug() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+// write the test that documents the bug
+    /**
+     * when we press only zero and then press the square root button, the calculator should display zero
+     * */
+    @Test
+    @DisplayName("should display result after square root of 0")
+    void testSquareRootOfZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+
+
+
 }
 
