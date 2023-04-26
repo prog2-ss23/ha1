@@ -60,6 +60,18 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        //Addierungen für Zwei Operator
+        if(!latestOperation.equals("")) {
+            var result = switch (latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+            screen = Double.toString(result);
+        }
+   //
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
     }
@@ -118,6 +130,15 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+  // es gibt gleiche Nummer
+        if (latestOperation.equals("")) {
+            if (screen.equals("0")) {
+                screen = Double.toString(latestValue);
+            }
+            return;
+        }
+
+
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
@@ -129,5 +150,7 @@ public class Calculator {
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //letzte Operation
+        latestOperation="";
     }
 }
