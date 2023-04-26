@@ -165,14 +165,14 @@ class CalculatorTest {
     void testTermsWithTwoOperators() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(7);
+        calc.pressDigitKey(9);
         calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(3);
+        calc.pressDigitKey(1);
         calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(8);
         calc.pressEqualsKey();
 
-        String expected = "14";
+        String expected = "16";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
