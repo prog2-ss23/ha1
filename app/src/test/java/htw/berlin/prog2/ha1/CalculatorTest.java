@@ -110,13 +110,40 @@ class CalculatorTest {
     @Test
     @DisplayName("Test double click of Binary Operations")
 
-    void TestDoubleClickBinaryOperations(){
+    void TestDoubleClickBinaryOperationKey(){
         Calculator calc=new Calculator();
         calc.pressDigitKey(8);
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(2);
         calc.pressBinaryOperationKey("/");
         String expected="4";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+
+    @Test
+    @DisplayName("Test binary operations")
+
+    void TestBinaryOperations(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        String expected="2";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("Test result of square root result when result should have no decimals")
+
+    void TestUnaryOperations(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("√");
+        String expected="2";
         String actual=calc.readScreen();
         assertEquals(expected,actual);
     }

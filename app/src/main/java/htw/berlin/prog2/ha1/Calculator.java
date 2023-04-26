@@ -14,6 +14,7 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private int count=0;
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -59,10 +60,43 @@ public class Calculator {
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
-    //methode macht was es soll
     public void pressBinaryOperationKey(String operation)  {
+
+
+       // System.out.println("First latest value"+latestValue);
         latestValue = Double.parseDouble(screen);
+
+        //count++;
+        //System.out.println("second latest Value"+latestValue);
+
         latestOperation = operation;
+
+        //latestValue=Double.parseDouble(screen);
+        /*
+       if(latestValue>0&&count>=2) {
+           var result = switch (operation) {
+               case "+" -> latestValue + Double.parseDouble(screen);
+               case "-" -> latestValue - Double.parseDouble(screen);
+               case "x" -> latestValue * Double.parseDouble(screen);
+               case "/" -> latestValue / Double.parseDouble(screen);
+               default -> throw new IllegalArgumentException();
+           };
+
+           screen = Double.toString(result);
+           System.out.println("The screen:" + screen);
+       }
+
+         */
+
+        //latestValue=Double.parseDouble(screen);
+        //System.out.println("The operation"+operation);
+        //System.out.println("the Screen"+Double.parseDouble(screen));
+        //System.out.println("The latest value before switch"+latestValue);
+        //count++;
+
+        //System.out.println(count);
+
+
     }
 
     /**
@@ -81,6 +115,7 @@ public class Calculator {
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
