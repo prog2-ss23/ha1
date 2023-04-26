@@ -107,9 +107,24 @@ class CalculatorTest {
         calc.pressEqualsKey();
         String expected = "10";
         String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    /*
+    Teilaufgabe2.1:
+    */
+    @Test
+    @DisplayName("should display ERROR when the first is divider key")
+    void testPressBinaryDivideKey() {
+        Calculator calc = new Calculator();
+        calc.pressBinaryOperationKey("/");
+        String expected = "ERROR";
+        String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
+
+
 
 }
 
