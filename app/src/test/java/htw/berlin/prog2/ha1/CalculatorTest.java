@@ -90,5 +90,34 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+
+
+    @Test
+    @DisplayName("division by one should equal the first digit pressed")
+    void testDivisonByOne() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "8";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("my second test")
+    void testByMe() {
+        Calculator calc = new Calculator();
+
+
+    }
+
+
 }
 
