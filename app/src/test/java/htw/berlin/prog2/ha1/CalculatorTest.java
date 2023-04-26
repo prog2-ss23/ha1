@@ -116,8 +116,8 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
-        calc.pressDigitKey(5);
-        String expected = "-5";
+        calc.pressDigitKey(4);
+        String expected = "-4";
 
         String actual = calc.readScreen();
 
