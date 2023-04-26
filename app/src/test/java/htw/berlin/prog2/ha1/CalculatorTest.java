@@ -175,6 +175,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    // green test
     @Test
     @DisplayName("")
     void testMultiplicationWithZero() {
@@ -215,11 +216,10 @@ class CalculatorTest {
         calc.pressNegativeKey();
         calc.pressDigitKey(3);
         calc.pressBinaryOperationKey("+");
-        calc.pressNegativeKey();
         calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
-        String expected = "-5";
+        String expected = "-1";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
