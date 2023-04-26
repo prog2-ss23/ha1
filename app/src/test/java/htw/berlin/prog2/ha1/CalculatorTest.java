@@ -89,6 +89,53 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
-}
+    @Test
+    @DisplayName("test subtracting a bigger number from a smaller number, yielding a negativ result")
+    void testDoubleSubtraction() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+
+        String expected = "-2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    @DisplayName("should redo the operation after pressing equals key again with +")
+    void testEqualButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "13";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should redo the operation after pressing equals key again with x")
+    void testEqualButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        
+        String expected = "8";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+}

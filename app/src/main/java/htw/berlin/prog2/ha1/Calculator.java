@@ -114,7 +114,7 @@ public class Calculator {
      * Wurde zuvor eine binäre Operationstaste gedrückt und zwei Operanden eingegeben, wird das
      * Ergebnis der Operation angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
-     * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
+     * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt nicht weiter angewandt
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
@@ -129,5 +129,7 @@ public class Calculator {
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+    
+        latestOperation = ""; // Clear the latest operation so it dosent do the same thing over and over again
     }
 }
