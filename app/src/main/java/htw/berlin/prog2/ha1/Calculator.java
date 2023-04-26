@@ -95,7 +95,7 @@ public class Calculator {
      */
     public void pressDotKey() {
 
-            if(screen.isEmpty()) {
+            if(screen == "0") {
                 screen = "0.";
             } else if(!screen.contains(".")) {
                 screen = screen + ".";
