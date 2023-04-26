@@ -90,6 +90,8 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+
     @Test
     @DisplayName("should display zero after pressing AC key")
     void testAllClear() {
@@ -149,11 +151,28 @@ class CalculatorTest {
     void testGiveSameNumber() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(6);
+        calc.pressDigitKey(3);
         calc.pressEqualsKey();
 
 
-        String expected = "6";
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should calculate longer terms")
+    void testTermsWithTwoOperators() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "14";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
