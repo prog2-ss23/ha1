@@ -30,10 +30,12 @@ public class Calculator {
      */
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
-
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
-
-        screen = screen + digit;
+        if (screen.startsWith("-0")) {
+            screen = "-" + String.valueOf(digit);
+        }else {
+            if (screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+            screen = screen + digit;
+        }
     }
 
     /**
@@ -83,7 +85,7 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+        if(screen.equals("Infinity")) screen = "Error";
     }
 
     /**
