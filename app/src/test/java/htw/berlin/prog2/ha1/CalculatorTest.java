@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("Retro calculator")
 class CalculatorTest {
 
-
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
     void testPositiveAddition() {
@@ -90,7 +89,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("does NegativeKey work")
+    @DisplayName("should display a negative solution when using NegativeKey")
     void testNegativeKey() {
         Calculator calc = new Calculator();
 
@@ -107,5 +106,33 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display the inserted DigitKey after using EqualSign")
+    void testEqualsKeyWithoutOperationKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display the square root of the inserted Digit, if it is an even number without dot ")
+    void testSquareRootWithoutDot() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
