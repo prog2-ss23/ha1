@@ -1,5 +1,5 @@
-// @authour Mojeeb Al-Hazmi 
-// @authour Ibrahim
+//@author Mojeeb Al-Hazmi
+//@author İbrahim Danisman
 package htw.berlin.prog2.ha1;
 
 /**
@@ -22,7 +22,6 @@ public class Calculator {
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
-
     public String readScreen() {
         return screen;
     }
@@ -43,10 +42,7 @@ public class Calculator {
             throw new IllegalArgumentException();
 
         if (screen.equals("0") || latestValue == Double.parseDouble(screen))
-            if (screen.contains("-")) {
-                screen = "-";
-            } else
-                screen = "";
+            screen = "";
 
         screen = screen + digit;
     }
@@ -64,14 +60,9 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        if (latestValue == 0.0 || screen.equals("0")) {
-            screen = "0";
-            latestOperation = "";
-            latestValue = 0.0;
-        } else {
-            screen = "0";
-        }
-
+        screen = "0";
+        latestOperation = "";
+        latestValue = 0.0;
     }
 
     /**
@@ -119,6 +110,7 @@ public class Calculator {
             screen = "Error";
         if (screen.contains(".") && screen.length() > 11)
             screen = screen.substring(0, 10);
+
     }
 
     /**
@@ -148,10 +140,6 @@ public class Calculator {
      */
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
-
-        if (screen.equals("")) {
-            screen = "-0";
-        }
     }
 
     /**
