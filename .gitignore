@@ -30,3 +30,7 @@ build
 
 # Ignore IntelliJ IDEA project files
 .idea
+
+# Ignore git specific files
+.gitignore
+.github

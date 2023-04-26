@@ -29,19 +29,19 @@ class CalculatorTest {
     /*
             TODO: FIX FAILED CASE!
      */
-//    @Test
-//    @DisplayName("should display result after getting the square root of two")
-//    void testSquareRoot() {
-//        Calculator calc = new Calculator();
-//
-//        calc.pressDigitKey(2);
-//        calc.pressUnaryOperationKey("√");
-//
-//        String expected = "1.41421356";
-//        String actual = calc.readScreen();
-//
-//        assertEquals(expected, actual);
-//    }
+    @Test
+    @DisplayName("should display result after getting the square root of two")
+    void testSquareRoot() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "1.41421356";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
     @Test
     @DisplayName("should display error when dividing by zero")
@@ -62,20 +62,20 @@ class CalculatorTest {
             TODO: FIX FAILED CASE!
      */
 
-//    @Test
-//    @DisplayName("should display error when drawing the square root of a negative number")
-//    void testSquareRootOfNegative() {
-//        Calculator calc = new Calculator();
-//
-//        calc.pressDigitKey(7);
-//        calc.pressNegativeKey();
-//        calc.pressUnaryOperationKey("√");
-//
-//        String expected = "Error";
-//        String actual = calc.readScreen();
-//
-//        assertEquals(expected, actual);
-//    }
+    @Test
+    @DisplayName("should display error when drawing the square root of a negative number")
+    void testSquareRootOfNegative() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
     @Test
     @DisplayName("should not allow multiple decimal dots")
