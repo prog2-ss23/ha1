@@ -95,13 +95,13 @@ class CalculatorTest {
     void testNegativeAddition() {
         Calculator calc = new Calculator();
 
-        calc.pressBinaryOperationKey("+/-");
         calc.pressDigitKey(1);
         calc.pressDigitKey(5);
+        calc.pressNegativeKey();
         calc.pressBinaryOperationKey("+");
-        calc.pressBinaryOperationKey("+/-");
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
+        calc.pressNegativeKey();
         calc.pressEqualsKey();
 
         String expected = "-35";
@@ -110,8 +110,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
-     */
-
+    */
     //Teilaufgabe 1
     @Test
     @DisplayName("should display result after multiplying two positive numbers")
@@ -124,6 +123,20 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display error when inverting 0")
+    void testInversionOfZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
