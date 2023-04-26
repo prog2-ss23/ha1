@@ -87,8 +87,57 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display result after subtracting two decimal numbers")
+    void testDecimalSubtraction() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
 
-    //TODO hier weitere Tests erstellen
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after subtracting a positive number and a negative number")
+    void testPositiveSubtraction(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after multiplying a decimal number and a natural number")
+    void testDecimalNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "2.7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
