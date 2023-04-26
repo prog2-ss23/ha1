@@ -89,6 +89,48 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //weitere Tests für die anderen Methoden
+    @Test
+    @DisplayName("should display result after multiple two positive multi-digit numbers")
+    void testPositiveMultiplication() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "400";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    // write the test that documents the bug
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testPositiveAdditionBug() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "40";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+
+
+
 }
 
