@@ -90,5 +90,52 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-}
+    @Test
+    @DisplayName("Zeigt einen Prozent (1%) von der eingegeben Zahl ein")
+    void testPercent() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "1.0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display the same number after pressing the equals key")
+    void testNumberEqualsKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+        @Test
+        @DisplayName("should display the sum of multiple numbers after adding them")
+        void testMultipleAddition () {
+            Calculator calc = new Calculator();
+
+            calc.pressDigitKey(2);
+            calc.pressBinaryOperationKey("+");
+            calc.pressDigitKey(2);
+            calc.pressBinaryOperationKey("+");
+            calc.pressDigitKey(2);
+            calc.pressEqualsKey();
+
+            String expected = "6";
+
+            String actual = calc.readScreen();
+            assertEquals(expected, actual);
+        }
+    }
+
+
 

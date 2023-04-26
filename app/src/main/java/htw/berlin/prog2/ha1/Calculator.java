@@ -12,6 +12,7 @@ public class Calculator {
 
     private double latestValue;
 
+    private double cache = 0;
     private String latestOperation = "";
 
     /**
@@ -34,6 +35,7 @@ public class Calculator {
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
+
     }
 
     /**
@@ -48,6 +50,7 @@ public class Calculator {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+        cache = 0;
     }
 
     /**
@@ -62,6 +65,7 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        cache += latestValue;
     }
 
     /**
@@ -119,15 +123,17 @@ public class Calculator {
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
+            case "+" -> cache + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            default -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
     }
+
 }
