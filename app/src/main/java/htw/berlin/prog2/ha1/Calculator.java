@@ -14,6 +14,7 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private int pressed = 0;
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -44,10 +45,15 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
-    public void pressClearKey() {
+    public String pressClearKey() {
+        pressed++; //count how many times the clear key was pressed
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (pressed <=1) {
+            latestOperation = "";
+            screen = "";
+            screen = screen + latestValue;
+        }
+        return screen;
     }
 
     /**
