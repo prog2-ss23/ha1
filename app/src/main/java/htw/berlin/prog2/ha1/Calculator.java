@@ -55,7 +55,6 @@ public class Calculator {
     int a = 0;
     public void pressClearKey() {
 
-        //if a = 0
 
         screen = "0";
         latestOperation = "";

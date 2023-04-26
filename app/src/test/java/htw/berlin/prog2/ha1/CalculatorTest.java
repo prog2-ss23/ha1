@@ -128,16 +128,38 @@ class CalculatorTest {
     void Fehler1() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(4);
-        calc.pressBinaryOperationKey("*");
-        calc.pressDigitKey(5);
+        calc.pressDigitKey(7);
         calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
 
-        String expected = "20.0";
+        String expected = "5";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
 
 
+    }
+
+    // bei 1x auswählen soll das ergebniss in die Zwischen ablage
+    // bei 2x auswählen soll das Ergebnis gelöscht werden
+
+    @Test
+    @DisplayName("loeschen")
+    void testClearKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressClearKey();
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
     }
 }
 
