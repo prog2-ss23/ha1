@@ -82,7 +82,7 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
-        //if(screen.equals("0.0")) screen = "0";
+        if(screen.equals("0.0")) screen = "0";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
@@ -96,7 +96,7 @@ public class Calculator {
      */
     public void pressDotKey() {
         if(!screen.contains(".")) screen = screen + ".";
-        //if (screen.equals("0.")) screen = "0";
+        if (screen.equals("0.")) screen = "0";
     }
 
     /**
