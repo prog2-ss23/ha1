@@ -18,6 +18,8 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
+
+
         calc.pressEqualsKey();
 
         String expected = "40";
@@ -90,5 +92,22 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-}
+    @Test
+    @DisplayName("should display result after dividing 2 Numbers 16 by 2  ")
+    void testdividing (){
 
+        Calculator calc= new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected="8";
+        String actual= calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+}
