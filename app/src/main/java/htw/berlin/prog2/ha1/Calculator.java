@@ -29,10 +29,14 @@ public class Calculator {
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
-        if(digit > 9 || digit < 0) throw new IllegalArgumentException();
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if (digit > 9 || digit < 0) throw new IllegalArgumentException();
+        if (screen.equals("0") || latestValue == Double.parseDouble(screen)) {
+            if (screen.equals("-0")) {
+                screen = "-";
+            } else screen = "";
+        }
+            screen = screen + digit;
 
-        screen = screen + digit;
     }
 
     /**
