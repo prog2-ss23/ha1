@@ -11,7 +11,6 @@ public class Calculator {
     private String screen = "0";
 
     private double latestValue;
-
     private String latestOperation = "";
 
     /**
@@ -22,6 +21,8 @@ public class Calculator {
     }
 
     /**
+     *
+     *
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
      * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
@@ -36,7 +37,7 @@ public class Calculator {
         screen = screen + digit;
     }
 
-    /**
+    /**1.
      * Empfängt den Befehl der C- bzw. CE-Taste (Clear bzw. Clear Entry).
      * Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm
      * so dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
@@ -45,10 +46,18 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
-    }
+        if (screen.equals("0")) {
+            screen = "0";
+            latestValue = 0.0;
+            latestOperation = "";
+        }
+        else {
+            screen = "0";
+            latestValue = latestValue;
+            latestOperation = latestOperation;
+        }
+
+        }
 
     /**
      * Empfängt den Wert einer gedrückten binären Operationstaste, also eine der vier Operationen
@@ -59,9 +68,23 @@ public class Calculator {
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
-    public void pressBinaryOperationKey(String operation)  {
+    public void pressBinaryOperationKey(String operation) {
+        if (latestOperation.equals("x"))
+            screen = String.valueOf(latestValue * Double.parseDouble(screen));
+
+        else if (latestOperation.equals("/"))
+            screen = String.valueOf(latestValue / Double.parseDouble(screen));
+
+        else if (latestOperation.equals("+"))
+            screen = String.valueOf(latestValue + Double.parseDouble(screen));
+
+        else if (latestOperation.equals("-"))
+            screen = String.valueOf(latestValue - Double.parseDouble(screen));
+
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
+
     }
 
     /**
@@ -123,7 +146,7 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            default -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
