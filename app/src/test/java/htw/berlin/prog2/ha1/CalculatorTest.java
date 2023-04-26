@@ -131,7 +131,10 @@ class CalculatorTest {
 
         calc.pressDigitKey(5);
         calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
         calc.pressClearKey();
+        calc.pressEqualsKey();
+
 
         String expected = "5";
         String actual = calc.readScreen();
