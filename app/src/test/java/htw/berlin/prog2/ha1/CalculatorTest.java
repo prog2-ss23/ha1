@@ -90,5 +90,54 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("sollte eine Zahl von einer anderen Sutrahieren")
+    void testSubtraktion() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("sollte ein Error anzeigen wenn nach dem Umkehrwert von 0 gesucht wird")
+    void testUmkehrwertVon0() {
+        Calculator calc = new Calculator();
+
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+    @Test
+    @DisplayName("sollte als Ergebnis keine negative Null zeigen")
+    void testNegativeNull() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
