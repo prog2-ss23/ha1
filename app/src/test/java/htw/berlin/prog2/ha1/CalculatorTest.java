@@ -106,5 +106,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName ("should display result after press more times on equal Button")
+
+    void testEqualButton () {
+        Calculator calc = new Calculator ();
+
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        String expected = "8";
+        calc.pressEqualsKey();
+
+        expected = "10";
+        String actual = calc.readScreen ();
+
+        assertEquals (expected, actual);
+
+    }
 }
 
