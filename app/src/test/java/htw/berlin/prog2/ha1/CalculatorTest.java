@@ -108,32 +108,48 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-
         /*
      * First red Test.
-     * Dieser Test testet die Prozentrechnung.
      * */
     
-    @Test
-    @DisplayName("should display result after percentage")
-    void TestPercentage(){
+     @Test    
+     @DisplayName("Aus einer Negativen Zahl kann man keine Wurzel ziehen")
+
+     void testSquareRootOfNegativeNumber() {
+         Calculator calc = new Calculator();
+         calc.pressUnaryOperationKey("-");
+         calc.pressDigitKey(2);
+         calc.pressUnaryOperationKey("√");
+         String expected = "Error";
+         String actual = calc.readScreen();
+         assertEquals(expected, actual);
+
+         
+     }
+
+                 /*
+     * Second red Test.
+     * */
+
+    @Test    
+    @DisplayName("Der Calcultor soll Berechnungen mit Klammer ausführen können")
+    void testParentheses() {
         Calculator calc = new Calculator();
-
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("+");
         calc.pressDigitKey(2);
-        calc.pressDigitKey(0);
-        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("*");
+        calc.pressDigitKey(5);
 
-        calc.pressUnaryOperationKey("%");
+        calc.pressEqualsKey();
 
-
-        String expected = "2";
+        String expected = "16";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
-
-
-
-
-    
 }
+
+
+
+
