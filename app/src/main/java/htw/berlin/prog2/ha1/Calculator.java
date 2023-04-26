@@ -31,9 +31,10 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen) && !screen.contains(".")) screen = "";
 
         screen = screen + digit;
+
     }
 
     /**
@@ -98,7 +99,11 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.contains(".")) screen = screen + ".";
+        if (screen.length() == 0) {
+            screen = "0.";
+        } else if (!screen.contains(".")) {
+            screen = screen + ".";
+        }
     }
 
     /**
