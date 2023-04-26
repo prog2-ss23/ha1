@@ -46,6 +46,7 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(7);
+        calc.pressDigitKey(6);
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
@@ -110,39 +111,20 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after pressing Equals Taste 2 times")
-    void testDoubleEquals() {
+    @DisplayName("should only delete the latest value not everything if clear key is once pressed")
+    void testClearKey() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(2);
         calc.pressEqualsKey();
-        calc.pressEqualsKey();
 
-        String expected = "40";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    @DisplayName("should display result of an operation between three numbers: -18+32/4 ")
-    void testOperationThreeNumbers() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(8);
-        calc.pressNegativeKey();
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(3);
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(4);
-        calc.pressEqualsKey();
-
-        String expected = "-10";
+        String expected = "30";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
