@@ -119,6 +119,19 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-}
 
+    @Test
+    @DisplayName("should display error when taking the logarithm of zero")
+    void testLogarithmOfZero() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1); // press any non-zero digit first
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("ln");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+}
 

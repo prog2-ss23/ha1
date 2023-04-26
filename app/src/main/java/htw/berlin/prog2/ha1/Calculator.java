@@ -62,8 +62,16 @@ public class Calculator {
      */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
         double input = Double.parseDouble(screen);
+        latestOperation = operation;
+        if (operation.equals("ln")){
+            if(latestValue == 0){
+                screen = "Error";
+            } else {
+                double result = Math.log(latestValue);
+                screen = Double.toString(result);
+            }
+        } else {
         var result = switch(operation) {
             case "√" -> Math.sqrt(input);
             case "%" -> input / 100;
@@ -72,7 +80,7 @@ public class Calculator {
         };
         screen = Double.isNaN(result) ? "Error" : Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-    }
+    }}
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
      * Fügt beim ersten Mal Drücken dem aktuellen Bildschirminhalt das Trennzeichen auf der rechten
