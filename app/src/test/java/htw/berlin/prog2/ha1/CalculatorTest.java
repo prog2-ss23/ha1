@@ -89,6 +89,61 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //erste Teilaufgabe: grüner Test
+    @Test
+    @DisplayName("Der Taschenrechner kann negative Ergebnisse anzeigen")
+    void testNegativeAddition() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(8);
+
+
+        calc.pressEqualsKey();
+
+        String expected = "-4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
+    //ROTER TEST
+
+    @Test
+    @DisplayName("Berechnungen von mehr als zwei Zahlen")
+    void testTermsWithTwoOperators() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "17";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+//zweiter roter Test
+
+    @Test
+    @DisplayName("should display 'Error' when pressing equals key without previous binary operation")
+    void testEqualsKeyWithoutPreviousBinaryOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
