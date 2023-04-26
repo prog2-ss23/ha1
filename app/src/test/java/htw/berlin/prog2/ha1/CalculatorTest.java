@@ -91,6 +91,7 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    //Aufgabe 2 und 3 mithilfe von Mustafa Nikita gelöst
     @Test
     @DisplayName("should subtract multiple two digit numbers from each other")
     void testSubtractNumbers(){
