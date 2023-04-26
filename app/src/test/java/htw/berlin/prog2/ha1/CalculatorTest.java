@@ -116,11 +116,11 @@ class CalculatorTest {
         calc.pressDigitKey(7);
         calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
-        String expected = "5";
+        String expected = "4";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
 

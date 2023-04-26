@@ -82,7 +82,7 @@ public class Calculator {
         if(latestOperation.equals ("-"))
             screen = String.valueOf(latestValue-Double.parseDouble(screen));
 
-        if(latestOperation.equals ("*"))
+        if(latestOperation.equals ("x"))
             screen = String.valueOf(latestValue*Double.parseDouble(screen));
 
         if(latestOperation.equals ("/"))
