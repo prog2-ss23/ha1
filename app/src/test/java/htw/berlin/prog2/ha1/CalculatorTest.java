@@ -112,42 +112,44 @@ class CalculatorTest {
      * First red Test.
      * */
     
-     @Test    
-     @DisplayName("Aus einer Negativen Zahl kann man keine Wurzel ziehen")
 
-     void testSquareRootOfNegativeNumber() {
+     @Test  // Display solte 
+     @DisplayName("Es sollte Error angezeigt werden, wenn die Gleichheitstaste gedrückt ist ohne dass zuvor eine binäre Operation ausgeführt wurde")
+     void testEqualsKeyWithoutPreviousBinaryOperation() {
          Calculator calc = new Calculator();
-         calc.pressUnaryOperationKey("-");
-         calc.pressDigitKey(2);
-         calc.pressUnaryOperationKey("√");
-         String expected = "Error";
+ 
+         calc.pressDigitKey(5);
+         calc.pressEqualsKey();
+ 
+         String expected = "5";
          String actual = calc.readScreen();
+ 
          assertEquals(expected, actual);
-
-         
      }
+ 
 
                  /*
      * Second red Test.
      * */
 
-    @Test    
-    @DisplayName("Der Calcultor soll Berechnungen mit Klammer ausführen können")
-    void testParentheses() {
-        Calculator calc = new Calculator();
-        calc.pressDigitKey(6);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("*");
-        calc.pressDigitKey(5);
-
-        calc.pressEqualsKey();
-
-        String expected = "16";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
+     @Test
+     @DisplayName("Berechnung von mehreren Zahlen")
+     void testTermsWithTwoOperators() {
+         Calculator calc = new Calculator();
+ 
+         calc.pressDigitKey(3);
+         calc.pressBinaryOperationKey("+");
+         calc.pressDigitKey(3);
+         calc.pressBinaryOperationKey("+");
+         calc.pressDigitKey(9);
+         calc.pressEqualsKey();
+ 
+         String expected = "15";
+         String actual = calc.readScreen();
+ 
+         assertEquals(expected, actual);
+     }
+    
 }
 
 
