@@ -33,7 +33,6 @@ class CalculatorTest {
 
         calc.pressDigitKey(2);
         calc.pressUnaryOperationKey("√");
-
         String expected = "1.41421356";
         String actual = calc.readScreen();
 
@@ -41,54 +40,92 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display error when dividing by zero")
-    void testDivisionByZero() {
+    @DisplayName("should display result with '.' after dividing 1 by 2")
+    void testDividing() {
         Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
 
-        calc.pressDigitKey(7);
+        String expected = "0.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    
+    @Test
+    @DisplayName("should display 'error' after dividing by 0")
+    void testDividingBy0() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "Error";
+        String expected = "error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+        
     }
 
+
     @Test
-    @DisplayName("should display error when drawing the square root of a negative number")
-    void testSquareRootOfNegative() {
+    @DisplayName("should only clear the latest digit whithout deleting the whole sentence")
+    void testClearKey() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(7);
-        calc.pressNegativeKey();
-        calc.pressUnaryOperationKey("√");
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+        
 
-        String expected = "Error";
+        String expected = "5";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    @DisplayName("should not allow multiple decimal dots")
-    void testMultipleDecimalDots() {
+    @DisplayName("should only clear the latest digit whithout the whole sentence")
+    void testClearKey2() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+        
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should show the result of addition as negative number")
+    void testPressNegativeKey() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
-        calc.pressDotKey();
-        calc.pressDigitKey(7);
-        calc.pressDotKey();
-        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+        calc.pressNegativeKey();
 
-        String expected = "1.78";
+        String expected = "-2";
         String actual = calc.readScreen();
-
         assertEquals(expected, actual);
     }
-
-
-    //TODO hier weitere Tests erstellen
 }
-
