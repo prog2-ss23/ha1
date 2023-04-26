@@ -133,9 +133,12 @@ public class Calculator {
         };
         latestValue = commonValue;
         screen = Double.toString(result);
+
+
+
         if(screen.equals("Infinity")) screen = "Error";
+        if(screen.equals("NaN")) screen = "Error";  // https://www.sololearn.com/Discuss/254622/why-is-dividing-0-0-by-0-0-equal-to-nan-why-is-there-no-arithmetic-exception Hilfsmittel
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
 }

@@ -127,13 +127,14 @@ class CalculatorTest {
     }
     @Test
     @DisplayName("should display result after deviding zero by zero")
-    void testBinaryOperation() {
+    void testDevideZero() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
 
+        calc.pressEqualsKey();
         String expected = "Error";
         String actual = calc.readScreen();
 
