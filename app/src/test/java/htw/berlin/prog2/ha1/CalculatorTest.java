@@ -118,7 +118,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should display result after pulling the root and press equals key")
+    @DisplayName("should display result after calculating percentage and press equals key")
     void TestPercentage() {
         Calculator calc = new Calculator();
 
