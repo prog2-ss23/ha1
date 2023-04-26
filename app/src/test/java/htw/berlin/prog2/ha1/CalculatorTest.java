@@ -108,7 +108,7 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-    }
+    }//
     @Test
     @DisplayName("should display the Error")
     void testdividewith0() {
