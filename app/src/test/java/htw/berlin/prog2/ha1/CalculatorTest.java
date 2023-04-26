@@ -107,6 +107,39 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+    @Test
+    @DisplayName("should expected nothing")
+    void testPressEnterTwoTimes(){
+        Calculator calc = new Calculator();
+
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Der Clearbutton sollte nur eine Zahl loeschen")
+    void testClearOneNumber(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "11";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
 
 
 
