@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import java.util.Objects;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -43,11 +45,17 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
-    public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
 
-        latestValue = 0.0;
+    public void pressClearKey() {
+        if (!Objects.equals(screen, "0")){
+            screen = "0";
+        }
+        else{
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+        }
+
     }
 
     /**

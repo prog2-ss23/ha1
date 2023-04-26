@@ -46,6 +46,47 @@ class CalculatorTest {
 
 
     @Test
+    @DisplayName("should display result after adding a negativnumber with a postiv")
+    void floatadditionwith0begin() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "0.4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    @DisplayName("should display result after adding a negativnumber with a postiv")
+    void singlecleartest() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressClearKey();
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        String expected = "27";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+
+    @Test
     @DisplayName("should display result after subtrakting two positive multi-digit numbers")
     void testPositivSubtraciton() {
         Calculator calc = new Calculator();
