@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @DisplayName("Retro calculator")
 class CalculatorTest {
 
@@ -90,5 +89,90 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-}
 
+
+    @Test
+    @DisplayName("Zeigt das Ergebnis, nachdem eine positive Eingabe mit einer negativen Eingabe subtrahiert wird")
+    void testSubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    /**
+     *  @author ErayKadem hat mir bei der Methode testOverNine() Tipps gegeben
+     */
+    @Test
+    @DisplayName("Testet ob mehr als 9 Eingaben getätigt werden können")
+    void testOverNine() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(0);
+
+
+        String expected = "123456789";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
+    /**
+     *  im Internet nach Fehlern im Taschenrechner gesucht und ausprobiert.
+     */
+
+    @Test
+    @DisplayName("Testet ob bei 0/0 Error rauskommt")
+    void testZero() {
+
+    Calculator calc = new Calculator();
+
+
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+
+        calc.pressEqualsKey();
+
+
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+}
+    @Test
+    @DisplayName("Testet ob bei 0/0 Error rauskommt")void testYippi() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+}
