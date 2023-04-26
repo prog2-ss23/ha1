@@ -122,5 +122,22 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display result after multiplying a decimal number and a natural number")
+    void testDecimalNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "2.7";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
