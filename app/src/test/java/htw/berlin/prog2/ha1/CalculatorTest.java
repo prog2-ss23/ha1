@@ -89,6 +89,383 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //Positiver Test 1
+
+    @Test
+    @DisplayName("should display result after entering decimal numbers")
+    void testDecimalNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+
+        String expected = "2.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Positiver Test 2
+
+    @Test
+    @DisplayName("should display result after sign inversion")
+    void testSignInversionPositive() {
+        Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        calc.pressNegativeKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /*
+    Negativer Test 1
+    Tatsächliches Test-Ergebnis ist: 0.01333333 -> es müsste 1.33333333
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(5);
+      //  calc.pressUnaryOperationKey("1/x");
+
+        String expected = "1.33333333";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /*
+    Negativer Test 1.1
+    Tatsächliches Test-Ergebnis ist: 0.2 -> es müsste 2
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal1() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /*
+    Negativer Test 1.2
+    Tatsächliches Test-Ergebnis ist: 0.04 -> es müsste 4
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal2() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+     /*
+    Negativer Test 1.3
+    Tatsächliches Test-Ergebnis ist: 0.04 -> es müsste 5
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal3() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+      /*
+    Negativer Test 1.4
+    Tatsächliches Test-Ergebnis ist: 0.04 -> es müsste 5
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal4() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /*
+    Negativer Test 1.5
+    Tatsächliches Test-Ergebnis ist: 0.04 -> es müsste 4
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal5() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "3.91256863";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+     /*
+    Negativer Test 1.6
+    Test bei einstelliger ganzer Zahl korrekt
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal6() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /*
+    Negativer Test 1.7
+    Test bei zweistelliger ganzer Zahl korrekt
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal7() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.04";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /*
+    Negativer Test 1.8
+    Test bei dreistelliger ganzer Zahl korrekt
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal8() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.004";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /*
+    Negativer Test 1.9
+    Test bei einstelliger Dezimalzahl >1 korrekt
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal9() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+      /*
+    Negativer Test 1.10
+    Test bei zweistelliger Dezimalzahl >1 korrekt
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal10() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.39215686";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+     /*
+    Negativer Test 1.11
+    Test bei dreistelliger Dezimalzahl >1 korrekt
+     */
+
+    @Test
+    @DisplayName("should display reciprocal after reciprocal key")
+    void testReciprocal11() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "0.39138943";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result after addition of big numbers")
+    void testBigNumbers() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressBinaryOperationKey("+");
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+
+        calc.pressEqualsKey();
+
+
+        String expected = "2000000000";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+     /*Negativer Test 3
+    Wurzel auf -7, ergibt Error, obwohl negatives Ergebnis ausgegeben werden soll
+     */
+
+    @Test
+    @DisplayName("should display error when drawing the square root of a negative number")
+    void testSquareRootOfNegative1() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(7);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+/*Negativer Test 4
+    Maximale Zahl
+     */
+
+    @Test
+    @DisplayName("should display 9 numbers only")
+    void testmaxNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(8);
+
+        String expected = "123456789";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
+
 
