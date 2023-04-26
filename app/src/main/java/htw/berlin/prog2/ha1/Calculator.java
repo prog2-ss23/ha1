@@ -1,5 +1,6 @@
 package htw.berlin.prog2.ha1;
 
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -31,9 +32,10 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen) && !screen.contains(".")) screen = "";
 
         screen = screen + digit;
+
     }
 
     /**
@@ -82,8 +84,12 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+        if (screen.contains(".") && screen.length() > 11) {
+            screen = screen.substring(0, 10);
+        }
+        if (screen.endsWith(".0")) {
+            screen = screen.substring(0, screen.length()-2);
+        }
     }
 
     /**
@@ -94,7 +100,11 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.contains(".")) screen = screen + ".";
+        if (screen.length() == 0) {
+            screen = "0.";
+        } else if (!screen.contains(".")) {
+            screen = screen + ".";
+        }
     }
 
     /**
