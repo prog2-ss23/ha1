@@ -118,13 +118,13 @@ class CalculatorTest {
     void testAddThreeNumbers (){
 
         Calculator calc= new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressDigitKey(0);
+                                   // screen = "0"
+        calc.pressDigitKey(2);     // screen = "02"
+        calc.pressDigitKey(0);     // screen = "020"
         calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(3);
-        calc.pressDigitKey(0);
-        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);     // screen = "3"
+        calc.pressDigitKey(0);     // screen = "30"
+        calc.pressBinaryOperationKey("+");    // screen = "50", latest  = 50.0
         calc.pressDigitKey(3);
         calc.pressDigitKey(0);
 
