@@ -94,22 +94,22 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("division by one should equal the first digit pressed")
-    void testDivisonByOne() {
+    @DisplayName("should display result after multiplying two positive numbers")
+    void testMultiply() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(8);
-        calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
         calc.pressEqualsKey();
 
-        String expected = "8";
+        String expected = "24";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
 
     }
-/*
+
     @Test
     @DisplayName("my second test")
     void testByMe() {
@@ -117,7 +117,7 @@ class CalculatorTest {
 
 
     }
-*/
+
 
 }
 
