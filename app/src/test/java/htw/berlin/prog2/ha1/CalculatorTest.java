@@ -90,5 +90,68 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display result after multiplying two positive numbers")
+    void testPositiveMultiplication() {
+        Calculator calc = new Calculator();
+
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+        /*
+     * First red Test.
+     * */
+    
+
+     @Test  // Display solte 
+     @DisplayName("Es sollte Error angezeigt werden, wenn die Gleichheitstaste gedrückt ist ohne dass zuvor eine binäre Operation ausgeführt wurde")
+     void testEqualsKeyWithoutPreviousBinaryOperation() {
+         Calculator calc = new Calculator();
+ 
+         calc.pressDigitKey(5);
+         calc.pressEqualsKey();
+ 
+         String expected = "5";
+         String actual = calc.readScreen();
+ 
+         assertEquals(expected, actual);
+     }
+ 
+
+                 /*
+     * Second red Test.
+     * */
+
+     @Test
+     @DisplayName("Berechnung von mehreren Zahlen")
+     void testTermsWithTwoOperators() {
+         Calculator calc = new Calculator();
+ 
+         calc.pressDigitKey(3);
+         calc.pressBinaryOperationKey("+");
+         calc.pressDigitKey(3);
+         calc.pressBinaryOperationKey("+");
+         calc.pressDigitKey(9);
+         calc.pressEqualsKey();
+ 
+         String expected = "15";
+         String actual = calc.readScreen();
+ 
+         assertEquals(expected, actual);
+     }
+    
 }
+
+
+
 
