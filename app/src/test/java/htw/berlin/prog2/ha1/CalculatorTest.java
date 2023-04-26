@@ -119,19 +119,22 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-
     @Test
-    @DisplayName("should display error when taking the logarithm of zero")
-    void testLogarithmOfZero() {
+    @DisplayName("should display the percentage of the number")
+    void testPercent() {
         Calculator calc = new Calculator();
-        calc.pressDigitKey(1); // press any non-zero digit first
-        calc.pressDigitKey(0);
-        calc.pressUnaryOperationKey("ln");
 
-        String expected = "Error";
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+        calc.pressEqualsKey();
+
+        String expected = "8";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
 }
 
