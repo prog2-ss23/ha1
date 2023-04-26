@@ -91,7 +91,7 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
 
-
+ // @author mit Hilfe von Ahmad und Tutoren
     @Test
     @DisplayName("should display zero after pressing AC key")
     void testAllClear() {
@@ -161,8 +161,8 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should calculate longer terms")
-    void testTermsWithTwoOperators() {
+    @DisplayName("it should calculate more numbers")
+    void testWithMoreNumbers() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(9);
