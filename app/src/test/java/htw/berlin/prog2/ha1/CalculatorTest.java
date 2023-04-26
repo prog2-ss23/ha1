@@ -148,6 +148,24 @@ class CalculatorTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("Test another click of = after some operation has been made")
+
+    void TestBinaryOperationsAgain(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        String expected="4";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+
+
+
 
 }
 
