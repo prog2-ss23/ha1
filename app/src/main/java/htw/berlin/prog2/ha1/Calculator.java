@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private int clearCount = 0;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -31,7 +33,7 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen))  screen = "";
 
         screen = screen + digit;
     }
@@ -45,9 +47,17 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        //Beim ersten C = Nur zuvor eingegebene Zahl löschen
+        if (clearCount == 0) {
+            screen = "0";
+        }
+        //Beim zweiten C = Löscht alle zwischengespeicherte Werte
+        else {
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+        }
+        clearCount++;
     }
 
     /**
@@ -123,7 +133,8 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+            //Fix: default gibt Double.parseDouble(screen) aus (Damit nicht passiert)
+            default -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
