@@ -105,6 +105,30 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display result after pulling the root")
+    void TestPullRoot() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "3";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after pulling the root and press equals key")
+    void TestPercentage() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("%");
+        calc.pressEqualsKey();
+
+        String expected = "0.09";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
