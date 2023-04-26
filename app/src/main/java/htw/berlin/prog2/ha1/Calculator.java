@@ -111,13 +111,16 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
-        //screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
-
-        if(screen=="0"&&screen.startsWith("-")){
+        if(screen!="0"){
             screen="-"+screen;
         }
+        else{
+            screen="-"+screen.substring(0);
+            System.out.println(screen);
+        }
+       // screen = screen.startsWith("-") ? screen.substring(0) : "-" + screen;
 
-        System.out.println(screen);
+        System.out.println(screen.substring(0));
     }
 
     /**
