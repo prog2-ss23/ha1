@@ -14,6 +14,7 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private int pressed = 0;
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -44,10 +45,15 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
-    public void pressClearKey() {
+    public String pressClearKey() {
+        pressed++; //count how many times the clear key was pressed
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (pressed <=1) {
+            latestOperation = "";
+            screen = "";
+            screen = screen + latestValue;
+        }
+        return screen;
     }
 
     /**
@@ -60,8 +66,14 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        if (latestOperation.equals(operation)) {
+            pressEqualsKey();
+            latestOperation = operation;
+            latestValue = Double.parseDouble(screen);
+        } else {
+            latestOperation = operation;
+            latestValue = Double.parseDouble(screen);
+        }
     }
 
     /**
@@ -118,16 +130,19 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+        double t = Double.parseDouble(screen);
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
+            case "" -> Double.parseDouble(screen);
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        latestValue = t;
     }
 }
