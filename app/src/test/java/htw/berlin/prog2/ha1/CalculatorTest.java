@@ -89,6 +89,55 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
-}
+    //Der Online Calculator hat eine Speicherfunktion.
+    //Die Klasse Calculator kann nur mit maximal 10 Ziffern plus einem Dezimaltrennzeichen umgehen, während die Online-Version keine solche Einschränkung hat.
+    @Test
+    @DisplayName("should be able to be display the result")
+    void testSubtract() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result of 500 1/x")
+    void testPercentage() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should be able to be display the result")
+    void testNegativeNumberDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "-2.33333333";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+}
