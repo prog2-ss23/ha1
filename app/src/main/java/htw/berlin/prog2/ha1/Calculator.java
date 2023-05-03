@@ -133,9 +133,7 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.equals("Infinity")) screen = "Error";
-        if(screen.endsWith(".0")) screen = screen.substring(0, screen.length()-2);
-        if(screen.contains(".") && screen.length() > 15) {
-            screen = String.format(Locale.US, "%.2f", result); //Fix 2
-        }
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
+        if(screen.contains(".") && screen.length() > 9) screen = screen.substring(0, screen.indexOf(".") + 9); //Fix 2
     }
 }

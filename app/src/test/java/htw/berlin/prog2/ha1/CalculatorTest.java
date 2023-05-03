@@ -97,7 +97,7 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(7);
-
+        calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(3);
         calc.pressEqualsKey();
 
@@ -124,19 +124,20 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display truncated result after dividing two non-divisible numbers")
-    void testNonDivisibleNumbers() {
+    @DisplayName("should be able to be display the result")
+    void testNegativeNumberDivision() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
+        calc.pressDigitKey(7);
+        calc.pressNegativeKey();
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(3);
         calc.pressEqualsKey();
 
-        String expected = "3.33";
+        String expected = "-2.33333333";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
 }
