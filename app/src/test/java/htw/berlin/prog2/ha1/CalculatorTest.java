@@ -90,5 +90,55 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display result after multiplying two numbers")
+    void testMultip() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "24";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+        @Test
+        @DisplayName("should display result after pressing equals without an operator  ")
+        void testEquals() {
+            Calculator calc = new Calculator();
+
+            calc.pressDigitKey(5);
+            calc.pressEqualsKey();
+
+            String expected = "5";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
+    }
+
+
+    @Test
+    @DisplayName("should display error when dividing by zero with a negative number ")
+    void testDivisionOfNegativeByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(10);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
+
 
