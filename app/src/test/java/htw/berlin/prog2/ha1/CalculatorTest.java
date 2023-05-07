@@ -112,6 +112,7 @@ class CalculatorTest {
 
     //Teilaufgabe 2.
 
+
     @Test
     @DisplayName("should display zero after multiplying any number with zero")
     void testMultiplicationWithZero() {
@@ -123,6 +124,20 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("pressing equals without any operations should display the same digit")
+    void pressEqualsKeyWithoutPreviousOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "1";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
