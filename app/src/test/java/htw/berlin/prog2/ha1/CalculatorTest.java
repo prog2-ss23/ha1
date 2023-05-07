@@ -170,10 +170,28 @@ class CalculatorTest {
         Calculator calc=new Calculator();
         calc.pressNegativeKey();
         calc.pressDigitKey(6);
-        String expected="-6";
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(6);
+        calc.pressEqualsKey();
+        String expected="0";
         String actual=calc.readScreen();
         assertEquals(expected,actual);
     }
+
+
+    @Test
+    @DisplayName("Test when pressing Equals key")
+
+    void Test234(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+        String expected="9";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
 
 
 

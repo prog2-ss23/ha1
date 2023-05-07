@@ -64,8 +64,6 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-
-
     }
 
     /**
@@ -111,16 +109,8 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
-        if(screen!="0"){
-            screen="-"+screen;
-        }
-        else{
-            screen="-"+screen.substring(0);
-            System.out.println(screen);
-        }
-       // screen = screen.startsWith("-") ? screen.substring(0) : "-" + screen;
+       screen = screen.startsWith("-") ? "-"+screen.substring(0) : "-" + screen;
 
-        System.out.println(screen.substring(0));
     }
 
     /**
@@ -135,25 +125,17 @@ public class Calculator {
     public void pressEqualsKey() {
         System.out.println(screen);
 
-        double valr=latestValue-Double.parseDouble(screen);
-
-        System.out.println("the var"+valr);
-
-        System.out.println(latestValue);
-
-
-
           var result = switch(latestOperation) {
             case "+" -> latestValue + (Double.parseDouble(screen));
-            case "-" ->  latestValue - (Double.parseDouble(screen)+1);
+            case "-" ->  latestValue - (Double.parseDouble(screen));
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
-        System.out.println("l value"+latestValue);
-        System.out.println("parse Double"+Double.parseDouble(screen));
-        //latestValue=Double.parseDouble(screen);
+
+
         screen = Double.toString(result);
+        System.out.println(" asdfa"+screen);
         //latestValue=Double.parseDouble(screen);//3 which is the result
 
         System.out.println(screen+"the screen");
