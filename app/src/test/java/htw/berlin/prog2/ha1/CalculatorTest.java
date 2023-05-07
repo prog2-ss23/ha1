@@ -90,5 +90,112 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    //test which tests if screen equals 0 if C is pressed
+    @Test
+    @DisplayName("should clear screen")
+
+    void testClearKey(){
+      Calculator calc = new Calculator();
+      calc.pressDigitKey(1);
+      calc.pressBinaryOperationKey("+");
+      calc.pressDigitKey(1);
+      calc.pressEqualsKey();
+      calc.pressClearKey();
+      String expected="0";
+      String actual=calc.readScreen();
+      assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("Test double click of Binary Operations")
+
+    void TestDoubleClickBinaryOperationKey(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("/");
+        String expected="4";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+
+    @Test
+    @DisplayName("Test binary operations")
+
+    void TestBinaryOperations(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        String expected="2";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("Test result of square root result when result should have no decimals")
+
+    void TestUnaryOperations(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("√");
+        String expected="2";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("Test another click of = after some operation has been made")
+
+    void TestBinaryOperationsAgain(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        String expected="4";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("Test Negative key")
+
+    void TestNegativeKeyPress(){
+        Calculator calc=new Calculator();
+        calc.pressNegativeKey();
+        calc.pressDigitKey(6);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(6);
+        calc.pressEqualsKey();
+        String expected="0";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+
+    @Test
+    @DisplayName("Test when pressing Equals key")
+
+    void Test234(){
+        Calculator calc=new Calculator();
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+        String expected="9";
+        String actual=calc.readScreen();
+        assertEquals(expected,actual);
+    }
+
+
+
+
+
+
 }
 

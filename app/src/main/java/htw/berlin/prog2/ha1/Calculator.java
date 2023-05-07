@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private int count=0;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -80,8 +82,10 @@ public class Calculator {
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
         screen = Double.toString(result);
         if(screen.equals("NaN")) screen = "Error";
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
@@ -105,7 +109,8 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
-        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+       screen = screen.startsWith("-") ? "-"+screen.substring(0) : "-" + screen;
+
     }
 
     /**
@@ -118,14 +123,27 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
+        System.out.println(screen);
+
+          var result = switch(latestOperation) {
+            case "+" -> latestValue + (Double.parseDouble(screen));
+            case "-" ->  latestValue - (Double.parseDouble(screen));
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            //lösung für den zweiten finalen roten Test
+              case ""->Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
+
         screen = Double.toString(result);
+        System.out.println(" asdfa"+screen);
+        //latestValue=Double.parseDouble(screen);//3 which is the result
+
+        System.out.println(screen+"the screen");
+        //System.out.println("The third value:"+latestValue);
+        //latestValue=Double.parseDouble(screen);
+
         if(screen.equals("Infinity")) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
