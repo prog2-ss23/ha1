@@ -34,7 +34,7 @@ class CalculatorTest {
         calc.pressDigitKey(2);
         calc.pressUnaryOperationKey("√");
 
-        String expected = "1.41421356";
+        String expected = "1.4142136";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -88,7 +88,54 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    // TODO hier weitere Tests erstellen
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display result after substracting two numbers")
+    void testSubstration() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result 9 (not 9.0) after getting the square root of 81")
+    void testRoute() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(1);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result round up decimal numbers after 7 digits")
+    void testRoundUp() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(7);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "29.6141858";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
-
