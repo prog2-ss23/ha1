@@ -130,6 +130,8 @@ public class Calculator {
             case "-" ->  latestValue - (Double.parseDouble(screen));
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            //lösung für den zweiten finalen roten Test
+              case ""->Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
 
