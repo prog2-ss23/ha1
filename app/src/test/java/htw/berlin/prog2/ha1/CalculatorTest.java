@@ -110,6 +110,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //Teilaufgabe 2.
+
+    @Test
+    @DisplayName("should display zero after multiplying any number with zero")
+    void testMultiplicationWithZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("*");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 
 }
