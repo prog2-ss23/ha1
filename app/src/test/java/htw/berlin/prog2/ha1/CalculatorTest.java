@@ -90,5 +90,60 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+//Teilaufgabe 1.
+
+    @Test
+    @DisplayName("should reset calculator when pressing Clear button")
+    void testClearButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2.
+
+
+    @Test
+    @DisplayName("Attempting to calculate the inversion of 0 should display an error message")
+    void testInversionOfZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("pressing equals without any operations should display the same digit")
+    void testPressingEqualsKeyWithoutAnyOperations() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
 }
+
+
 
