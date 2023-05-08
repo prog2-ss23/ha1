@@ -114,16 +114,14 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("should display zero after multiplying any number with zero")
-    void testMultiplicationWithZero() {
+    @DisplayName("Attempting to calculate the inversion of 0 should display an error message")
+    void testInversionOfZero() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(7);
-        calc.pressBinaryOperationKey("*");
         calc.pressDigitKey(0);
-        calc.pressEqualsKey();
+        calc.pressUnaryOperationKey("1/x");
 
-        String expected = "0";
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -131,7 +129,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("pressing equals without any operations should display the same digit")
-    void pressEqualsKeyWithoutPreviousOperation() {
+    void testPressingEqualsKeyWithoutAnyOperations() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
