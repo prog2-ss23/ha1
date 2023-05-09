@@ -113,10 +113,10 @@ class CalculatorTest {
     Teilaufgabe2.1:
     */
     @Test
-    @DisplayName("should display ERROR when the first is divider key")
+    @DisplayName("should display ERROR when the first is 1/x key")
     void testPressBinaryDivideKey() {
         Calculator calc = new Calculator();
-        calc.pressBinaryOperationKey("/");
+        calc.pressUnaryOperationKey("1/x");
         String expected = "ERROR";
         String actual = calc.readScreen();
 
@@ -137,6 +137,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+
 
 
 
