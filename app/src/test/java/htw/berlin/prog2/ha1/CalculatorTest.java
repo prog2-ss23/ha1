@@ -90,5 +90,56 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    /*
+    Teilaufgabe 1:
+     */
+    @Test
+    @DisplayName("should display the result after subtracting two negativ multi-digit numbers")
+    void testNegativeSubtraction() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressEqualsKey();
+        String expected = "10";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    /*
+    Teilaufgabe2.1:
+    */
+    @Test
+    @DisplayName("should display ERROR when the first is 1/x key")
+    void testPressBinaryDivideKey() {
+        Calculator calc = new Calculator();
+        calc.pressUnaryOperationKey("1/x");
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("the order when the sign is negative and the number doesn't matters")
+    void orderOfNegativeSignAndNumber() {
+        Calculator calc = new Calculator();
+        calc.pressNegativeKey();
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+
+        String expected = "-123";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
+
+
 }
 
