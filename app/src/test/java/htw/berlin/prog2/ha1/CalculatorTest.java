@@ -3,6 +3,8 @@ package htw.berlin.prog2.ha1;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.naming.NameNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Retro calculator")
@@ -89,6 +91,64 @@ class CalculatorTest {
     }
 
 
+
+
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display an empty screen")
+    void testClearKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressClearKey();
+
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    @DisplayName("displays right result of 1/x")
+    void test() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
+
+
+        String expected = "2.22222222";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("can handle Clearkey plus number")
+    void testClearButton() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
+        calc.pressDigitKey(6);
+
+        calc.pressEqualsKey();
+
+        String expected = "12";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+
+
 }
 
