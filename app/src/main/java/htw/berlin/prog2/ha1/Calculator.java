@@ -32,7 +32,9 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen) && !screen.startsWith("0.")){
+            screen = "";
+        }
 
         screen = screen + digit;
     }
@@ -65,14 +67,9 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation) {
-        if (latestOperation == "") {
-            latestValue = Double.parseDouble(screen);
-            latestOperation = operation;
-        } else {
-            pressEqualsKey();
-            latestValue = Double.parseDouble(screen);
-            latestOperation = operation;
-        }
+        latestValue = Double.parseDouble(screen);
+        latestOperation = operation;
+
     }
 
     /**

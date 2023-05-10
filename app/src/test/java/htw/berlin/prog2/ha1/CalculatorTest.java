@@ -113,16 +113,18 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("can handle %")
-    void testDecimal() {
+    @DisplayName("displays right result of 1/x")
+    void test() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
-        calc.pressDigitKey(3);
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
         calc.pressDigitKey(4);
-        calc.pressUnaryOperationKey("%");
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("1/x");
 
-        String expected = "2.34";
+
+        String expected = "2.22222222";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -145,6 +147,8 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
+
+
 
 }
 
