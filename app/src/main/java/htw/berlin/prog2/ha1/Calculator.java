@@ -7,7 +7,6 @@ package htw.berlin.prog2.ha1;
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
  */
 public class Calculator {
-
     private String screen = "0";
 
     private double latestValue;
