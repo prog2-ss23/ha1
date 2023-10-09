@@ -89,6 +89,21 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after converting a number to percentage")
+    void testPercentageConversion() {
+        Calculator calc= new Calculator();
+
+        calc.pressDigitKey(5); //insert number 50
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "0.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
