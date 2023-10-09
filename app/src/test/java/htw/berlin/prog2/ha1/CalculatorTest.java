@@ -105,5 +105,23 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //Teilaufgabe 2
+    //red test 1
+    @Test
+    @DisplayName("should display error when entering an invalid operation")
+
+    void testInvalidOperation(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("#");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
