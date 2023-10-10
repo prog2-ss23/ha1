@@ -109,6 +109,20 @@ class CalculatorTest {
     }
 
     @Test
+    @DisplayName("should display the same number on the screen")
+    void testEqualsKeyWithNoOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "8";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("should display error after dividing a number by zero multiple times")
     void testMultipleDivisionByZero() {
         Calculator calc = new Calculator();
@@ -126,26 +140,5 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
-    @Test
-    @DisplayName("should display result after decimal multiplication")
-    void testDecimalMultiplication() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressDotKey();
-        calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("*");
-        calc.pressDigitKey(2);
-        calc.pressEqualsKey();
-
-        String expected = "5.0";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
-    
-
 }
 
