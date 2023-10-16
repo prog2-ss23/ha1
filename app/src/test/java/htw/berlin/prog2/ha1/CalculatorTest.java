@@ -27,6 +27,21 @@ class CalculatorTest {
     }
 
     @Test
+    @DisplayName("sqrt of negative number should not be possible")
+    void sqrtnegativenumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("should display result after getting the square root of two")
     void testSquareRoot() {
         Calculator calc = new Calculator();
