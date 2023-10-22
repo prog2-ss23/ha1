@@ -81,7 +81,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
-        if(screen.equals("NaN")) screen = "Error";
+        if(screen.equals("NaN") || screen.equals("Infinity") && operation.equals("1/x")&& latestValue==0.0) screen = "Error"; // Wenn 1/x auf 0 angewendet wird ist es Error statt infinity wie beim Online Rechner
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
