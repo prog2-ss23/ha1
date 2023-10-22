@@ -90,5 +90,22 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("Zwei positive Zahlen werden voneinander subtrahiert!")
+    void testPositiveSubtraktion() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
