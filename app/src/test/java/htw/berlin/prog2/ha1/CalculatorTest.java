@@ -90,6 +90,7 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    // meine Arbeit s0582356
     @Test
     @DisplayName("Zwei positive Zahlen werden voneinander subtrahiert!")
     void testPositiveSubtraktion() {
@@ -107,5 +108,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // s0582356 Inversion von 0 nicht möglich
+    @Test
+    public void testInverseOfZero() {
+        // Neues Calculator-Objekt erstellen
+        Calculator calculator = new Calculator();
+
+        // Die Zahl "0" eingeben
+        calculator.pressDigitKey(0);
+
+        // Versuch, die Inversion zu berechnen
+        calculator.pressUnaryOperationKey("1/x");
+
+        // Das Ergebnis sollte "Error" sein, da die Inversion von 0 nicht definiert ist
+        assertEquals("Error", calculator.readScreen());
+    }
+
 }
 
