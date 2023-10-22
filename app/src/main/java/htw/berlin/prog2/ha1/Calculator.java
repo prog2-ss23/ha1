@@ -75,6 +75,11 @@ public class Calculator {
      */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
+        // Überprüfen Sie, ob der aktuelle Wert 0 ist und die Inversion ausgewählt wurde
+        if(latestValue == 0.0 && operation.equals("1/x")) {
+            screen = "Error";
+            return; // Beenden Sie die Methode frühzeitig, da es einen Fehler gibt
+        }
         latestOperation = operation;
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
@@ -83,6 +88,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
