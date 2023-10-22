@@ -60,6 +60,7 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        if(latestOperation != "") pressEqualsKey(); //aktualiesiert Zwischensumme auf screen und überprüft aufeinanderfolgende Rechenzeichen
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
     }
