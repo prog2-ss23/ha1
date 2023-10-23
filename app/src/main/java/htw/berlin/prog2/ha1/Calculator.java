@@ -16,6 +16,9 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private boolean wasCleared = false; // Neues Feld von mir hinzugefügt s0582356
+
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -47,9 +50,19 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
+     /*   screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+     */
+        if (wasCleared) {
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+            wasCleared = false;
+        } else {
+            screen = "0";
+            wasCleared = true;
+        }
     }
 
     /**
