@@ -108,8 +108,9 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    // s0582356 Inversion von 0 nicht möglich
+    // meine Arbeit s0582356 Inversion von 0 nicht möglich
     @Test
+    @DisplayName("Die Inversion von 0 nicht möglich")
     public void testInverseOfZero() {
         // Neues Calculator-Objekt erstellen
         Calculator calculator = new Calculator();
@@ -123,6 +124,20 @@ class CalculatorTest {
         // Das Ergebnis sollte "Error" sein, da die Inversion von 0 nicht definiert ist
         assertEquals("Error", calculator.readScreen());
     }
+    // meine Arbeit s0582356
+    @Test
+    public void testSingleClearPress() {
+        Calculator calculator = new Calculator();
+        calculator.pressDigitKey(5);
+        calculator.pressBinaryOperationKey("+");
+        calculator.pressDigitKey(3);
+        calculator.pressClearKey(); // Sollte nur den Bildschirm zurücksetzen
+        calculator.pressDigitKey(2);
+        calculator.pressEqualsKey();  // Das erwartete Ergebnis ist 5 + 2 = 7
+
+        assertEquals("7", calculator.readScreen());
+    }
+
 
 }
 
