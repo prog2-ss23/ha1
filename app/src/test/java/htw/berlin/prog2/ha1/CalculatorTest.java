@@ -105,6 +105,37 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display a whole number if there are no numbers following the .")
+    void wholeNumberTest(){
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("√");
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    @DisplayName("should allow to add more then 2 numbers together")
+    void addingMultipleNumbers(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+
+        String expected = "20";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
