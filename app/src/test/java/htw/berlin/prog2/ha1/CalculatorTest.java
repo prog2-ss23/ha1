@@ -88,7 +88,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-
+  //------------------------------------------------------------------------------------
     //TODO hier weitere Tests erstellen
     // meine Arbeit s0582356
     @Test
@@ -137,6 +137,21 @@ class CalculatorTest {
 
         assertEquals("7", calculator.readScreen());
     }
+
+    // meine Arbeit s0582356
+
+    @Test
+    public void testConsecutiveBinaryOperations() {
+        Calculator calculator = new Calculator();
+        calculator.pressDigitKey(5);
+        calculator.pressBinaryOperationKey("+");
+        calculator.pressDigitKey(3);
+        calculator.pressBinaryOperationKey("-");
+        calculator.pressDigitKey(2);
+        calculator.pressEqualsKey();
+        assertEquals("6", calculator.readScreen()); // Erwarte 5 + 3 - 2 = 6
+    }
+
 
 
 }
