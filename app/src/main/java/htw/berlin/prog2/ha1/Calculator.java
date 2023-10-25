@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import org.w3c.dom.ls.LSOutput;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -13,6 +15,9 @@ public class Calculator {
     private double latestValue;
 
     private String latestOperation = "";
+
+    private boolean wasCleared = false; // Neues Feld von mir hinzugefügt s0582356
+
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -45,9 +50,19 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
+     /*   screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+     */
+        if (wasCleared) {
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+            wasCleared = false;
+        } else {
+            screen = "0";
+            wasCleared = true;
+        }
     }
 
     /**
@@ -60,8 +75,16 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+     /*   latestValue = Double.parseDouble(screen);
+        latestOperation = operation;
+      */
+        // umgeändert gefixt
+        if (!latestOperation.isEmpty()) {
+            pressEqualsKey(); // Führe die vorherige Operation aus, wenn sie existiert
+        }
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+
     }
 
     /**
@@ -73,6 +96,11 @@ public class Calculator {
      */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
+        // Überprüfen Sie, ob der aktuelle Wert 0 ist und die Inversion ausgewählt wurde
+        if(latestValue == 0.0 && operation.equals("1/x")) {
+            screen = "Error";
+            return; // Beenden Sie die Methode frühzeitig, da es einen Fehler gibt
+        }
         latestOperation = operation;
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
@@ -81,6 +109,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+
         if(screen.equals("NaN")) screen = "Error";
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
@@ -130,4 +159,5 @@ public class Calculator {
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+
 }
