@@ -59,13 +59,25 @@ public class Calculator {
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
-    public void pressBinaryOperationKey(String operation) {
 
+    //fix red test 1
+    public void pressBinaryOperationKey(String operation)  {
+        if (isValidBinaryOperation(operation)) {
+            latestValue = Double.parseDouble(screen);
+            latestOperation = operation;
+        }else {
+            screen="Error";
+        }
+    }
 
-
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
-
+    private boolean isValidBinaryOperation(String operation) {
+        String[] validOperations = {"+", "-", "x", "/"};
+        for (String validOp : validOperations) {
+            if (validOp.equals(operation)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
