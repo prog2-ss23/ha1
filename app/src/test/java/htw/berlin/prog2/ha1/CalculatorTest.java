@@ -121,5 +121,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    //red test 2
+    @Test
+    @DisplayName("should display the same number after pressing 1 number and equal, not error")
+
+    void testPressing(){
+        Calculator calc= new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
