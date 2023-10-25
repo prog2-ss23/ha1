@@ -136,6 +136,7 @@ public class Calculator {
     public void pressEqualsKey() {
 
         //fix red test 2
+        //when there is calculation, screen displays the same input number
         if (!latestOperation.isEmpty()) {
 
             var result = switch (latestOperation) {
