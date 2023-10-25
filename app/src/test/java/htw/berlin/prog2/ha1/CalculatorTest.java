@@ -110,13 +110,11 @@ class CalculatorTest {
     @Test
     @DisplayName("should display error when entering an invalid operation")
 
-    void testInvalidOperation(){
+    void testInvalidInput(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(4);
         calc.pressBinaryOperationKey("#");
-        calc.pressDigitKey(2);
-        calc.pressEqualsKey();
 
         String expected = "Error";
         String actual = calc.readScreen();
