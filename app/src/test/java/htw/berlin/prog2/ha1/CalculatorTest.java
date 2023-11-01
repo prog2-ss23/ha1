@@ -89,6 +89,53 @@ class CalculatorTest {
     }
 
 
-    //TODO hier weitere Tests erstellen
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after converting a number to percentage")
+    void testPercentageConversion() {
+        Calculator calc= new Calculator();
+
+        calc.pressDigitKey(5); //insert number 50
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "0.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2
+    //red test 1
+    @Test
+    @DisplayName("should display error when entering an invalid operation")
+
+    void testInvalidInput(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("#");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //red test 2
+    @Test
+    @DisplayName("should display the same number after pressing 1 number and equal, not error")
+
+    void testPressing(){
+        Calculator calc= new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
